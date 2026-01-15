@@ -1,0 +1,16 @@
+[
+  {
+    "name": "pelabuhan_pt_new.geojson",
+    "displayName": "",
+    "description": "",
+    "layers": [
+      {
+        "type": "circle",
+        "paint": {
+          "circle-color": "#75211b",
+          "circle-opacity": 0.75
+        }
+      }
+    ]
+  }
+]
