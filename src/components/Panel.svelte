@@ -1,19 +1,46 @@
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox";
+  import { Label } from "$lib/components/ui/label";
+  import { appState } from "../appState.svelte";
+
+  const pelabuhanState: Record<string, boolean> = $state({
+    "Pelabuhan Utama": true,
+    "Pelabuhan Pengumpan Regional": true,
+    "Pelabuhan Pengumpan": true,
+  });
+  function pelabuhanFilter(layername: string) {
+    return () => {
+      console.log(pelabuhanState[layername]);
+
+      if (!appState.map) return;
+
+      appState.map.setLayoutProperty(
+        layername,
+        "visibility",
+        pelabuhanState[layername] ? "visible" : "none"
+      );
+    };
+  }
 </script>
 
 <div
-  class="max-w-120 bg-white w-100 h-fit max-h-100 overflow-auto rounded text-sm p-1"
+  class="max-w-120 bg-white w-100 h-fit max-h-100 overflow-auto rounded text-sm p-1 px-5"
 >
   <Accordion.Root type="single" class="w-full" value="item-1">
     <Accordion.Item value="item-1">
       <Accordion.Trigger>Product Information</Accordion.Trigger>
       <Accordion.Content class="flex flex-col gap-4 text-balance">
-        <p>
-          Our flagship product combines cutting-edge technology with sleek
-          design. Built with premium materials, it offers unparalleled
-          performance and reliability.
-        </p>
+        {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
+          <div class="flex items-center gap-3">
+            <Checkbox
+              bind:checked={pelabuhanState[l]}
+              id="pelabuhan-{l}"
+              onCheckedChange={pelabuhanFilter(l)}
+            />
+            <Label for="pelabuhan-{l}">{l}</Label>
+          </div>
+        {/each}
       </Accordion.Content>
     </Accordion.Item>
     <Accordion.Item value="item-2">

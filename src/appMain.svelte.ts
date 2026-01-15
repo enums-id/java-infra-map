@@ -75,16 +75,144 @@ function registerBaseMap(map: mapboxgl.Map) {
     },
   });
 
+  // map.addLayer({
+  //   id: "pelabuhan",
+  //   type: "circle",
+  //   source: "pelabuhan",
+  //   "source-layer": "pelabuhan",
+  //   filter: [
+  //     "all",
+  //     ["!=", ["get", "hirarki_p"], "Belum Terdefinisi"],
+  //     ["!=", ["get", "hirarki_p"], "Pelabuhan Lokal"],
+  //   ],
+  //   paint: {
+  //     "circle-color": [
+  //       "match",
+  //       ["get", "hirarki_p"],
+
+  //       "Pelabuhan Utama",
+  //       "#99023e",
+  //       "Pelabuhan Pengumpan Regional",
+  //       "#6a006e",
+  //       "Pelabuhan Pengumpan",
+  //       "#6e4900",
+
+  //       /* fallback */
+  //       "#cccccc",
+  //     ],
+
+  //     "circle-radius": [
+  //       "match",
+  //       ["get", "hirarki_p"],
+
+  //       "Pelabuhan Utama",
+  //       10,
+  //       "Pelabuhan Pengumpan Regional",
+  //       8,
+  //       "Pelabuhan Pengumpan",
+  //       6,
+
+  //       /* fallback */
+  //       5,
+  //     ],
+
+  //     "circle-stroke-width": 1,
+  //     "circle-stroke-color": "#ffffff",
+  //   },
+  // });
+
   map.addLayer({
-    id: "pelabuhan",
+    id: "Pelabuhan Pengumpan",
+    type: "circle",
+    source: "pelabuhan",
+    "source-layer": "pelabuhan",
+    filter: ["all", ["==", ["get", "hirarki_p"], "Pelabuhan Pengumpan"]],
+    paint: {
+      "circle-color": [
+        "match",
+        ["get", "hirarki_p"],
+
+        "Pelabuhan Utama",
+        "#99023e",
+        "Pelabuhan Pengumpan Regional",
+        "#6a006e",
+        "Pelabuhan Pengumpan",
+        "#6e4900",
+
+        /* fallback */
+        "#cccccc",
+      ],
+
+      "circle-radius": [
+        "match",
+        ["get", "hirarki_p"],
+
+        "Pelabuhan Utama",
+        10,
+        "Pelabuhan Pengumpan Regional",
+        8,
+        "Pelabuhan Pengumpan",
+        6,
+
+        /* fallback */
+        5,
+      ],
+
+      "circle-stroke-width": 1,
+      "circle-stroke-color": "#ffffff",
+    },
+  });
+
+  map.addLayer({
+    id: "Pelabuhan Pengumpan Regional",
     type: "circle",
     source: "pelabuhan",
     "source-layer": "pelabuhan",
     filter: [
       "all",
-      ["!=", ["get", "hirarki_p"], "Belum Terdefinisi"],
-      ["!=", ["get", "hirarki_p"], "Pelabuhan Lokal"],
+      ["==", ["get", "hirarki_p"], "Pelabuhan Pengumpan Regional"],
     ],
+    paint: {
+      "circle-color": [
+        "match",
+        ["get", "hirarki_p"],
+
+        "Pelabuhan Utama",
+        "#99023e",
+        "Pelabuhan Pengumpan Regional",
+        "#6a006e",
+        "Pelabuhan Pengumpan",
+        "#6e4900",
+
+        /* fallback */
+        "#cccccc",
+      ],
+
+      "circle-radius": [
+        "match",
+        ["get", "hirarki_p"],
+
+        "Pelabuhan Utama",
+        10,
+        "Pelabuhan Pengumpan Regional",
+        8,
+        "Pelabuhan Pengumpan",
+        6,
+
+        /* fallback */
+        5,
+      ],
+
+      "circle-stroke-width": 1,
+      "circle-stroke-color": "#ffffff",
+    },
+  });
+  map.addLayer({
+    id: "Pelabuhan Utama",
+    type: "circle",
+    source: "pelabuhan",
+    "source-layer": "pelabuhan",
+    filter: ["all", ["==", ["get", "hirarki_p"], "Pelabuhan Utama"]],
     paint: {
       "circle-color": [
         "match",

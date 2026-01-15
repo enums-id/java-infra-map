@@ -25,7 +25,9 @@
         "baseUrl": ".",
         "paths": {
       "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "$lib/*": ["./src/lib/*"],
+            "$src": ["./src"],
+      "$src/*": ["./src/*"]
     }
   },
   "include": ["vite.config.ts"]
