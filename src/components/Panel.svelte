@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Accordion from "$lib/components/ui/accordion/index.js";
 </script>
 
