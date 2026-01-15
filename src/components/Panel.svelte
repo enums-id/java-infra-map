@@ -3,7 +3,7 @@
 </script>
 
 <div
-  class="max-w-80 bg-white w-80 h-fit max-h-100 overflow-auto rounded text-sm p-1"
+  class="max-w-120 bg-white w-100 h-fit max-h-100 overflow-auto rounded text-sm p-1"
 >
   <Accordion.Root type="single" class="w-full" value="item-1">
     <Accordion.Item value="item-1">
