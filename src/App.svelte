@@ -24,7 +24,7 @@
         appState.ready.data = true;
         if (appState.map) bootStrap(appState.map);
       });
-    setMode("light");
+    // setMode("light");
     return () => {
       // if (appState.map && appState.map.remove) appState.map.remove();
     };

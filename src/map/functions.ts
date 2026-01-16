@@ -17,7 +17,7 @@ const mapActions: {
     e.lngLat;
   },
   contextmenu: (e) => {
-    toast("Event has been created", {
+    toast("Coordinate:", {
       description: [e.lngLat.lng, e.lngLat.lat]
         .map((f) => f.toFixed(8))
         .join(","),
