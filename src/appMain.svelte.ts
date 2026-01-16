@@ -21,7 +21,7 @@ export async function bootStrap(map: mapboxgl.Map) {
 const svgUrls = ["https://cdn.simpleicons.org/codeship"];
 
 async function loadImages(map: mapboxgl.Map) {
-  async function addSvgIcon(name: string, svgUrl: string, size = 64) {
+  async function addSvgIcon(name: string, svgUrl: string, size = 24) {
     const res = await fetch(svgUrl);
     const svgText = await res.text();
 

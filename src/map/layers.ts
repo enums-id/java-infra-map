@@ -120,6 +120,38 @@ export const layers: AnyLayer[] = [
         "circle-stroke-color": "#ffffff",
       },
     };
-    return layer;
+
+    const layer2: AnyLayer = {
+      id: f,
+      type: "symbol",
+      source: "pelabuhan",
+      "source-layer": "pelabuhan",
+      filter: ["all", ["==", ["get", "hirarki_p"], f]],
+
+      layout: {
+        "icon-image": "https://cdn.simpleicons.org/codeship",
+
+        // Map circle-radius → icon-size
+        "icon-size": [
+          "match",
+          ["get", "hirarki_p"],
+
+          "Pelabuhan Utama",
+          1,
+          "Pelabuhan Pengumpan Regional",
+          0.65,
+          "Pelabuhan Pengumpan",
+          0.45,
+
+          /* fallback */
+          0.45,
+        ],
+
+        "icon-allow-overlap": true,
+        "icon-anchor": "center",
+      },
+    };
+
+    return layer2;
   }), // Pelabuhan
 ];
