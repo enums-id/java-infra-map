@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "name": "kcic.geojson",
+    "displayName": "",
+    "description": "",
+    "layers": [
+      {
+        "type": "line",
+        "paint": {
+          "line-color": "#75211b",
+          "line-opacity": 0.75
+        }
+      }
+    ]
+  }
+]
