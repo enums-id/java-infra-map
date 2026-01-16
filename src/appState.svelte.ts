@@ -1,5 +1,6 @@
 import type { FeatureCollection } from "geojson";
 import mapboxgl from "mapbox-gl";
+import type { AnyLayer } from "./map/types";
 
 export const appState: {
   geojsonList: gDataRecord[];
@@ -12,7 +13,7 @@ export const appState: {
     dataRegistered: boolean;
     layersRegistered: boolean;
   };
-  mapLayers: mapboxgl.LayerSpecification[];
+  mapLayers: AnyLayer[];
   mapzoom: [number, number, number];
   layerState: Record<string, boolean>;
   categories: string[];
@@ -62,7 +63,7 @@ export async function populateGeojsonData() {
     const response = await fetch(`/data/${gData.name}`);
     const jsonData = await response.json();
     appState.geojsonData[gData.name] = jsonData;
-    appState.mapLayers = [...gData.layers, ...appState.mapLayers];
+    appState.mapLayers = [...appState.mapLayers, ...gData.layers];
   }
 
   console.log("populateGeojsonData", appState.categories, appState.geojsonList);

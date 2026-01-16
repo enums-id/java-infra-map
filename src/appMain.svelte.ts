@@ -66,6 +66,7 @@ function registerBaseMap(map: mapboxgl.Map) {
 
   for (const layer of layers) {
     map.addLayer(layer);
+    appState.mapLayers.push(layer);
   }
 }
 
