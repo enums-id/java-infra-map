@@ -64,9 +64,9 @@
     <Sidebar.Trigger />
     <div class="flex flex-col grow relative" bind:clientWidth={mapWidth}>
       <Map />
-      <div class="z-10 absolute top-0 left-0 m-4 w-1/4">
+      <!-- <div class="z-10 absolute top-0 left-0 m-4 w-1/4">
         <Panel />
-      </div>
+      </div> -->
     </div>
   </Sidebar.Provider>
 </div>

@@ -5,21 +5,6 @@
   import { Label } from "$lib/components/ui/label";
   import { appState } from "../appState.svelte";
 
-  // These are the base layers
-  [
-    20,
-    30,
-    70,
-    150,
-    275,
-    500,
-    "Pelabuhan Utama",
-    "Pelabuhan Pengumpan Regional",
-    "Pelabuhan Pengumpan",
-  ].forEach((d) => {
-    appState.layerState[`${d}`] = true;
-  });
-
   function layerStateFunction(layername: string, prefix = "") {
     return () => {
       if (!appState.map) return;

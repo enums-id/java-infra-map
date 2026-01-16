@@ -6,6 +6,21 @@ import { mapActionsInvoke } from "./map/functions";
 import { svgUrls } from "./map/images";
 
 export async function bootStrap(map: mapboxgl.Map) {
+  // These are the base layers
+  [
+    20,
+    30,
+    70,
+    150,
+    275,
+    500,
+    "Pelabuhan Utama",
+    "Pelabuhan Pengumpan Regional",
+    "Pelabuhan Pengumpan",
+  ].forEach((d) => {
+    appState.layerState[`${d}`] = true;
+  });
+
   if (!appState.ready.data || !appState.ready.mapLoad)
     return console.log(
       "not ready",
