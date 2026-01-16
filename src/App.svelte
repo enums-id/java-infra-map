@@ -16,6 +16,7 @@
   import { bootStrap } from "./appMain.svelte";
   import Panel from "./components/Panel.svelte";
   import Tree from "./components/Tree.svelte";
+  import FileExplorer from "./components/FileExplorer.svelte";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -38,6 +39,8 @@
   $effect(() => {
     if (mapWidth && appState.map) appState.map.resize();
   });
+
+  const name = "name";
 </script>
 
 <ModeWatcher />
@@ -49,34 +52,37 @@
       <Sidebar.Content>
         <Sidebar.GroupContent>
           <Sidebar.Menu>
-            <Tree
-              items={[
-                [
-                  "lib",
-                  ["components", "button.svelte", "card.svelte"],
-                  "utils.ts",
-                ],
-                [
-                  "routes",
-                  ["hello", "+page.svelte", "+page.ts"],
-                  "+page.svelte",
-                  "+page.server.ts",
-                  "+layout.svelte",
-                ],
-                ["static", "favicon.ico", "svelte.svg"],
-                "eslint.config.js",
-                ".gitignore",
-                "svelte.config.js",
-                "tailwind.config.js",
-                "package.json",
-                "README.md",
-              ]}
-            />
+            <div class="m-2">
+              <Tree
+                items={[
+                  [
+                    "lib",
+                    ["components", "button.svelte", "card.svelte"],
+                    "utils.ts",
+                  ],
+                  [
+                    "routes",
+                    ["hello", "+page.svelte", "+page.ts"],
+                    "+page.svelte",
+                    "+page.server.ts",
+                    "+layout.svelte",
+                  ],
+                  ["static", "favicon.ico", "svelte.svg"],
+                  "eslint.config.js",
+                  ".gitignore",
+                  "svelte.config.js",
+                  "tailwind.config.js",
+                  "package.json",
+                  "README.md",
+                ]}
+              />
+            </div>
           </Sidebar.Menu>
         </Sidebar.GroupContent>
       </Sidebar.Content>
       <Sidebar.Footer />
     </Sidebar.Root>
+    <FileExplorer {name} />
     <Sidebar.Trigger />
     <div class="flex flex-col grow relative" bind:clientWidth={mapWidth}>
       <Map />

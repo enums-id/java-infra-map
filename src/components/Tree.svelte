@@ -5,6 +5,8 @@
 
   import FileIcon from "@lucide/svelte/icons/file";
   import FolderIcon from "@lucide/svelte/icons/folder";
+  import { Checkbox } from "$lib/components/ui/checkbox";
+  import { Label } from "$lib/components/ui/label";
 
   const { items }: { items: string | any[] } = $props();
 </script>
@@ -19,11 +21,21 @@
     <Sidebar.MenuButton
       isActive={false}
       class="data-[active=true]:bg-transparent"
+      onclick={() => {}}
     >
-      <FileIcon />
-      <!-- {#snippet child({ props })}
-      <div></div>
-      {/snippet} -->
+      {#snippet child({ props })}
+        <div class="flex items-center">
+          <div class="mr-2">
+            <Checkbox />
+          </div>
+          <button
+            class="w-full text-start text-sm p-1 my-1 flex items-center justify-start rounded hover:bg-background/80 hover:cursor-pointer"
+          >
+            <FileIcon class="w-[1.2em] mr-1" />
+            <Label for="pelabuhan-{name}">{name}</Label>
+          </button>
+        </div>
+      {/snippet}
       {name}
     </Sidebar.MenuButton>
   {:else}
