@@ -4,7 +4,7 @@ import { sources } from "./map/sources";
 import { layers } from "./map/layers";
 import { mapActionsInvoke } from "./map/functions";
 
-export function bootStrap(map: mapboxgl.Map) {
+export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
     return console.log(
       "not ready",
@@ -13,8 +13,51 @@ export function bootStrap(map: mapboxgl.Map) {
     );
   registerBaseMap(map);
   registerData(map);
+  await loadImages(map);
   registerLayer(map);
   mapActionsInvoke(map)();
+}
+
+const svgUrls = ["https://cdn.simpleicons.org/codeship"];
+
+async function loadImages(map: mapboxgl.Map) {
+  async function addSvgIcon(name: string, svgUrl: string, size = 64) {
+    const res = await fetch(svgUrl);
+    const svgText = await res.text();
+
+    const img = new Image();
+    const svg = new Blob([svgText], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svg);
+
+    await new Promise((resolve) => {
+      img.onload = resolve;
+      img.src = url;
+    });
+
+    const canvas = document.createElement("canvas");
+    if (!canvas) return;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.drawImage(img, 0, 0, size, size);
+
+    const finalImg = new Image();
+    finalImg.src = canvas.toDataURL("image/png");
+
+    await new Promise((resolve) => {
+      finalImg.onload = resolve;
+    });
+
+    // Add to Mapbox
+    map.addImage(name, finalImg);
+    URL.revokeObjectURL(url);
+  }
+
+  for (const svgUrl of svgUrls) {
+    await addSvgIcon(svgUrl, svgUrl);
+    console.log("Adding", svgUrl, " to map");
+  }
 }
 
 function registerBaseMap(map: mapboxgl.Map) {
