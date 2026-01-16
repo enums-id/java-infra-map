@@ -45,7 +45,7 @@ export async function populateData() {
     [
       "base",
       ["power", "powerline", "substation", "generator"],
-      "industry",
+      ["industry"],
       "port",
     ],
   ];
