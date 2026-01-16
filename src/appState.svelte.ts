@@ -41,7 +41,14 @@ export async function populateData() {
 
   const resp = await fetch("/categories.json");
   appState.categories = await resp.json();
-  appState.tree = [];
+  appState.tree = [
+    [
+      "base",
+      ["power", "powerline", "substation", "generator"],
+      "industry",
+      "port",
+    ],
+  ];
 
   return jsonData;
 }
@@ -69,12 +76,14 @@ export async function populateGeojsonData() {
 
     console.log(`base list for ${category}`, baseList);
 
+    if (baseList.length == 1) {
+      continue;
+    }
+
     if (Array.isArray(appState.tree)) {
       (appState.tree as any[]).push(baseList);
     }
   }
-
-  console.log("The Tree is:", $state.snapshot(appState.tree));
 }
 
 export type gDataRecord = {
