@@ -61,15 +61,54 @@ function registerBaseMap(map: mapboxgl.Map) {
     source: "jaringan-listrik",
     "source-layer": "listrik",
     paint: {
+      "line-width": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+
+        // Zoomed out
+        5,
+        [
+          "case",
+          ["<=", ["get", "tegjar"], 1],
+          0.4, // LV
+          ["<=", ["get", "tegjar"], 35],
+          0.8, // MV
+          ["<=", ["get", "tegjar"], 150],
+          1.4, // HV / SUTT
+          2.2, // EHV / SUTET
+        ],
+
+        // Zoomed in
+        14,
+        [
+          "case",
+          ["<=", ["get", "tegjar"], 1],
+          1.2,
+          ["<=", ["get", "tegjar"], 35],
+          2.0,
+          ["<=", ["get", "tegjar"], 150],
+          3.2,
+          5.0,
+        ],
+      ],
       "line-color": [
         "case",
-        ["<", ["get", "tegjar"], 60],
-        "#006e31",
-        ["<", ["get", "tegjar"], 130],
-        "#6e4900",
-        ["<", ["get", "tegjar"], 160],
-        "#6a006e",
-        "#99023e",
+
+        // Low Voltage (≤ 1 kV)
+        ["<=", ["get", "tegjar"], 1],
+        "#2ecc71",
+
+        // Medium Voltage (1–35 kV)
+        ["<=", ["get", "tegjar"], 35],
+        "#2ecc71",
+
+        // High Voltage / SUTT (35–150 kV)
+        ["<=", ["get", "tegjar"], 150],
+        "#f1c40f",
+
+        // Extra High Voltage / SUTET (>150 kV)
+        "#e74c3c",
       ],
       "line-opacity": 0.85,
     },
