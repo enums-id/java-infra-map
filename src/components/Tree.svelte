@@ -6,8 +6,12 @@
   import FileIcon from "@lucide/svelte/icons/file";
   import FolderIcon from "@lucide/svelte/icons/folder";
 
-  export { Tree };
+  const { items }: { items: string | any[] } = $props();
 </script>
+
+{#each items as item, index (index)}
+  {@render Tree({ item })}
+{/each}
 
 {#snippet Tree({ item }: { item: string | any[] })}
   {@const [name, ...items] = Array.isArray(item) ? item : [item]}

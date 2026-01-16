@@ -5,7 +5,6 @@
   import { ModeWatcher } from "mode-watcher";
   import Map from "./components/Map.svelte";
   import { resetMode, setMode } from "mode-watcher";
-
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
 
@@ -16,6 +15,7 @@
   } from "./appState.svelte";
   import { bootStrap } from "./appMain.svelte";
   import Panel from "./components/Panel.svelte";
+  import Tree from "./components/Tree.svelte";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -47,9 +47,33 @@
     <Sidebar.Root collapsible={"offcanvas"}>
       <Sidebar.Header />
       <Sidebar.Content>
-        <Sidebar.Group />
-        Oh yeah
-        <Sidebar.Group />
+        <Sidebar.GroupContent>
+          <Sidebar.Menu>
+            <Tree
+              items={[
+                [
+                  "lib",
+                  ["components", "button.svelte", "card.svelte"],
+                  "utils.ts",
+                ],
+                [
+                  "routes",
+                  ["hello", "+page.svelte", "+page.ts"],
+                  "+page.svelte",
+                  "+page.server.ts",
+                  "+layout.svelte",
+                ],
+                ["static", "favicon.ico", "svelte.svg"],
+                "eslint.config.js",
+                ".gitignore",
+                "svelte.config.js",
+                "tailwind.config.js",
+                "package.json",
+                "README.md",
+              ]}
+            />
+          </Sidebar.Menu>
+        </Sidebar.GroupContent>
       </Sidebar.Content>
       <Sidebar.Footer />
     </Sidebar.Root>
