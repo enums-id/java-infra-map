@@ -1,5 +1,6 @@
 import { appState } from "./appState.svelte";
 import mapboxgl from "mapbox-gl";
+import { sources } from "./map/sources";
 
 export function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
@@ -12,33 +13,6 @@ export function bootStrap(map: mapboxgl.Map) {
   registerData(map);
   registerLayer(map);
 }
-
-const sources: Record<string, mapboxgl.SourceSpecification> = {
-  industry: {
-    type: "vector",
-    tiles: [
-      `${import.meta.env.VITE_PROTOCOL}://${
-        import.meta.env.VITE_HOST
-      }/xyz/industry/{z}/{x}/{y}.pbf`,
-    ],
-  },
-  pelabuhan: {
-    type: "vector",
-    tiles: [
-      `${import.meta.env.VITE_PROTOCOL}://${
-        import.meta.env.VITE_HOST
-      }/xyz/pelabuhan_xyz/{z}/{x}/{y}.pbf`,
-    ],
-  },
-  "jaringan-listrik": {
-    type: "vector",
-    tiles: [
-      `${import.meta.env.VITE_PROTOCOL}://${
-        import.meta.env.VITE_HOST
-      }/xyz/listrik/jaringan/{z}/{x}/{y}.pbf`,
-    ],
-  },
-};
 
 function registerBaseMap(map: mapboxgl.Map) {
   for (const [key, value] of Object.entries(sources)) {
