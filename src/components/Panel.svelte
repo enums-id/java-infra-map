@@ -4,21 +4,21 @@
   import { Label } from "$lib/components/ui/label";
   import { appState } from "../appState.svelte";
 
-  const pelabuhanState: Record<string, boolean> = $state({
+  const layerState: Record<string, boolean> = $state({
     "Pelabuhan Utama": true,
     "Pelabuhan Pengumpan Regional": true,
     "Pelabuhan Pengumpan": true,
   });
-  function pelabuhanFilter(layername: string) {
+  function layerStateFunction(layername: string) {
     return () => {
-      console.log(pelabuhanState[layername]);
+      console.log(layerState[layername]);
 
       if (!appState.map) return;
 
       appState.map.setLayoutProperty(
         layername,
         "visibility",
-        pelabuhanState[layername] ? "visible" : "none"
+        layerState[layername] ? "visible" : "none"
       );
     };
   }
@@ -34,9 +34,9 @@
         {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
           <div class="flex items-center gap-3">
             <Checkbox
-              bind:checked={pelabuhanState[l]}
+              bind:checked={layerState[l]}
               id="pelabuhan-{l}"
-              onCheckedChange={pelabuhanFilter(l)}
+              onCheckedChange={layerStateFunction(l)}
             />
             <Label for="pelabuhan-{l}">{l}</Label>
           </div>
