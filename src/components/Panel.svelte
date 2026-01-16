@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion/index.js";
+  import Button from "$lib/components/ui/button/button.svelte";
   import { Checkbox } from "$lib/components/ui/checkbox";
   import { Label } from "$lib/components/ui/label";
   import { appState } from "../appState.svelte";
@@ -9,14 +10,19 @@
     "Pelabuhan Pengumpan Regional": true,
     "Pelabuhan Pengumpan": true,
   });
-  function layerStateFunction(layername: string) {
+
+  [20, 30, 70, 150, 275, 500].forEach((d) => {
+    layerState[`${d}`] = true;
+  });
+
+  function layerStateFunction(layername: string, prefix = "") {
     return () => {
       console.log(layerState[layername]);
 
       if (!appState.map) return;
 
       appState.map.setLayoutProperty(
-        layername,
+        prefix + layername,
         "visibility",
         layerState[layername] ? "visible" : "none"
       );
@@ -29,7 +35,7 @@
 >
   <Accordion.Root type="single" class="w-full" value="item-1 bg-background">
     <Accordion.Item value="item-1" class="">
-      <Accordion.Trigger>Pelabuhan</Accordion.Trigger>
+      <Accordion.Trigger>Ship Ports</Accordion.Trigger>
       <Accordion.Content class="flex flex-col gap-4 text-balance">
         {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
           <div class="flex items-center gap-3">
@@ -44,17 +50,21 @@
       </Accordion.Content>
     </Accordion.Item>
     <Accordion.Item value="item-2">
-      <Accordion.Trigger>Shipping Details</Accordion.Trigger>
+      <Accordion.Trigger>Power Network</Accordion.Trigger>
       <Accordion.Content class="flex flex-col gap-4 text-balance">
-        <p>
-          We offer worldwide shipping through trusted courier partners. Standard
-          delivery takes 3-5 business days, while express shipping ensures
-          delivery within 1-2 business days.
-        </p>
-        <p>
-          All orders are carefully packaged and fully insured. Track your
-          shipment in real-time through our dedicated tracking portal.
-        </p>
+        {#each [20, 30, 70, 150, 275, 500] as voltage, i}
+          <div class="flex items-center gap-3">
+            <Checkbox
+              bind:checked={layerState[voltage]}
+              id="esdm-jaringan-{voltage}"
+              onCheckedChange={layerStateFunction(
+                `${voltage}`,
+                "jaringan-listrik-"
+              )}
+            />
+            <Label for="esdm-jaringan-{voltage}">{voltage} kV</Label>
+          </div>
+        {/each}
       </Accordion.Content>
     </Accordion.Item>
     <Accordion.Item value="item-3">
