@@ -29,10 +29,12 @@
             <Checkbox />
           </div>
           <button
-            class="w-full text-start text-sm p-1 my-1 flex items-center justify-start rounded hover:bg-background/80 hover:cursor-pointer"
+            class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer"
           >
-            <FileIcon class="w-[1.2em] mr-1" />
-            <Label for="pelabuhan-{name}">{name}</Label>
+            <FileIcon class="w-4 h-4 mr-1 shrink-0" />
+            <div>
+              {name}
+            </div>
           </button>
         </div>
       {/snippet}
@@ -46,7 +48,7 @@
       >
         <Collapsible.Trigger>
           {#snippet child({ props })}
-            <Sidebar.MenuButton {...props}>
+            <Sidebar.MenuButton {...props} class="text-xs">
               <ChevronRightIcon className="transition-transform" />
               <FolderIcon />
               {name}

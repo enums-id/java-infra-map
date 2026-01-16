@@ -53,29 +53,7 @@
         <Sidebar.GroupContent>
           <Sidebar.Menu>
             <div class="m-2">
-              <Tree
-                items={[
-                  [
-                    "lib",
-                    ["components", "button.svelte", "card.svelte"],
-                    "utils.ts",
-                  ],
-                  [
-                    "routes",
-                    ["hello", "+page.svelte", "+page.ts"],
-                    "+page.svelte",
-                    "+page.server.ts",
-                    "+layout.svelte",
-                  ],
-                  ["static", "favicon.ico", "svelte.svg"],
-                  "eslint.config.js",
-                  ".gitignore",
-                  "svelte.config.js",
-                  "tailwind.config.js",
-                  "package.json",
-                  "README.md",
-                ]}
-              />
+              <Tree items={appState.tree} />
             </div>
           </Sidebar.Menu>
         </Sidebar.GroupContent>

@@ -15,6 +15,8 @@ export const appState: {
   mapLayers: mapboxgl.LayerSpecification[];
   mapzoom: [number, number, number];
   layerState: Record<string, boolean>;
+  categories: string[];
+  tree: string | any[];
 } = $state({
   geojsonList: [],
   geojsonData: {},
@@ -28,12 +30,19 @@ export const appState: {
   mapLayers: [],
   mapzoom: [0, 0, 0],
   layerState: {},
+  categories: [],
+  tree: [],
 });
 
 export async function populateData() {
   const response = await fetch("/catalog.json");
   const jsonData = await response.json();
   appState.geojsonList = jsonData as gDataRecord[];
+
+  const resp = await fetch("/categories.json");
+  appState.categories = await resp.json();
+  appState.tree = [];
+
   return jsonData;
 }
 
@@ -48,11 +57,30 @@ export async function populateGeojsonData() {
     appState.geojsonData[gData.name] = jsonData;
     appState.mapLayers = [...gData.layers, ...appState.mapLayers];
   }
+
+  console.log("populateGeojsonData", appState.categories, appState.geojsonList);
+
+  for (const category of appState.categories) {
+    const baseList: string[] = [category];
+    for (const catalog of appState.geojsonList) {
+      if (catalog.category !== category) continue;
+      baseList.push(catalog.displayName);
+    }
+
+    console.log(`base list for ${category}`, baseList);
+
+    if (Array.isArray(appState.tree)) {
+      (appState.tree as any[]).push(baseList);
+    }
+  }
+
+  console.log("The Tree is:", $state.snapshot(appState.tree));
 }
 
 export type gDataRecord = {
   name: string;
   layers: [];
+  category: string;
   displayName: string;
   description: string;
 };
