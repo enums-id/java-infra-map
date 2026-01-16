@@ -46,7 +46,7 @@ export async function populateData() {
   appState.categories = await resp.json();
   appState.tree = [
     [
-      { displayName: "base" },
+      { displayName: "Infrastructure" },
       [
         { displayName: "power", checked: true },
         [
@@ -93,6 +93,12 @@ export async function populateGeojsonData() {
 
   console.log("populateGeojsonData", appState.categories, appState.geojsonList);
 
+  const projectFolder: treeType = [
+    {
+      displayName: "Projects",
+    },
+  ];
+
   for (const category of appState.categories) {
     const baseList: treeType = [
       {
@@ -113,10 +119,10 @@ export async function populateGeojsonData() {
     }
 
     if (Array.isArray(appState.tree)) {
-      (appState.tree as any[]).push(baseList);
+      projectFolder.push(baseList);
     }
   }
-
+  (appState.tree as any[]).push(projectFolder);
   console.log($state.snapshot(appState.tree));
 }
 
