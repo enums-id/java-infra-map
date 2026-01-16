@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import { sources } from "./map/sources";
 import { layers } from "./map/layers";
 import { mapActionsInvoke } from "./map/functions";
+import { svgUrls } from "./map/images";
 
 export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
@@ -17,8 +18,6 @@ export async function bootStrap(map: mapboxgl.Map) {
   registerLayer(map);
   mapActionsInvoke(map)();
 }
-
-const svgUrls = ["https://cdn.simpleicons.org/codeship"];
 
 async function loadImages(map: mapboxgl.Map) {
   async function addSvgIcon(name: string, svgUrl: string, size = 24) {
