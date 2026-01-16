@@ -17,10 +17,13 @@
   {@const [name, ...items] = Array.isArray(item) ? item : [item]}
   {#if !items.length}
     <Sidebar.MenuButton
-      isActive={name === "button.svelte"}
+      isActive={false}
       class="data-[active=true]:bg-transparent"
     >
       <FileIcon />
+      <!-- {#snippet child({ props })}
+      <div></div>
+      {/snippet} -->
       {name}
     </Sidebar.MenuButton>
   {:else}
