@@ -22,10 +22,7 @@
 
   function layerStateFunction(layername: string, prefix = "") {
     return () => {
-      console.log(appState.layerState[layername]);
-
       if (!appState.map) return;
-
       appState.map.setLayoutProperty(
         prefix + layername,
         "visibility",
