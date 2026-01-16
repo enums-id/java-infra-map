@@ -14,64 +14,68 @@ export const layers: AnyLayer[] = [
   },
 
   // jaringan listrik
-  {
-    id: "jaringan-listrik2",
-    type: "line",
-    source: "jaringan-listrik",
-    "source-layer": "listrik",
-    paint: {
-      "line-width": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
+  ...[20, 30, 70, 150, 275, 500].map((d) => {
+    const layer: AnyLayer = {
+      id: `jaringan-listrik-${d}`,
+      type: "line",
+      source: "jaringan-listrik",
+      "source-layer": "listrik",
+      filter: ["==", ["get", "tegjar"], d],
+      paint: {
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
 
-        // Zoomed out
-        5,
-        [
-          "case",
-          ["<=", ["get", "tegjar"], 1],
-          0.4, // LV
-          ["<=", ["get", "tegjar"], 35],
-          0.8, // MV
-          ["<=", ["get", "tegjar"], 150],
-          1.4, // HV / SUTT
-          2.2, // EHV / SUTET
+          // Zoomed out
+          5,
+          [
+            "case",
+            ["<=", ["get", "tegjar"], 1],
+            0.4, // LV
+            ["<=", ["get", "tegjar"], 35],
+            0.8, // MV
+            ["<=", ["get", "tegjar"], 150],
+            1.4, // HV / SUTT
+            2.2, // EHV / SUTET
+          ],
+
+          // Zoomed in
+          14,
+          [
+            "case",
+            ["<=", ["get", "tegjar"], 1],
+            1.2,
+            ["<=", ["get", "tegjar"], 35],
+            2.0,
+            ["<=", ["get", "tegjar"], 150],
+            3.2,
+            5.0,
+          ],
         ],
-
-        // Zoomed in
-        14,
-        [
+        "line-color": [
           "case",
+
+          // Low Voltage (≤ 1 kV)
           ["<=", ["get", "tegjar"], 1],
-          1.2,
+          "#2ecc71",
+
+          // Medium Voltage (1–35 kV)
           ["<=", ["get", "tegjar"], 35],
-          2.0,
+          "#2ecc71",
+
+          // High Voltage / SUTT (35–150 kV)
           ["<=", ["get", "tegjar"], 150],
-          3.2,
-          5.0,
+          "#f1c40f",
+
+          // Extra High Voltage / SUTET (>150 kV)
+          "#e74c3c",
         ],
-      ],
-      "line-color": [
-        "case",
-
-        // Low Voltage (≤ 1 kV)
-        ["<=", ["get", "tegjar"], 1],
-        "#2ecc71",
-
-        // Medium Voltage (1–35 kV)
-        ["<=", ["get", "tegjar"], 35],
-        "#2ecc71",
-
-        // High Voltage / SUTT (35–150 kV)
-        ["<=", ["get", "tegjar"], 150],
-        "#f1c40f",
-
-        // Extra High Voltage / SUTET (>150 kV)
-        "#e74c3c",
-      ],
-      "line-opacity": 0.85,
-    },
-  },
+        "line-opacity": 0.85,
+      },
+    };
+    return layer;
+  }),
 
   // pelabuhan
   ...[
