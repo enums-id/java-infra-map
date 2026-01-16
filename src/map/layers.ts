@@ -1,6 +1,7 @@
 import type { AnyLayer } from "./types";
 
 export const layers: AnyLayer[] = [
+  // industry
   {
     id: "industry",
     type: "fill",
@@ -12,6 +13,7 @@ export const layers: AnyLayer[] = [
     },
   },
 
+  // jaringan listrik
   {
     id: "jaringan-listrik2",
     type: "line",
@@ -70,131 +72,54 @@ export const layers: AnyLayer[] = [
       "line-opacity": 0.85,
     },
   },
-  {
-    id: "Pelabuhan Pengumpan",
-    type: "circle",
-    source: "pelabuhan",
-    "source-layer": "pelabuhan",
-    filter: ["all", ["==", ["get", "hirarki_p"], "Pelabuhan Pengumpan"]],
-    paint: {
-      "circle-color": [
-        "match",
-        ["get", "hirarki_p"],
 
-        "Pelabuhan Utama",
-        "#99023e",
-        "Pelabuhan Pengumpan Regional",
-        "#6a006e",
-        "Pelabuhan Pengumpan",
-        "#6e4900",
+  // pelabuhan
+  ...[
+    "Pelabuhan Pengumpan",
+    "Pelabuhan Pengumpan Regional",
+    "Pelabuhan Utama",
+  ].map((f) => {
+    const layer: AnyLayer = {
+      id: f,
+      type: "circle",
+      source: "pelabuhan",
+      "source-layer": "pelabuhan",
+      filter: ["all", ["==", ["get", "hirarki_p"], f]],
+      paint: {
+        "circle-color": [
+          "match",
+          ["get", "hirarki_p"],
 
-        /* fallback */
-        "#cccccc",
-      ],
+          "Pelabuhan Utama",
+          "#99023e",
+          "Pelabuhan Pengumpan Regional",
+          "#6a006e",
+          "Pelabuhan Pengumpan",
+          "#6e4900",
 
-      "circle-radius": [
-        "match",
-        ["get", "hirarki_p"],
+          /* fallback */
+          "#cccccc",
+        ],
 
-        "Pelabuhan Utama",
-        10,
-        "Pelabuhan Pengumpan Regional",
-        8,
-        "Pelabuhan Pengumpan",
-        6,
+        "circle-radius": [
+          "match",
+          ["get", "hirarki_p"],
 
-        /* fallback */
-        5,
-      ],
+          "Pelabuhan Utama",
+          10,
+          "Pelabuhan Pengumpan Regional",
+          8,
+          "Pelabuhan Pengumpan",
+          6,
 
-      "circle-stroke-width": 1,
-      "circle-stroke-color": "#ffffff",
-    },
-  },
-  {
-    id: "Pelabuhan Pengumpan Regional",
-    type: "circle",
-    source: "pelabuhan",
-    "source-layer": "pelabuhan",
-    filter: [
-      "all",
-      ["==", ["get", "hirarki_p"], "Pelabuhan Pengumpan Regional"],
-    ],
-    paint: {
-      "circle-color": [
-        "match",
-        ["get", "hirarki_p"],
+          /* fallback */
+          5,
+        ],
 
-        "Pelabuhan Utama",
-        "#99023e",
-        "Pelabuhan Pengumpan Regional",
-        "#6a006e",
-        "Pelabuhan Pengumpan",
-        "#6e4900",
-
-        /* fallback */
-        "#cccccc",
-      ],
-
-      "circle-radius": [
-        "match",
-        ["get", "hirarki_p"],
-
-        "Pelabuhan Utama",
-        10,
-        "Pelabuhan Pengumpan Regional",
-        8,
-        "Pelabuhan Pengumpan",
-        6,
-
-        /* fallback */
-        5,
-      ],
-
-      "circle-stroke-width": 1,
-      "circle-stroke-color": "#ffffff",
-    },
-  },
-
-  {
-    id: "Pelabuhan Utama",
-    type: "circle",
-    source: "pelabuhan",
-    "source-layer": "pelabuhan",
-    filter: ["all", ["==", ["get", "hirarki_p"], "Pelabuhan Utama"]],
-    paint: {
-      "circle-color": [
-        "match",
-        ["get", "hirarki_p"],
-
-        "Pelabuhan Utama",
-        "#99023e",
-        "Pelabuhan Pengumpan Regional",
-        "#6a006e",
-        "Pelabuhan Pengumpan",
-        "#6e4900",
-
-        /* fallback */
-        "#cccccc",
-      ],
-
-      "circle-radius": [
-        "match",
-        ["get", "hirarki_p"],
-
-        "Pelabuhan Utama",
-        10,
-        "Pelabuhan Pengumpan Regional",
-        8,
-        "Pelabuhan Pengumpan",
-        6,
-
-        /* fallback */
-        5,
-      ],
-
-      "circle-stroke-width": 1,
-      "circle-stroke-color": "#ffffff",
-    },
-  },
+        "circle-stroke-width": 1,
+        "circle-stroke-color": "#ffffff",
+      },
+    };
+    return layer;
+  }), // Pelabuhan
 ];
