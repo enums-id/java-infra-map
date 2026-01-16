@@ -5,26 +5,31 @@
   import { Label } from "$lib/components/ui/label";
   import { appState } from "../appState.svelte";
 
-  const layerState: Record<string, boolean> = $state({
-    "Pelabuhan Utama": true,
-    "Pelabuhan Pengumpan Regional": true,
-    "Pelabuhan Pengumpan": true,
-  });
-
-  [20, 30, 70, 150, 275, 500].forEach((d) => {
-    layerState[`${d}`] = true;
+  // These are the base layers
+  [
+    20,
+    30,
+    70,
+    150,
+    275,
+    500,
+    "Pelabuhan Utama",
+    "Pelabuhan Pengumpan Regional",
+    "Pelabuhan Pengumpan",
+  ].forEach((d) => {
+    appState.layerState[`${d}`] = true;
   });
 
   function layerStateFunction(layername: string, prefix = "") {
     return () => {
-      console.log(layerState[layername]);
+      console.log(appState.layerState[layername]);
 
       if (!appState.map) return;
 
       appState.map.setLayoutProperty(
         prefix + layername,
         "visibility",
-        layerState[layername] ? "visible" : "none"
+        appState.layerState[layername] ? "visible" : "none"
       );
     };
   }
@@ -40,7 +45,7 @@
         {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
           <div class="flex items-center gap-3">
             <Checkbox
-              bind:checked={layerState[l]}
+              bind:checked={appState.layerState[l]}
               id="pelabuhan-{l}"
               onCheckedChange={layerStateFunction(l)}
             />
@@ -55,7 +60,7 @@
         {#each [20, 30, 70, 150, 275, 500] as voltage, i}
           <div class="flex items-center gap-3">
             <Checkbox
-              bind:checked={layerState[voltage]}
+              bind:checked={appState.layerState[voltage]}
               id="esdm-jaringan-{voltage}"
               onCheckedChange={layerStateFunction(
                 `${voltage}`,
