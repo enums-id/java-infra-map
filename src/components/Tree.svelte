@@ -30,28 +30,32 @@
       onclick={() => {}}
     >
       {#snippet child({ props })}
-        <div class="flex items-center">
-          {#if oName.layerTarget}
-            <div class="mr-2">
-              <Checkbox
-                bind:checked={oName.checked}
-                bind:this={oName.checkbox}
-                onCheckedChange={() => {
-                  const visibility = oName.checked ? "visible" : "none";
-                  const map = appState.map;
-                  if (!map) return;
-
-                  oName.layerTarget.forEach((layerName: string) => {
-                    map.setLayoutProperty(layerName, "visibility", visibility);
-                  });
-                }}
-              />
-            </div>
-          {/if}
+        <div class="flex items-center justify-between w-full">
           <button
-            class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer"
+            class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer w-full grow"
           >
-            <FileIcon class="w-4 h-4 mr-1 shrink-0" />
+            <!-- <FileIcon class="w-4 h-4 mr-1 shrink-0" /> -->
+            {#if oName.layerTarget}
+              <div class="mr-2">
+                <Checkbox
+                  bind:checked={oName.checked}
+                  bind:this={oName.checkbox}
+                  onCheckedChange={() => {
+                    const visibility = oName.checked ? "visible" : "none";
+                    const map = appState.map;
+                    if (!map) return;
+
+                    oName.layerTarget.forEach((layerName: string) => {
+                      map.setLayoutProperty(
+                        layerName,
+                        "visibility",
+                        visibility
+                      );
+                    });
+                  }}
+                />
+              </div>
+            {/if}
             <div>
               {oName.displayName}
             </div>
