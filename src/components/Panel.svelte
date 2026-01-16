@@ -29,7 +29,7 @@
 >
   <Accordion.Root type="single" class="w-full" value="item-1">
     <Accordion.Item value="item-1">
-      <Accordion.Trigger>Product Information</Accordion.Trigger>
+      <Accordion.Trigger>Pelabuhan</Accordion.Trigger>
       <Accordion.Content class="flex flex-col gap-4 text-balance">
         {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
           <div class="flex items-center gap-3">
