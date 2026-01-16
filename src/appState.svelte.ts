@@ -1,6 +1,7 @@
 import type { FeatureCollection } from "geojson";
 import mapboxgl from "mapbox-gl";
 import type { AnyLayer } from "./map/types";
+import type { treeType } from "./components/types";
 
 export const appState: {
   geojsonList: gDataRecord[];
@@ -17,7 +18,7 @@ export const appState: {
   mapzoom: [number, number, number];
   layerState: Record<string, boolean>;
   categories: string[];
-  tree: string | any[];
+  tree: treeType[];
 } = $state({
   geojsonList: [],
   geojsonData: {},
@@ -44,10 +45,15 @@ export async function populateData() {
   appState.categories = await resp.json();
   appState.tree = [
     [
-      "base",
-      ["power", "powerline", "substation", "generator"],
-      ["industry"],
-      "port",
+      { displayName: "base" },
+      [
+        { displayName: "power", checked: true },
+        { displayName: "powerline", checked: true },
+        { displayName: "substation", checked: true },
+        { displayName: "generator", checked: true },
+      ],
+      [{ displayName: "industry", checked: true }],
+      { displayName: "port", checked: true },
     ],
   ];
 
@@ -69,10 +75,16 @@ export async function populateGeojsonData() {
   console.log("populateGeojsonData", appState.categories, appState.geojsonList);
 
   for (const category of appState.categories) {
-    const baseList: string[] = [category];
+    const baseList: treeType = [
+      {
+        displayName: category,
+        isLayer: false,
+      },
+    ];
+
     for (const catalog of appState.geojsonList) {
       if (catalog.category !== category) continue;
-      baseList.push(catalog.displayName);
+      baseList.push({ displayName: catalog.displayName, checked: true });
     }
 
     console.log(`base list for ${category}`, baseList);
