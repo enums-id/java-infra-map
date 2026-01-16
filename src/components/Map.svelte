@@ -5,6 +5,10 @@
   import { bootStrap } from "../appMain.svelte";
   import { loadFunction } from "../map/";
 
+  import { toast } from "svelte-sonner";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import Theme from "./Theme.svelte";
+
   mapboxgl.accessToken = import.meta.env.VITE_API_KEY;
 
   onMount(() => {
@@ -26,12 +30,15 @@
 </script>
 
 <div class="grow" bind:this={appState.mapdiv}></div>
-<div class="text-xs bg-[#171717] text-[#c8c8c8] flex justify-between py-1">
+<div class="text-xs flex justify-between py-1">
   <div class="px-4">
     <span
       >{appState.mapzoom[0].toFixed(2)}, {appState.mapzoom[0].toFixed(8)}, {appState.mapzoom[0].toFixed(
         8
       )}</span
     >
+  </div>
+  <div class="">
+    <Theme />
   </div>
 </div>

@@ -2,6 +2,7 @@ import { appState } from "./appState.svelte";
 import mapboxgl from "mapbox-gl";
 import { sources } from "./map/sources";
 import { layers } from "./map/layers";
+import { mapActionsInvoke } from "./map/functions";
 
 export function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
@@ -13,6 +14,7 @@ export function bootStrap(map: mapboxgl.Map) {
   registerBaseMap(map);
   registerData(map);
   registerLayer(map);
+  mapActionsInvoke(map)();
 }
 
 function registerBaseMap(map: mapboxgl.Map) {

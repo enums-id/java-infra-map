@@ -1,7 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import "mapbox-gl/dist/mapbox-gl.css";
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
+  import { ModeWatcher } from "mode-watcher";
   import Map from "./components/Map.svelte";
+  import { resetMode, setMode } from "mode-watcher";
+
   import {
     appState,
     populateData,
@@ -20,12 +24,14 @@
         appState.ready.data = true;
         if (appState.map) bootStrap(appState.map);
       });
-
+    setMode("light");
     return () => {
       // if (appState.map && appState.map.remove) appState.map.remove();
     };
   });
 </script>
+
+<ModeWatcher />
 
 <div class="flex flex-col h-screen w-screen relative">
   <Map />
@@ -33,3 +39,4 @@
     <Panel />
   </div>
 </div>
+<Toaster />
