@@ -71,7 +71,7 @@ export async function populateData() {
         { displayName: "substation", layerTarget: [], checked: true },
         { displayName: "generator", layerTarget: [], checked: true },
       ],
-      [{ displayName: "industry", checked: true }],
+      [{ displayName: "industry", layerTarget: ["industry"], checked: true }],
       { displayName: "port", checked: true },
     ],
   ];
