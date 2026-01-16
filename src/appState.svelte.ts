@@ -49,13 +49,25 @@ export async function populateData() {
       { displayName: "base" },
       [
         { displayName: "power", checked: true },
-        {
-          displayName: "powerline",
-          layerTarget: layers
+        [
+          {
+            displayName: "powerline",
+          },
+
+          ...layers
             .filter((f) => f.id.includes("jaringan-listrik"))
-            .map((f) => f.id),
-          checked: true,
-        },
+            .map((f) => {
+              return {
+                displayName:
+                  f.id
+                    .split("-")
+                    .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+                    .join(" ") + "kV",
+                layerTarget: [f.id],
+                checked: true,
+              };
+            }),
+        ],
         { displayName: "substation", layerTarget: [], checked: true },
         { displayName: "generator", layerTarget: [], checked: true },
       ],
