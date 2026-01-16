@@ -8,6 +8,7 @@
   import { Checkbox } from "$lib/components/ui/checkbox";
   import { Label } from "$lib/components/ui/label";
   import type { treeType } from "./types";
+  import { appState } from "../appState.svelte";
 
   const {
     items,
@@ -32,7 +33,19 @@
         <div class="flex items-center">
           {#if oName.layerTarget}
             <div class="mr-2">
-              <Checkbox bind:checked={oName.checked} />
+              <Checkbox
+                bind:checked={oName.checked}
+                bind:this={oName.checkbox}
+                onCheckedChange={() => {
+                  const visibility = oName.checked ? "visible" : "none";
+                  const map = appState.map;
+                  if (!map) return;
+
+                  oName.layerTarget.forEach((layerName: string) => {
+                    map.setLayoutProperty(layerName, "visibility", visibility);
+                  });
+                }}
+              />
             </div>
           {/if}
           <button

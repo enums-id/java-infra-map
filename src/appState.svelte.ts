@@ -2,6 +2,7 @@ import type { FeatureCollection } from "geojson";
 import mapboxgl from "mapbox-gl";
 import type { AnyLayer } from "./map/types";
 import type { treeType } from "./components/types";
+import { layers } from "./map/layers";
 
 export const appState: {
   geojsonList: gDataRecord[];
@@ -48,9 +49,15 @@ export async function populateData() {
       { displayName: "base" },
       [
         { displayName: "power", checked: true },
-        { displayName: "powerline", checked: true },
-        { displayName: "substation", checked: true },
-        { displayName: "generator", checked: true },
+        {
+          displayName: "powerline",
+          layerTarget: layers
+            .filter((f) => f.id.includes("jaringan-listrik"))
+            .map((f) => f.id),
+          checked: true,
+        },
+        { displayName: "substation", layerTarget: [], checked: true },
+        { displayName: "generator", layerTarget: [], checked: true },
       ],
       [{ displayName: "industry", checked: true }],
       { displayName: "port", checked: true },
@@ -97,6 +104,8 @@ export async function populateGeojsonData() {
       (appState.tree as any[]).push(baseList);
     }
   }
+
+  console.log($state.snapshot(appState.tree));
 }
 
 export type gDataRecord = {
