@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { appState } from "../appState.svelte";
   import { bootStrap } from "../appMain.svelte";
+  import { loadFunction } from "../map/";
 
   mapboxgl.accessToken = import.meta.env.VITE_API_KEY;
 
@@ -20,31 +21,7 @@
       //   [116.20008188853387, -1.6337979184728084],
       // ],
     });
-
-    appState.map.on("load", () => {
-      console.log("map loaded");
-      appState.ready.mapLoad = true;
-
-      const onMove = () => {
-        const map = appState.map;
-        if (!map) return;
-        const [z, x, y] = [
-          map.getZoom(),
-          map.getCenter().lng,
-          map.getCenter().lat,
-        ];
-
-        appState.mapzoom = [z, x, y];
-      };
-      appState.map?.on("move", onMove);
-      onMove();
-      if (appState.map) bootStrap(appState.map);
-    });
-
-    return () => {
-      // if (appState.map && appState.map.remove) appState.map.remove();
-      console.log("ok");
-    };
+    appState.map.on("load", loadFunction(appState.map));
   });
 </script>
 
