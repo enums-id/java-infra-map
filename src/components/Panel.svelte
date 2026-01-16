@@ -25,10 +25,10 @@
 </script>
 
 <div
-  class="max-w-120 bg-white w-100 h-fit max-h-100 overflow-auto rounded text-sm p-1 px-5"
+  class="max-w-120 w-100 h-fit max-h-100 overflow-auto rounded text-sm p-1 px-5 bg-background"
 >
-  <Accordion.Root type="single" class="w-full" value="item-1">
-    <Accordion.Item value="item-1">
+  <Accordion.Root type="single" class="w-full" value="item-1 bg-background">
+    <Accordion.Item value="item-1" class="">
       <Accordion.Trigger>Pelabuhan</Accordion.Trigger>
       <Accordion.Content class="flex flex-col gap-4 text-balance">
         {#each ["Pelabuhan Utama", "Pelabuhan Pengumpan Regional", "Pelabuhan Pengumpan"] as l, i}
