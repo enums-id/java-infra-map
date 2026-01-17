@@ -159,66 +159,105 @@ export const layers: AnyLayer[] = [
     return layer2;
   }), // Pelabuhan
 
-  ...[25, 30, 66, 70, 150, 159, 170, 275, 500].map((d) => {
-    const layer: AnyLayer = {
-      id: `substation-${d}`,
-      type: "circle",
-      source: "substation",
-      "source-layer": "substation",
-      paint: {
-        // Match substation color to power line voltage categories
-        "circle-color": [
-          "case",
+  ...[25, 30, 66, 70, 150, 159, 170, 275, 500]
+    .map((d) => {
+      if (d <= 70) return null;
+      let filterLayer: mapboxgl.FilterSpecification = [];
+      let layerSuffix = "";
+      let cont = false;
+      switch (d) {
+        case 30:
+          filterLayer = ["<=", ["get", "teggi_v"], 30];
+          layerSuffix = "30kV";
+          cont = true;
+          break;
+        case 70:
+          filterLayer = [
+            "all",
+            [">=", ["get", "teggi_v"], 66],
+            ["<=", ["get", "teggi_v"], 70],
+          ];
+          layerSuffix = "70kV";
+          cont = true;
+          break;
+        case 170:
+          filterLayer = [
+            "all",
+            [">=", ["get", "teggi_v"], 150],
+            ["<=", ["get", "teggi_v"], 170],
+          ];
+          layerSuffix = "150kV";
+          cont = true;
+          break;
+        default:
+          filterLayer = ["all", [">=", ["get", "teggi_v"], 250]];
+          layerSuffix = "275kV";
+          cont = true;
+      }
 
-          // Low Voltage (≤ 1 kV)
-          ["<=", ["get", "teggi_v"], 1],
-          "#2ecc71",
+      if (!cont) return null;
 
-          // Medium Voltage (1–35 kV)
-          ["<=", ["get", "teggi_v"], 35],
-          "#2ecc71",
+      const layer: AnyLayer = {
+        id: `substation-${layerSuffix}`,
+        type: "circle",
+        filter: filterLayer,
+        source: "substation",
+        "source-layer": "substation",
+        paint: {
+          // Match substation color to power line voltage categories
+          "circle-color": [
+            "case",
 
-          // High Voltage / SUTT (35–150 kV)
-          ["<=", ["get", "teggi_v"], 150],
-          "#f1c40f",
+            // Low Voltage (≤ 1 kV)
+            ["<=", ["get", "teggi_v"], 1],
+            "#2ecc71",
 
-          // Extra High Voltage / SUTET (>150 kV)
-          "#e74c3c",
-        ],
+            // Medium Voltage (1–35 kV)
+            ["<=", ["get", "teggi_v"], 35],
+            "#2ecc71",
 
-        // Radius preserved
-        "circle-radius": [
-          "match",
-          ["get", "teggi_v"],
+            // High Voltage / SUTT (35–150 kV)
+            ["<=", ["get", "teggi_v"], 150],
+            "#f1c40f",
 
-          500,
-          8,
-          275,
-          7,
-          170,
-          6,
-          159,
-          5,
-          150,
-          4,
-          70,
-          3,
-          66,
-          2,
-          30,
-          1,
-          25,
-          1,
+            // Extra High Voltage / SUTET (>150 kV)
+            "#e74c3c",
+          ],
 
-          /* default */
-          1,
-        ],
+          // Radius preserved
+          "circle-radius": [
+            "match",
+            ["get", "teggi_v"],
 
-        "circle-opacity": 0.85,
-        "circle-stroke-width": 1,
-        "circle-stroke-color": "#333333",
-      },
-    };
-    return layer;
-  }),
+            500,
+            8,
+            275,
+            7,
+            170,
+            6,
+            159,
+            5,
+            150,
+            4,
+            70,
+            3,
+            66,
+            2,
+            30,
+            1,
+            25,
+            1,
+
+            /* default */
+            1,
+          ],
+
+          "circle-opacity": 0.85,
+          "circle-stroke-width": 1,
+          "circle-stroke-color": "#333333",
+        },
+      };
+      return layer;
+    })
+    .filter((f) => f !== null),
 ];
