@@ -15,6 +15,11 @@
   }: {
     items: treeType;
   } = $props();
+
+  function setBasedOnLocalStorage(displayName: string) {
+    const val = localStorage.getItem(`checkbox-${displayName}`);
+    return;
+  }
 </script>
 
 {#each items as item, index (index)}

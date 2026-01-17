@@ -44,54 +44,6 @@ export async function populateData() {
 
   const resp = await fetch("/categories.json");
   appState.categories = await resp.json();
-  appState.tree = [
-    [
-      { displayName: "Infrastructure" },
-      [
-        { displayName: "power", checked: true },
-        [
-          {
-            displayName: "Powerline",
-          },
-
-          ...layers
-            .filter((f) => f.id.includes("jaringan-listrik"))
-            .map((f) => {
-              return {
-                displayName:
-                  f.id
-                    .split("-")
-                    .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-                    .join(" ") + "kV",
-                layerTarget: [f.id],
-                checked: true,
-              };
-            }),
-        ],
-        [
-          {
-            displayName: "Substation",
-          },
-
-          ...layers
-            .filter((f) => f.id.includes("substation-"))
-            .map((f) => {
-              return {
-                displayName: f.id
-                  .split("-")
-                  .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-                  .join(" "),
-                layerTarget: [f.id],
-                checked: true,
-              };
-            }),
-        ],
-        [{ displayName: "generator", layerTarget: [], checked: true }],
-      ],
-      [{ displayName: "industry", layerTarget: ["industry"], checked: true }],
-      { displayName: "port", checked: true },
-    ],
-  ];
 
   return jsonData;
 }

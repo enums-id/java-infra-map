@@ -4,6 +4,7 @@ import { sources } from "./map/sources";
 import { layers } from "./map/layers";
 import { mapActionsInvoke } from "./map/functions";
 import { svgUrls } from "./map/images";
+import type { treeType } from "./components/types";
 
 export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
@@ -17,6 +18,98 @@ export async function bootStrap(map: mapboxgl.Map) {
   await loadImages(map);
   registerLayer(map);
   mapActionsInvoke(map)();
+
+  bootStrapCheckbox();
+}
+
+function bootStrapCheckbox() {
+  appState.tree = [
+    [
+      { displayName: "Infrastructure" },
+      [
+        { displayName: "power", checked: true },
+        [
+          {
+            displayName: "Powerline",
+          },
+
+          ...layers
+            .filter((f) => f.id.includes("jaringan-listrik"))
+            .map((f) => {
+              const displayName =
+                f.id
+                  .split("-")
+                  .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+                  .join(" ") + "kV";
+              return {
+                displayName,
+                layerTarget: [f.id],
+                checked:
+                  localStorage.getItem(`checkbox-${displayName}`) !== "false",
+              };
+            }),
+        ],
+        [
+          {
+            displayName: "Substation",
+          },
+
+          ...layers
+            .filter((f) => f.id.includes("substation-"))
+            .map((f) => {
+              return {
+                displayName: f.id
+                  .split("-")
+                  .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+                  .join(" "),
+                layerTarget: [f.id],
+                checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+              };
+            }),
+        ],
+        [{ displayName: "generator", layerTarget: [], checked: true }],
+      ],
+      [
+        {
+          displayName: "industry",
+          layerTarget: ["industry"],
+          checked: localStorage.getItem(`checkbox-industry`) !== "false",
+        },
+      ],
+      { displayName: "port", checked: true },
+    ],
+    [{ displayName: "Projects" }, { displayName: "Projects" }],
+  ];
+
+  loadLayer(appState.tree);
+
+  function loadLayer(tree: treeType) {
+    if (!appState.map) return;
+    for (const elem of tree) {
+      const isObject =
+        typeof elem === "object" && elem !== null && !Array.isArray(elem);
+      const isArray = Array.isArray(elem);
+
+      if (isArray) {
+        loadLayer(elem);
+      }
+      if (isObject) {
+        const { displayName, layerTarget, checked } = elem;
+
+        const display =
+          localStorage.getItem(`checkbox-${displayName}`) !== "false";
+        if (Array.isArray(layerTarget) && layerTarget.length > 0) {
+          for (const layer of layerTarget) {
+            appState.map.setLayoutProperty(
+              layer,
+              "visibility",
+              display ? "visible" : "none"
+            );
+          }
+        }
+      }
+    }
+  }
 }
 
 async function loadImages(map: mapboxgl.Map) {

@@ -159,9 +159,10 @@ export const layers: AnyLayer[] = [
     return layer2;
   }), // Pelabuhan
 
+  // substation
   ...[25, 30, 66, 70, 150, 159, 170, 275, 500]
     .map((d) => {
-      if (d <= 70) return null;
+      if (d < 70) return null;
       let filterLayer: mapboxgl.FilterSpecification = [];
       let layerSuffix = "";
       let cont = false;
@@ -189,14 +190,15 @@ export const layers: AnyLayer[] = [
           layerSuffix = "150kV";
           cont = true;
           break;
-        default:
-          filterLayer = ["all", [">=", ["get", "teggi_v"], 250]];
+        case 275:
+          filterLayer = ["all", [">=", ["get", "teggi_v"], 275]];
           layerSuffix = "275kV";
           cont = true;
+          break;
       }
 
       if (!cont) return null;
-
+      console.log("SUBSTATION SUFFIX", layerSuffix);
       const layer: AnyLayer = {
         id: `substation-${layerSuffix}`,
         type: "circle",
