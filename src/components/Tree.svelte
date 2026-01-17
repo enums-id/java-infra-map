@@ -45,6 +45,11 @@
                     map.setLayoutProperty(layerName, "visibility", visibility);
                     localStorage.setItem(`visibility-${layerName}`, visibility);
                   });
+
+                  localStorage.setItem(
+                    `checkbox-${oName.displayName}`,
+                    oName.checked
+                  );
                 }}
               />
             </div>
