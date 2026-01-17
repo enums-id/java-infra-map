@@ -43,6 +43,7 @@
 
                   oName.layerTarget.forEach((layerName: string) => {
                     map.setLayoutProperty(layerName, "visibility", visibility);
+                    localStorage.setItem(`visibility-${layerName}`, visibility);
                   });
                 }}
               />
