@@ -46,7 +46,11 @@
 <ModeWatcher />
 
 <div class="flex flex-col h-screen w-screen relative">
-  <Sidebar.Provider class="flex grow relative" onOpenChange={() => {}}>
+  <Sidebar.Provider
+    class="flex grow relative"
+    style="--sidebar-width: 25rem; --sidebar-width-mobile: 20rem;"
+    onOpenChange={() => {}}
+  >
     <Sidebar.Root collapsible={"offcanvas"}>
       <Sidebar.Header />
       <Sidebar.Content>
@@ -60,7 +64,7 @@
       </Sidebar.Content>
       <Sidebar.Footer />
     </Sidebar.Root>
-    <FileExplorer {name} />
+    <!-- <FileExplorer {name} /> -->
     <Sidebar.Trigger />
     <div class="flex flex-col grow relative" bind:clientWidth={mapWidth}>
       <Map />
