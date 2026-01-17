@@ -23,4 +23,12 @@ export const sources: Record<string, mapboxgl.SourceSpecification> = {
       }/xyz/listrik/jaringan/{z}/{x}/{y}.pbf`,
     ],
   },
+  substation: {
+    type: "vector",
+    tiles: [
+      `${import.meta.env.VITE_PROTOCOL}://${
+        import.meta.env.VITE_HOST
+      }/xyz/substation_xyz/{z}/{x}/{y}.pbf`,
+    ],
+  },
 };
