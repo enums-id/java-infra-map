@@ -131,6 +131,47 @@ async function loadImages(map: mapboxgl.Map) {
     URL.revokeObjectURL(url);
   }
 
+  async function addSvgElement(
+    name: string,
+    svgContent: string, // <-- raw <svg>...</svg>
+    size = 24
+  ) {
+    // Create SVG blob directly from string
+    const svgBlob = new Blob([svgContent], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = reject;
+      img.src = url;
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, size, size);
+    ctx.drawImage(img, 0, 0, size, size);
+
+    const finalImg = new Image();
+    finalImg.src = canvas.toDataURL("image/png");
+
+    await new Promise<void>((resolve, reject) => {
+      finalImg.onload = () => resolve();
+      finalImg.onerror = reject;
+    });
+
+    // Add to Mapbox
+    map.addImage(name, finalImg);
+
+    URL.revokeObjectURL(url);
+  }
+
   for (const svgUrl of svgUrls) {
     await addSvgIcon(svgUrl, svgUrl);
     console.log("Adding", svgUrl, " to map");
