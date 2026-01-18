@@ -97,7 +97,7 @@ export async function populateGeojsonData() {
 
 export type gDataRecord = {
   name: string;
-  layers: [];
+  layers: AnyLayer[];
   category: string;
   displayName: string;
   description: string;

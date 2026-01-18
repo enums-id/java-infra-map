@@ -3,7 +3,7 @@
     "name": "kcic.geojson",
     "displayName": "High Speed Rail Jakarta-Bandung",
     "description": "",
-    "category": "train",
+    "category": "Rail",
     "layers": [
       {
         "type": "line",

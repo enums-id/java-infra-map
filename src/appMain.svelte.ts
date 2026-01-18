@@ -25,6 +25,44 @@ export async function bootStrap(map: mapboxgl.Map) {
 
 function bootStrapCheckboxAndTree() {
   appState.tree = treeInit;
+  const baseProjects = [
+    "Transport",
+    "Rail",
+    "Port",
+    "Energy",
+    "Telecommunication",
+  ];
+
+  const toAppend: treeType = [{ displayName: "Projects" }];
+
+  for (const folderName of baseProjects) {
+    const subFolder: treeType = [{ displayName: folderName }];
+    for (const gRecord of appState.geojsonList) {
+      const { name, displayName, description, category, layers } = gRecord;
+      if (category !== folderName) continue;
+      let layerTarget = [];
+      for (const gRecord of appState.geojsonList) {
+        let i = 0;
+        for (const layer of gRecord.layers) {
+          i++;
+          const lName = `${gRecord.displayName}-${i}`;
+          layerTarget.push(lName);
+        }
+      }
+
+      const element = {
+        displayName,
+        layerTarget,
+        checked: localStorage.getItem(`checkbox-industry`) !== "false",
+      };
+
+      subFolder.push(element);
+    }
+
+    toAppend.push(subFolder);
+  }
+
+  appState.tree.push(toAppend);
 
   loadLayer(appState.tree);
 
@@ -131,7 +169,7 @@ function registerLayer(map: mapboxgl.Map) {
       i++;
       const layerToAdd = layer as mapboxgl.LayerSpecification;
 
-      layerToAdd.id = `${gRecord.name}-${i}`;
+      layerToAdd.id = `${gRecord.displayName}-${i}`;
       layerToAdd.source = gRecord.name;
       appState.map.addLayer(layer);
     }

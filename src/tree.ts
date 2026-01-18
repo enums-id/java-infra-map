@@ -56,5 +56,4 @@ export const treeInit: treeType[] = [
     ],
     { displayName: "port", checked: true },
   ],
-  [{ displayName: "Projects" }, { displayName: "Projects" }],
 ];
