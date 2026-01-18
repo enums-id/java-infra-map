@@ -269,8 +269,14 @@ export const layers: AnyLayer[] = [
   // })
   {
     id: "generator",
-    type: "circle",
+    type: "symbol",
     source: "generator",
     "source-layer": "generator",
+    layout: {
+      "icon-image": "bolt", // name used in map.addImage()
+      "icon-size": 0.65, // scale factor (adjust as needed)
+      "icon-allow-overlap": true, // prevent hiding when close
+      "icon-ignore-placement": true,
+    },
   },
 ];

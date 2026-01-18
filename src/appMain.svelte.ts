@@ -173,11 +173,19 @@ async function loadImages(map: mapboxgl.Map) {
   }
 
   for (const svgUrl of svgUrls) {
-    await addSvgIcon(svgUrl, svgUrl);
+    try {
+      await addSvgIcon(svgUrl, svgUrl);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   for (const svgElement of svgElements) {
-    await addSvgIcon(svgElement.name, svgElement.element);
+    try {
+      await addSvgElement(svgElement.name, svgElement.element);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
