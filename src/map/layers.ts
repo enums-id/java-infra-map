@@ -262,4 +262,7 @@ export const layers: AnyLayer[] = [
       return layer;
     })
     .filter((f) => f !== null),
+
+  //jnspls
+  // ['PLTGU', 'PLTM', 'PLTA', 'PLTD', 'PLTSa', 'PLTMG', 'PLTU', 'PLTG','PLTMH', 'PLTP', 'Pemba', 'Steam', 'PLTBm', 'PLTS', 'PLTBg','PLTB', 'PLTDG', 'PLTBn']
 ];
