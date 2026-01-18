@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import { sources } from "./map/sources";
 import { layers } from "./map/layers";
 import { mapActionsInvoke } from "./map/functions";
-import { svgUrls } from "./map/images";
+import { svgElements, svgUrls } from "./map/images";
 import type { treeType } from "./components/types";
 import { treeInit } from "./tree";
 
@@ -174,7 +174,10 @@ async function loadImages(map: mapboxgl.Map) {
 
   for (const svgUrl of svgUrls) {
     await addSvgIcon(svgUrl, svgUrl);
-    console.log("Adding", svgUrl, " to map");
+  }
+
+  for (const svgElement of svgElements) {
+    await addSvgIcon(svgElement.name, svgElement.element);
   }
 }
 
