@@ -47,7 +47,10 @@ export const treeInit: treeType[] = [
             };
           }),
       ],
-      [{ displayName: "generator", layerTarget: [], checked: true }],
+      [
+        { displayName: "generator", layerTarget: [], checked: true },
+        { displayName: "generator", layerTarget: ["generator"], checked: true },
+      ],
     ],
     [
       {
