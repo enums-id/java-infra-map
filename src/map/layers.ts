@@ -264,5 +264,13 @@ export const layers: AnyLayer[] = [
     .filter((f) => f !== null),
 
   //jnspls
-  // ['PLTGU', 'PLTM', 'PLTA', 'PLTD', 'PLTSa', 'PLTMG', 'PLTU', 'PLTG','PLTMH', 'PLTP', 'Pemba', 'Steam', 'PLTBm', 'PLTS', 'PLTBg','PLTB', 'PLTDG', 'PLTBn']
+  // ...['PLTGU', 'PLTM', 'PLTA', 'PLTD', 'PLTSa', 'PLTMG', 'PLTU', 'PLTG','PLTMH', 'PLTP', 'Pemba', 'Steam', 'PLTBm', 'PLTS', 'PLTBg','PLTB', 'PLTDG', 'PLTBn'].map(r=>{
+
+  // })
+  {
+    id: "generator",
+    type: "circle",
+    source: "generator",
+    "source-layer": "generator",
+  },
 ];

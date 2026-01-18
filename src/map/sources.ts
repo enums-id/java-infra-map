@@ -31,4 +31,12 @@ export const sources: Record<string, mapboxgl.SourceSpecification> = {
       }/xyz/substation_xyz/{z}/{x}/{y}.pbf`,
     ],
   },
+  generator: {
+    type: "vector",
+    tiles: [
+      `${import.meta.env.VITE_PROTOCOL}://${
+        import.meta.env.VITE_HOST
+      }/xyz/generator_xyz/{z}/{x}/{y}.pbf`,
+    ],
+  },
 };
