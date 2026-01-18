@@ -64,7 +64,7 @@ function bootStrapCheckboxAndTree() {
 
   let [fName, ...elems] = toAppend;
 
-  appState.tree.push([fName, elems.filter((f) => f.length > 1)]);
+  appState.tree.push([fName, ...elems.filter((f) => f.length > 1)]);
 
   loadLayer(appState.tree);
 
