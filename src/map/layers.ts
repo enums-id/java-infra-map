@@ -198,7 +198,7 @@ export const layers: AnyLayer[] = [
       }
 
       if (!cont) return null;
-      console.log("SUBSTATION SUFFIX", layerSuffix);
+      console.log("SUBSTATION SUFFIX", `substation-${layerSuffix}`);
       const layer: AnyLayer = {
         id: `substation-${layerSuffix}`,
         type: "circle",

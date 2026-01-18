@@ -35,13 +35,15 @@ export const treeInit: treeType[] = [
         ...layers
           .filter((f) => f.id.includes("substation-"))
           .map((f) => {
+            const displayName = f.id
+              .split("-")
+              .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+              .join(" ");
             return {
-              displayName: f.id
-                .split("-")
-                .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-                .join(" "),
+              displayName: displayName,
               layerTarget: [f.id],
-              checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+              checked:
+                localStorage.getItem(`checkbox-${displayName}`) !== "false",
             };
           }),
       ],
