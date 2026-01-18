@@ -20,10 +20,10 @@ export async function bootStrap(map: mapboxgl.Map) {
   registerLayer(map);
   mapActionsInvoke(map)();
 
-  bootStrapCheckbox();
+  bootStrapCheckboxAndTree();
 }
 
-function bootStrapCheckbox() {
+function bootStrapCheckboxAndTree() {
   appState.tree = treeInit;
 
   loadLayer(appState.tree);
