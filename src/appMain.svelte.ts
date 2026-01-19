@@ -21,6 +21,25 @@ export async function bootStrap(map: mapboxgl.Map) {
   mapActionsInvoke(map)();
 
   bootStrapCheckboxAndTree();
+  initPosition(map);
+}
+
+function initPosition(map: mapboxgl.Map): [number, number, number] {
+  const x = Number(localStorage.getItem("x_"));
+  const y = Number(localStorage.getItem("y_"));
+  const zoom = Number(localStorage.getItem("z_"));
+
+  const all = [x, y, zoom].every((f) => Number.isFinite(f));
+
+  if (all) {
+    map.flyTo({
+      center: [x, y],
+      zoom,
+      animate: false,
+    });
+  }
+
+  return [0, 0, 0];
 }
 
 function bootStrapCheckboxAndTree() {
