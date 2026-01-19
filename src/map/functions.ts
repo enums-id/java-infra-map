@@ -3,6 +3,7 @@ import type { Listener$1 } from "./types";
 import { toast } from "svelte-sonner";
 import { appState } from "../appState.svelte";
 import { bootStrap } from "../appMain.svelte";
+import { layers } from "./layers";
 
 export function mapActionsInvoke(map: mapboxgl.Map) {
   return () => {
@@ -54,7 +55,19 @@ const mapActions: {
   [K in MapEventType]?: Listener$1<Extract<K, MapEventType>>;
 } = {
   mousemove: (e) => {
-    e.lngLat;
+    const map = appState.map;
+    if (!map) return;
+
+    const [feature] = map.queryRenderedFeatures(e.point, {
+      layers: layers.map((d) => d.id),
+    });
+
+    if (!feature) {
+      appState.featureHighlight = null;
+      return;
+    }
+
+    appState.featureHighlight = feature;
   },
   load: (e) => {},
   move: (e) => {

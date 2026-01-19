@@ -17,6 +17,7 @@
   import Panel from "./components/Panel.svelte";
   import Tree from "./components/Tree.svelte";
   import FileExplorer from "./components/FileExplorer.svelte";
+  import FeatureHighlight from "./components/FeatureHighlight.svelte";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -71,6 +72,7 @@
       <!-- <div class="z-10 absolute top-0 left-0 m-4 w-1/4">
         <Panel />
       </div> -->
+      <FeatureHighlight />
     </div>
   </Sidebar.Provider>
 </div>

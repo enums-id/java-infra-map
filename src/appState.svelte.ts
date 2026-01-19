@@ -9,6 +9,7 @@ export const appState: {
   geojsonData: Record<string, FeatureCollection>;
   mapdiv: HTMLDivElement;
   map?: mapboxgl.Map;
+  featureHighlight: mapboxgl.GeoJSONFeature | null;
   ready: {
     mapLoad: boolean;
     data: boolean;
@@ -21,6 +22,7 @@ export const appState: {
   categories: string[];
   tree: treeType[];
 } = $state({
+  featureHighlight: null,
   geojsonList: [],
   geojsonData: {},
   mapdiv: document.createElement("div"),
