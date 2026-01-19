@@ -23,6 +23,14 @@ export const sources: Record<string, mapboxgl.SourceSpecification> = {
       }/xyz/roads_xyz/{z}/{x}/{y}.pbf`,
     ],
   },
+  airport: {
+    type: "vector",
+    tiles: [
+      `${import.meta.env.VITE_PROTOCOL}://${
+        import.meta.env.VITE_HOST
+      }/xyz/airport_xyz/{z}/{x}/{y}.pbf`,
+    ],
+  },
   "jaringan-listrik": {
     type: "vector",
     tiles: [
