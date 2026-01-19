@@ -24,6 +24,11 @@ export async function bootStrap(map: mapboxgl.Map) {
   initPosition(map);
 }
 
+export const randomHexId6 = (): string =>
+  crypto
+    .getRandomValues(new Uint8Array(3))
+    .reduce((s, b) => s + b.toString(16).padStart(2, "0"), "");
+
 function initPosition(map: mapboxgl.Map): [number, number, number] {
   const x = Number(localStorage.getItem("x_"));
   const y = Number(localStorage.getItem("y_"));
