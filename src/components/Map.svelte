@@ -8,6 +8,7 @@
   import { toast } from "svelte-sonner";
   import { Button } from "$lib/components/ui/button/index.js";
   import Theme from "./Theme.svelte";
+  import Footer from "./Footer.svelte";
 
   mapboxgl.accessToken = import.meta.env.VITE_API_KEY;
 
@@ -30,15 +31,5 @@
 </script>
 
 <div class="grow" bind:this={appState.mapdiv}></div>
-<div class="text-xs flex justify-between py-1">
-  <div class="px-4">
-    <span
-      >{appState.mapzoom[0].toFixed(2)}, {appState.mapzoom[0].toFixed(8)}, {appState.mapzoom[0].toFixed(
-        8
-      )}</span
-    >
-  </div>
-  <div class="">
-    <Theme />
-  </div>
-</div>
+
+<Footer />

@@ -22,7 +22,9 @@ export const appState: {
   layerState: Record<string, boolean>;
   categories: string[];
   tree: treeType[];
+  highlightFeature: boolean;
 } = $state({
+  highlightFeature: true,
   featureHighlight: null,
   featureClicked: null,
   geojsonList: [],

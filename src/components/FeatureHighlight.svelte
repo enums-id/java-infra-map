@@ -3,7 +3,7 @@
   import * as Table from "$lib/components/ui/table/index.js";
 </script>
 
-{#if appState.featureHighlight && appState.featureHighlight.properties}
+{#if appState.featureHighlight && appState.featureHighlight.properties && appState.highlightFeature}
   {@const properties = appState.featureHighlight.properties}
   <!-- <div>
     {JSON.stringify(properties)}
