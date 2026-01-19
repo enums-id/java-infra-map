@@ -49,7 +49,11 @@ export const treeInit: treeType[] = [
       ],
       [
         { displayName: "generator", layerTarget: [], checked: true },
-        { displayName: "generator", layerTarget: ["generator"], checked: true },
+        {
+          displayName: "generator",
+          layerTarget: ["generator"],
+          checked: localStorage.getItem(`checkbox-generator`) !== "false",
+        },
       ],
     ],
     [
