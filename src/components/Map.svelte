@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
   import { appState } from "../appState.svelte";
   import { bootStrap } from "../appMain.svelte";
-  import { loadFunction } from "../map/";
+  import { loadFunction } from "../map/functions";
 
   import { toast } from "svelte-sonner";
   import { Button } from "$lib/components/ui/button/index.js";

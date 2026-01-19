@@ -1,6 +1,8 @@
 import mapboxgl, { type MapEventOf, type MapEventType } from "mapbox-gl";
 import type { Listener$1 } from "./types";
 import { toast } from "svelte-sonner";
+import { appState } from "../appState.svelte";
+import { bootStrap } from "../appMain.svelte";
 
 export function mapActionsInvoke(map: mapboxgl.Map) {
   return () => {
@@ -10,11 +12,43 @@ export function mapActionsInvoke(map: mapboxgl.Map) {
   };
 }
 
+export function loadFunction(map: mapboxgl.Map) {
+  return () => {
+    appState.ready.mapLoad = true;
+    const onMove = () => {
+      const [z, x, y] = [
+        map.getZoom(),
+        map.getCenter().lng,
+        map.getCenter().lat,
+      ];
+
+      appState.mapzoom = [z, x, y];
+    };
+    appState.map?.on("move", onMove);
+    onMove();
+    map.flyTo({
+      zoom: 7.25,
+    });
+    if (appState.map) bootStrap(appState.map);
+  };
+}
+
 const mapActions: {
   [K in MapEventType]?: Listener$1<Extract<K, MapEventType>>;
 } = {
   mousemove: (e) => {
     e.lngLat;
+  },
+  load: (e) => {},
+  move: (e) => {
+    const map = appState.map;
+    if (!map) return;
+    const c = map.getCenter();
+    const [x, y, z] = [c.lng, c.lat, map.getZoom()];
+
+    localStorage.setItem("x_", x.toFixed(8));
+    localStorage.setItem("y_", y.toFixed(8));
+    localStorage.setItem("z_", z.toFixed(2));
   },
   contextmenu: (e) => {
     toast("Coordinate:", {
