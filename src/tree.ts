@@ -53,12 +53,24 @@ export const treeInit: treeType[] = [
       ],
     ],
     [
+      { displayName: "Land Use" },
       {
         displayName: "industry",
         layerTarget: ["industry"],
         checked: localStorage.getItem(`checkbox-industry`) !== "false",
       },
     ],
-    { displayName: "port", checked: true },
+    [
+      { displayName: "port", checked: true },
+      ...layers
+        .filter((f) => f.id.toLowerCase().includes("pelabuhan"))
+        .map((f) => {
+          return {
+            displayName: f.id,
+            layerTarget: [f.id],
+            checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+          };
+        }),
+    ],
   ],
 ];

@@ -77,88 +77,6 @@ export const layers: AnyLayer[] = [
     return layer;
   }),
 
-  // pelabuhan
-  ...[
-    "Pelabuhan Pengumpan",
-    "Pelabuhan Pengumpan Regional",
-    "Pelabuhan Utama",
-  ].map((f) => {
-    const layer: AnyLayer = {
-      id: f,
-      type: "circle",
-      source: "pelabuhan",
-      "source-layer": "pelabuhan",
-      filter: ["all", ["==", ["get", "hirarki_p"], f]],
-      paint: {
-        "circle-color": [
-          "match",
-          ["get", "hirarki_p"],
-
-          "Pelabuhan Utama",
-          "#99023e",
-          "Pelabuhan Pengumpan Regional",
-          "#6a006e",
-          "Pelabuhan Pengumpan",
-          "#6e4900",
-
-          /* fallback */
-          "#cccccc",
-        ],
-
-        "circle-radius": [
-          "match",
-          ["get", "hirarki_p"],
-
-          "Pelabuhan Utama",
-          10,
-          "Pelabuhan Pengumpan Regional",
-          8,
-          "Pelabuhan Pengumpan",
-          6,
-
-          /* fallback */
-          5,
-        ],
-
-        "circle-stroke-width": 1,
-        "circle-stroke-color": "#ffffff",
-      },
-    };
-
-    const layer2: AnyLayer = {
-      id: f,
-      type: "symbol",
-      source: "pelabuhan",
-      "source-layer": "pelabuhan",
-      filter: ["all", ["==", ["get", "hirarki_p"], f]],
-
-      layout: {
-        "icon-image": "https://cdn.simpleicons.org/codeship",
-
-        // Map circle-radius → icon-size
-        "icon-size": [
-          "match",
-          ["get", "hirarki_p"],
-
-          "Pelabuhan Utama",
-          1,
-          "Pelabuhan Pengumpan Regional",
-          0.65,
-          "Pelabuhan Pengumpan",
-          0.45,
-
-          /* fallback */
-          0.45,
-        ],
-
-        "icon-allow-overlap": true,
-        "icon-anchor": "center",
-      },
-    };
-
-    return layer2;
-  }), // Pelabuhan
-
   // substation
   ...[25, 30, 66, 70, 150, 159, 170, 275, 500]
     .map((d) => {
@@ -279,4 +197,86 @@ export const layers: AnyLayer[] = [
       "icon-ignore-placement": true,
     },
   },
+
+  // pelabuhan
+  ...[
+    "Pelabuhan Pengumpan",
+    "Pelabuhan Pengumpan Regional",
+    "Pelabuhan Utama",
+  ].map((f) => {
+    const layer: AnyLayer = {
+      id: f,
+      type: "circle",
+      source: "pelabuhan",
+      "source-layer": "pelabuhan",
+      filter: ["all", ["==", ["get", "hirarki_p"], f]],
+      paint: {
+        "circle-color": [
+          "match",
+          ["get", "hirarki_p"],
+
+          "Pelabuhan Utama",
+          "#99023e",
+          "Pelabuhan Pengumpan Regional",
+          "#6a006e",
+          "Pelabuhan Pengumpan",
+          "#6e4900",
+
+          /* fallback */
+          "#cccccc",
+        ],
+
+        "circle-radius": [
+          "match",
+          ["get", "hirarki_p"],
+
+          "Pelabuhan Utama",
+          10,
+          "Pelabuhan Pengumpan Regional",
+          8,
+          "Pelabuhan Pengumpan",
+          6,
+
+          /* fallback */
+          5,
+        ],
+
+        "circle-stroke-width": 1,
+        "circle-stroke-color": "#ffffff",
+      },
+    };
+
+    const layer2: AnyLayer = {
+      id: f,
+      type: "symbol",
+      source: "pelabuhan",
+      "source-layer": "pelabuhan",
+      filter: ["all", ["==", ["get", "hirarki_p"], f]],
+
+      layout: {
+        "icon-image": "https://cdn.simpleicons.org/codeship",
+
+        // Map circle-radius → icon-size
+        "icon-size": [
+          "match",
+          ["get", "hirarki_p"],
+
+          "Pelabuhan Utama",
+          1,
+          "Pelabuhan Pengumpan Regional",
+          0.65,
+          "Pelabuhan Pengumpan",
+          0.45,
+
+          /* fallback */
+          0.45,
+        ],
+
+        "icon-allow-overlap": true,
+        "icon-anchor": "center",
+      },
+    };
+
+    return layer2;
+  }), // Pelabuhan
 ];
