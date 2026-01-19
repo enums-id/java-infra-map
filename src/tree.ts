@@ -61,7 +61,7 @@ export const treeInit: treeType[] = [
       },
     ],
     [
-      { displayName: "port", checked: true },
+      { displayName: "Port (Shipping)", checked: true },
       ...layers
         .filter((f) => f.id.toLowerCase().includes("pelabuhan"))
         .map((f) => {
@@ -71,6 +71,19 @@ export const treeInit: treeType[] = [
             checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
           };
         }),
+    ],
+    [
+      { displayName: "Road" },
+
+      ...["motorway", "trunk", "primary"].map((d) => {
+        const fdisplay = {
+          displayName: d,
+          layerTarget: [`roads-${d}`],
+          checked: true,
+        };
+
+        return fdisplay;
+      }),
     ],
   ],
 ];
