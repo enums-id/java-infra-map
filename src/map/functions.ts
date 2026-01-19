@@ -26,11 +26,27 @@ export function loadFunction(map: mapboxgl.Map) {
     };
     appState.map?.on("move", onMove);
     onMove();
-    map.flyTo({
-      zoom: 7.25,
-    });
+
+    initPosition(map);
     if (appState.map) bootStrap(appState.map);
   };
+}
+
+function initPosition(map: mapboxgl.Map): [number, number, number] {
+  const x = Number(localStorage.getItem("x_"));
+  const y = Number(localStorage.getItem("y_"));
+  const zoom = Number(localStorage.getItem("z_"));
+
+  const all = [x, y, zoom].every((f) => Number.isFinite(f));
+
+  if (all) {
+    map.flyTo({
+      center: [x, y],
+      zoom,
+    });
+  }
+
+  return [0, 0, 0];
 }
 
 const mapActions: {
