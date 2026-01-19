@@ -88,7 +88,7 @@
               {/snippet}
             </Sidebar.GroupLabel>
             <Collapsible.Content>
-              <Sidebar.GroupContent class="px-10">
+              <Sidebar.GroupContent class="px-10 overflow-auto max-h-[300px]">
                 <FeatureClicked />
               </Sidebar.GroupContent>
             </Collapsible.Content>
