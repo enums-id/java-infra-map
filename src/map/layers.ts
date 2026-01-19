@@ -12,7 +12,49 @@ export const layers: AnyLayer[] = [
       "fill-opacity": 0.85,
     },
   },
+  ...["motorway", "trunk", "primary"].map((d) => {
+    const layer: AnyLayer = {
+      id: `roads-${d}`,
+      type: "line",
+      source: "roads",
+      "source-layer": "roads",
 
+      filter: ["==", ["get", "class"], d],
+
+      layout: {
+        "line-join": "round",
+        "line-cap": "round",
+      },
+
+      paint: {
+        "line-color": [
+          "match",
+          ["get", "class"],
+          "motorway",
+          "#1f3c88", // deep blue
+          "trunk",
+          "#3a6ea5", // medium blue
+          "primary",
+          "#9bb7d4", // light blue-grey
+          "#cccccc",
+        ],
+
+        "line-width": [
+          "match",
+          ["get", "class"],
+          "motorway",
+          6,
+          "trunk",
+          4,
+          "primary",
+          2,
+          1,
+        ],
+      },
+    };
+
+    return layer;
+  }),
   // jaringan listrik
   ...[20, 30, 70, 150, 275, 500].map((d) => {
     const layer: AnyLayer = {
