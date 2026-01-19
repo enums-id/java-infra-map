@@ -43,6 +43,7 @@ function initPosition(map: mapboxgl.Map): [number, number, number] {
     map.flyTo({
       center: [x, y],
       zoom,
+      animate: false,
     });
   }
 
