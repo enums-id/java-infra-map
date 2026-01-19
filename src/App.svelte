@@ -4,6 +4,7 @@
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
   import Map from "./components/Map.svelte";
+  import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import { resetMode, setMode } from "mode-watcher";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
@@ -18,6 +19,7 @@
   import Tree from "./components/Tree.svelte";
   import FileExplorer from "./components/FileExplorer.svelte";
   import FeatureHighlight from "./components/FeatureHighlight.svelte";
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -55,13 +57,40 @@
     <Sidebar.Root collapsible={"offcanvas"}>
       <Sidebar.Header />
       <Sidebar.Content>
-        <Sidebar.GroupContent>
-          <Sidebar.Menu>
-            <div class="m-2">
-              <Tree items={appState.tree} />
-            </div>
-          </Sidebar.Menu>
-        </Sidebar.GroupContent>
+        <Collapsible.Root open class="group/collapsible" disabled>
+          <Sidebar.Group>
+            <Sidebar.GroupLabel>
+              {#snippet child({ props })}
+                <Collapsible.Trigger {...props}>Layers</Collapsible.Trigger>
+              {/snippet}
+            </Sidebar.GroupLabel>
+            <Sidebar.GroupContent>
+              <Sidebar.Menu>
+                <div class="m-2">
+                  <Tree items={appState.tree} />
+                </div>
+              </Sidebar.Menu>
+            </Sidebar.GroupContent>
+          </Sidebar.Group>
+        </Collapsible.Root>
+
+        <Collapsible.Root open class="group/collapsible">
+          <Sidebar.Group>
+            <Sidebar.GroupLabel>
+              {#snippet child({ props })}
+                <Collapsible.Trigger {...props}>
+                  Help
+                  <ChevronDown
+                    class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
+                  />
+                </Collapsible.Trigger>
+              {/snippet}
+            </Sidebar.GroupLabel>
+            <Collapsible.Content>
+              <Sidebar.GroupContent>Content</Sidebar.GroupContent>
+            </Collapsible.Content>
+          </Sidebar.Group>
+        </Collapsible.Root>
       </Sidebar.Content>
       <Sidebar.Footer />
     </Sidebar.Root>
