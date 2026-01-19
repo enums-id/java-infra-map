@@ -10,6 +10,7 @@ export const appState: {
   mapdiv: HTMLDivElement;
   map?: mapboxgl.Map;
   featureHighlight: mapboxgl.GeoJSONFeature | null;
+  featureClicked: mapboxgl.GeoJSONFeature | null;
   ready: {
     mapLoad: boolean;
     data: boolean;
@@ -23,6 +24,7 @@ export const appState: {
   tree: treeType[];
 } = $state({
   featureHighlight: null,
+  featureClicked: null,
   geojsonList: [],
   geojsonData: {},
   mapdiv: document.createElement("div"),
