@@ -72,4 +72,19 @@ const mapActions: {
       },
     });
   },
+  click: (e) => {
+    const map = appState.map;
+    if (!map) return;
+
+    const [feature] = map.queryRenderedFeatures(e.point, {
+      layers: layers.map((d) => d.id),
+    });
+
+    if (!feature) {
+      appState.featureClicked = null;
+      return;
+    }
+
+    appState.featureClicked = feature;
+  },
 };

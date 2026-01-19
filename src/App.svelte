@@ -20,6 +20,7 @@
   import FileExplorer from "./components/FileExplorer.svelte";
   import FeatureHighlight from "./components/FeatureHighlight.svelte";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import FeatureClicked from "./components/FeatureClicked.svelte";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -79,7 +80,7 @@
             <Sidebar.GroupLabel>
               {#snippet child({ props })}
                 <Collapsible.Trigger {...props}>
-                  Help
+                  Selected Feature
                   <ChevronDown
                     class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
                   />
@@ -87,7 +88,9 @@
               {/snippet}
             </Sidebar.GroupLabel>
             <Collapsible.Content>
-              <Sidebar.GroupContent>Content</Sidebar.GroupContent>
+              <Sidebar.GroupContent class="px-10">
+                <FeatureClicked />
+              </Sidebar.GroupContent>
             </Collapsible.Content>
           </Sidebar.Group>
         </Collapsible.Root>

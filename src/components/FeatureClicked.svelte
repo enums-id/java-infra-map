@@ -5,13 +5,11 @@
 
 {#if appState.featureClicked && appState.featureClicked.properties}
   {@const properties = appState.featureClicked.properties}
-  <div
-    class="top-10 absolute right-10 z-10 bg-background p-2 rounded border text-xs max-w-100 max-h-[40vh] overflow-auto"
-  >
+  <div class="border rounded p-2">
     <Table.Root class="overflow-hide">
       <Table.Header>
         <Table.Row>
-          <Table.Head class="max-w-[200px] w-[200px]">Property</Table.Head>
+          <Table.Head class="">Property</Table.Head>
           <Table.Head class="text-end"></Table.Head>
         </Table.Row>
       </Table.Header>
