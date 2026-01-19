@@ -127,7 +127,7 @@ async function loadImages(map: mapboxgl.Map) {
     });
 
     // Add to Mapbox
-    map.addImage(name, finalImg);
+    map.addImage(name, finalImg, { sdf: true });
     URL.revokeObjectURL(url);
   }
 
@@ -167,7 +167,7 @@ async function loadImages(map: mapboxgl.Map) {
     });
 
     // Add to Mapbox
-    map.addImage(name, finalImg);
+    map.addImage(name, finalImg, { sdf: true });
 
     URL.revokeObjectURL(url);
   }

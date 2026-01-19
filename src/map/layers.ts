@@ -240,6 +240,31 @@ export const layers: AnyLayer[] = [
     },
   },
 
+  {
+    id: "airports",
+    type: "symbol",
+    source: "airport", // change if airports use a different source
+    "source-layer": "airport",
+    filter: [
+      "in",
+      ["get", "class"],
+      ["literal", ["airport", "regional_airport", "international_airport"]],
+    ],
+    paint: {
+      "icon-color": "blue",
+    },
+    layout: {
+      "icon-image": "paper-plane",
+      "icon-size": 0.8,
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+
+      // optional: rotate plane by bearing if available
+      // "icon-rotate": ["get", "bearing"],
+      // "icon-rotation-alignment": "map"
+    },
+  },
+
   // pelabuhan
   ...[
     "Pelabuhan Pengumpan",
