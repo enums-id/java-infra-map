@@ -12,6 +12,8 @@ export const layers: AnyLayer[] = [
       "fill-opacity": 0.85,
     },
   },
+
+  // road
   ...["motorway", "trunk", "primary"].map((d) => {
     const layer: AnyLayer = {
       id: `roads-${d}`,
@@ -55,6 +57,7 @@ export const layers: AnyLayer[] = [
 
     return layer;
   }),
+
   // jaringan listrik
   ...[20, 30, 70, 150, 275, 500].map((d) => {
     const layer: AnyLayer = {
@@ -227,11 +230,16 @@ export const layers: AnyLayer[] = [
   // ...['PLTGU', 'PLTM', 'PLTA', 'PLTD', 'PLTSa', 'PLTMG', 'PLTU', 'PLTG','PLTMH', 'PLTP', 'Pemba', 'Steam', 'PLTBm', 'PLTS', 'PLTBg','PLTB', 'PLTDG', 'PLTBn'].map(r=>{
 
   // })
+  // Generator
   {
     id: "generator",
     type: "symbol",
     source: "generator",
     "source-layer": "generator",
+    paint: {
+      "icon-color": "#e74c3c",
+    },
+
     layout: {
       "icon-image": "bolt", // name used in map.addImage()
       "icon-size": 0.65, // scale factor (adjust as needed)
@@ -240,6 +248,7 @@ export const layers: AnyLayer[] = [
     },
   },
 
+  // airports
   {
     id: "airports",
     type: "symbol",
@@ -321,7 +330,7 @@ export const layers: AnyLayer[] = [
       filter: ["all", ["==", ["get", "hirarki_p"], f]],
 
       layout: {
-        "icon-image": "https://cdn.simpleicons.org/codeship",
+        "icon-image": "cube",
 
         // Map circle-radius → icon-size
         "icon-size": [
