@@ -236,6 +236,16 @@ function registerData(map: mapboxgl.Map) {
       type: "geojson",
       data,
     });
+
+    fetch(`/news/${key.replace(".geojson", ".json")}`).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          appState.news[key] = data;
+        });
+      } else {
+        appState.news[key] = [];
+      }
+    });
   }
 
   appState.ready.dataRegistered = true;

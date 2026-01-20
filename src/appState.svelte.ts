@@ -25,7 +25,17 @@ export const appState: {
   categories: string[];
   tree: treeType[];
   highlightFeature: boolean;
+  news: Record<
+    string,
+    {
+      newsTitle: string;
+      datePublished: string;
+      summary: string;
+      link: string;
+    }[]
+  >;
 } = $state({
+  news: {},
   highlightFeature: true,
   featureHighlight: null,
   featureClicked: null,
