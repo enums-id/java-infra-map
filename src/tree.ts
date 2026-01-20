@@ -6,7 +6,7 @@ export const treeInit: treeType[] = [
   [
     { displayName: "Infrastructure" },
     [
-      { displayName: "power", checked: true },
+      { displayName: "Power", checked: true },
       [
         {
           displayName: "Powerline",
@@ -25,6 +25,7 @@ export const treeInit: treeType[] = [
               layerTarget: [f.id],
               checked:
                 localStorage.getItem(`checkbox-${displayName}`) !== "false",
+              category: "Power",
             };
           }),
       ],
@@ -45,6 +46,7 @@ export const treeInit: treeType[] = [
               layerTarget: [f.id],
               checked:
                 localStorage.getItem(`checkbox-${displayName}`) !== "false",
+              category: "Power",
             };
           }),
       ],
@@ -54,6 +56,7 @@ export const treeInit: treeType[] = [
           displayName: "generator",
           layerTarget: ["generator"],
           checked: localStorage.getItem(`checkbox-generator`) !== "false",
+          category: "Power",
         },
       ],
     ],
@@ -63,10 +66,11 @@ export const treeInit: treeType[] = [
         displayName: "industry",
         layerTarget: ["industry"],
         checked: localStorage.getItem(`checkbox-industry`) !== "false",
+        category: "Land Use",
       },
     ],
     [
-      { displayName: "Port (Shipping)", checked: true },
+      { displayName: "Port", checked: true },
       ...layers
         .filter(
           (f) => f.id.toLowerCase().includes("pelabuhan") && !/-\d+$/.test(f.id)
@@ -76,6 +80,7 @@ export const treeInit: treeType[] = [
             displayName: f.id,
             layerTarget: [f.id],
             checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+            category: "Port",
           };
         }),
     ],
@@ -87,13 +92,14 @@ export const treeInit: treeType[] = [
           displayName: d,
           layerTarget: [`roads-${d}`],
           checked: true,
+          category: "Road",
         };
 
         return fdisplay;
       }),
     ],
     [
-      { displayName: "Airports" },
+      { displayName: "Airport" },
       ...layers
         .filter(
           (f) => f.id.toLowerCase().includes("airports") && !/-\d+$/.test(f.id)
@@ -103,19 +109,29 @@ export const treeInit: treeType[] = [
             displayName: f.id,
             layerTarget: [f.id],
             checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+            category: "Airport",
           };
         }),
     ],
     [
       { displayName: "Train" },
-      { displayName: "Railway", layerTarget: [`rails`], checked: true },
-      { displayName: "Stations", layerTarget: [`stations`], checked: true },
+      {
+        displayName: "Railway",
+        layerTarget: [`rails`],
+        checked: true,
+        category: "Train",
+      },
+      {
+        displayName: "Stations",
+        layerTarget: [`stations`],
+        checked: true,
+        category: "Train",
+      },
     ],
   ],
 ].map((f) => {
   return populateWithCheckbox(f);
 });
-console.log("TREE TREE", treeInit);
 
 function populateWithCheckbox(tree: treeType) {
   let treturn: treeType[] = [];
@@ -138,6 +154,5 @@ function populateWithCheckbox(tree: treeType) {
 
     treturn = [...treturn, ...holder];
   }
-  console.log("TRETURNNNNNN", treturn);
   return treturn;
 }

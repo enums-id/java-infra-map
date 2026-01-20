@@ -270,19 +270,14 @@ function registerLayer(map: mapboxgl.Map) {
 }
 
 export function switchLayers(
-  category: "Power" | "Land Use" | "Port" | "Road" | "Airports" | "Train"
+  category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train"
 ) {
-  switch (category) {
-    case "Power":
-      traverse(appState.tree);
-    case "Land Use":
-    case "Port":
-    case "Road":
-    case "Airports":
-    case "Train":
-  }
+  traverse(appState.tree, category);
 
-  function traverse(tree: treeType) {
+  function traverse(
+    tree: treeType,
+    category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train"
+  ) {
     if (!appState.map) return;
     for (const elem of tree) {
       const isObject =
@@ -292,14 +287,10 @@ export function switchLayers(
       if (!map) return;
 
       if (isArray) {
-        traverse(elem);
+        traverse(elem, category);
       }
       if (isObject) {
-        const { checkbox } = elem;
-
-        const element = checkbox as HTMLElement;
-
-        element.click();
+        appState.checkboxes[elem.displayName]?.click();
       }
     }
   }

@@ -34,7 +34,7 @@
                   | "Land Use"
                   | "Port"
                   | "Road"
-                  | "Airports"
+                  | "Airport"
                   | "Train";
                 switchLayers(e);
               }}

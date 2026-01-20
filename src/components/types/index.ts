@@ -8,5 +8,6 @@ export type treeType =
       layerTarget?: string[];
       checked: boolean;
       checkbox: Component | null;
+      category?: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train";
     }[]
   | any[];

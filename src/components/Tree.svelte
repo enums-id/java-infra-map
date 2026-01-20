@@ -36,40 +36,34 @@
         <div class="flex items-center justify-between w-full">
           {#if oName.layerTarget}
             <div class="mr-2">
-              {#if appState.displayCheckbox && appState.checkboxes[oName] === null}
-                <Checkbox
-                  bind:checked={oName.checked}
-                  bind:ref={appState.checkboxes[oName]}
-                  onCheckedChange={() => {
-                    const visibility = oName.checked ? "visible" : "none";
-                    const map = appState.map;
-                    console.log($state.snapshot(appState.checkboxes));
-                    if (!map) return;
+              <Checkbox
+                bind:checked={oName.checked}
+                onCheckedChange={() => {
+                  const visibility = oName.checked ? "visible" : "none";
+                  const map = appState.map;
+                  console.log($state.snapshot(appState.checkboxes));
+                  if (!map) return;
 
-                    oName.layerTarget.forEach((layerName: string) => {
-                      const layersIn = layers
-                        .map((f) => f.id)
-                        .filter((f) => f.includes(layerName));
-                      layersIn.forEach((layerName) => {
-                        map.setLayoutProperty(
-                          layerName,
-                          "visibility",
-                          visibility
-                        );
-                      });
-                      localStorage.setItem(
-                        `visibility-${layerName}`,
+                  oName.layerTarget.forEach((layerName: string) => {
+                    const layersIn = layers
+                      .map((f) => f.id)
+                      .filter((f) => f.includes(layerName));
+                    layersIn.forEach((layerName) => {
+                      map.setLayoutProperty(
+                        layerName,
+                        "visibility",
                         visibility
                       );
                     });
+                    localStorage.setItem(`visibility-${layerName}`, visibility);
+                  });
 
-                    localStorage.setItem(
-                      `checkbox-${oName.displayName}`,
-                      oName.checked
-                    );
-                  }}
-                />
-              {/if}
+                  localStorage.setItem(
+                    `checkbox-${oName.displayName}`,
+                    oName.checked
+                  );
+                }}
+              />
             </div>
           {/if}
           <button
