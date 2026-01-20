@@ -91,5 +91,19 @@ export const treeInit: treeType[] = [
         return fdisplay;
       }),
     ],
+    [
+      { displayName: "Airports" },
+      ...layers
+        .filter(
+          (f) => f.id.toLowerCase().includes("airports") && !/-\d+$/.test(f.id)
+        )
+        .map((f) => {
+          return {
+            displayName: f.id,
+            layerTarget: [f.id],
+            checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+          };
+        }),
+    ],
   ],
 ];

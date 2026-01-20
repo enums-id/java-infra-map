@@ -8,6 +8,8 @@
   import { resetMode, setMode } from "mode-watcher";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
+  import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+  import M from "@lucide/svelte/icons/map";
 
   import {
     appState,
@@ -52,11 +54,31 @@
 <div class="flex flex-col h-screen w-screen relative">
   <Sidebar.Provider
     class="flex grow relative"
-    style="--sidebar-width: 25rem; --sidebar-width-mobile: 20rem;"
+    style="--sidebar-width: 20rem; --sidebar-width-mobile: 20rem;"
     onOpenChange={() => {}}
   >
     <Sidebar.Root collapsible={"offcanvas"}>
-      <Sidebar.Header />
+      <Sidebar.Header>
+        <Sidebar.Menu>
+          <Sidebar.MenuItem>
+            <Sidebar.MenuButton size="lg">
+              {#snippet child({ props })}
+                <a href="##" {...props}>
+                  <div
+                    class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+                  >
+                    <M class="size-4" />
+                  </div>
+                  <div class="flex flex-col gap-0.5 leading-none">
+                    <span class="font-medium">Java Infra Map</span>
+                    <span class="">v1.0.0</span>
+                  </div>
+                </a>
+              {/snippet}
+            </Sidebar.MenuButton>
+          </Sidebar.MenuItem>
+        </Sidebar.Menu>
+      </Sidebar.Header>
       <Sidebar.Content>
         <Collapsible.Root open class="group/collapsible" disabled>
           <Sidebar.Group>
