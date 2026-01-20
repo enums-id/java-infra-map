@@ -122,6 +122,14 @@ export const layers: AnyLayer[] = [
     return layer;
   }),
 
+  // Rails
+  {
+    id: `rails`,
+    type: "line",
+    source: "rails",
+    "source-layer": "rails",
+  },
+
   // substation
   ...[25, 30, 66, 70, 150, 159, 170, 275, 500]
     .map((d) => {
