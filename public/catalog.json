@@ -4,7 +4,7 @@
     "displayName": "High Speed Rail Jakarta-Bandung",
     "description": "",
     "category": "Rail",
-    "prompt": [],
+    "prompt": ["whoosh", "kcic", "kereta cepat indonesia china"],
     "layers": [
       {
         "type": "line",

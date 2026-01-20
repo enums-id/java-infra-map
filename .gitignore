@@ -14,6 +14,13 @@ dist
 dist-ssr
 *.local
 
+.venv/
+news.json
+public/news/*.json
+public/news/*.geojson
+
+setenv.sh
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
