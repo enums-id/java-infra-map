@@ -8,15 +8,15 @@
       {
         "type": "line",
         "paint": {
-          "line-color": "#ffffff",
-          "line-width": 2
+          "line-color": "#000000",
+          "line-width": 5
         }
       },
       {
         "type": "line",
         "paint": {
-          "line-color": "#75211b",
-          "line-opacity": 0.75
+          "line-color": "#ffffff",
+          "line-width": 3
         }
       }
     ]

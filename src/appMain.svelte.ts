@@ -70,9 +70,8 @@ function bootStrapCheckboxAndTree() {
       for (const gRecord of appState.geojsonList) {
         let i = 0;
         for (const layer of gRecord.layers) {
+          layerTarget.push(layer.id);
           i++;
-          const lName = `${gRecord.displayName}-${i}`;
-          layerTarget.push(lName);
         }
       }
 
@@ -257,12 +256,10 @@ function registerLayer(map: mapboxgl.Map) {
   for (const gRecord of appState.geojsonList) {
     let i = 0;
     for (const layer of gRecord.layers) {
+      gRecord.layers[i].id = `${gRecord.displayName}-${i}`;
+      gRecord.layers[i].source = gRecord.name;
+      appState.map.addLayer(gRecord.layers[i]);
       i++;
-      const layerToAdd = layer as mapboxgl.LayerSpecification;
-
-      layerToAdd.id = `${gRecord.displayName}-${i}`;
-      layerToAdd.source = gRecord.name;
-      appState.map.addLayer(layer);
     }
   }
 
@@ -315,7 +312,7 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
     }
 
     const map = appState.map;
-    console.log($state.snapshot(appState.checkboxes));
+    console.log($state.snapshot(oName.layerTarget));
     if (!map) return;
 
     oName.layerTarget.forEach((layerName: string) => {
