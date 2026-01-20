@@ -325,58 +325,16 @@ export const layers: AnyLayer[] = [
 
   // pelabuhan
   ...[
-    "Pelabuhan Pengumpan",
+    "Pelabuhan Pengumpan (p)",
     "Pelabuhan Pengumpan Regional",
     "Pelabuhan Utama",
   ].map((f) => {
-    const layer: AnyLayer = {
-      id: f,
-      type: "circle",
-      source: "pelabuhan",
-      "source-layer": "pelabuhan",
-      filter: ["all", ["==", ["get", "hirarki_p"], f]],
-      paint: {
-        "circle-color": [
-          "match",
-          ["get", "hirarki_p"],
-
-          "Pelabuhan Utama",
-          "#99023e",
-          "Pelabuhan Pengumpan Regional",
-          "#6a006e",
-          "Pelabuhan Pengumpan",
-          "#6e4900",
-
-          /* fallback */
-          "#cccccc",
-        ],
-
-        "circle-radius": [
-          "match",
-          ["get", "hirarki_p"],
-
-          "Pelabuhan Utama",
-          10,
-          "Pelabuhan Pengumpan Regional",
-          8,
-          "Pelabuhan Pengumpan",
-          6,
-
-          /* fallback */
-          5,
-        ],
-
-        "circle-stroke-width": 1,
-        "circle-stroke-color": "#ffffff",
-      },
-    };
-
     const layer2: AnyLayer = {
       id: f,
       type: "symbol",
       source: "pelabuhan",
       "source-layer": "pelabuhan",
-      filter: ["all", ["==", ["get", "hirarki_p"], f]],
+      filter: ["all", ["==", ["get", "hirarki_p"], f.replace(" (p)", "")]],
 
       layout: {
         "icon-image": "cube",

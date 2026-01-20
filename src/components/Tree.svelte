@@ -9,6 +9,7 @@
   import { Label } from "$lib/components/ui/label";
   import type { treeType } from "./types";
   import { appState } from "../appState.svelte";
+  import { layers } from "../map/layers";
 
   const {
     items,
@@ -47,7 +48,16 @@
                   if (!map) return;
 
                   oName.layerTarget.forEach((layerName: string) => {
-                    map.setLayoutProperty(layerName, "visibility", visibility);
+                    const layersIn = layers
+                      .map((f) => f.id)
+                      .filter((f) => f.includes(layerName));
+                    layersIn.forEach((layerName) => {
+                      map.setLayoutProperty(
+                        layerName,
+                        "visibility",
+                        visibility
+                      );
+                    });
                     localStorage.setItem(`visibility-${layerName}`, visibility);
                   });
 
