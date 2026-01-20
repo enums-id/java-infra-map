@@ -25,6 +25,7 @@ export const appState: {
   categories: string[];
   tree: treeType[];
   highlightFeature: boolean;
+  activeNews: string;
   news: Record<
     string,
     {
@@ -34,7 +35,10 @@ export const appState: {
       link: string;
     }[]
   >;
+  drawerOpen: boolean;
 } = $state({
+  drawerOpen: false,
+  activeNews: "",
   news: {},
   highlightFeature: true,
   featureHighlight: null,

@@ -40,13 +40,14 @@ def projectName(name: str, projectNames: str,client: OpenAI):
             {
                 "role": "user",
                 "content": (
-                    f"Find the latest 5 news about {projectNames} rail with date.\n\n"
+                    f"Find the latest relevant 5 news articles about this project: ({projectNames}) with published date of the articles.\n\n"
                     "Return ONLY valid raw JSON, not markdown, in this format:\n"
                     "[\n"
                     "  {\"newsTitle\": string, \"datePublished\": string \"summary\": string, \"link\": string}\n"
                     "]"
+                    "summary is the summary of the article in one sentence"
                     "The link must be the URL to the corresponding news which starts with https://"
-                    "datePublished must be unix timestamp"
+                    "datePublished is the article's published date, must be unix timestamp."
                 )
             }
         ],

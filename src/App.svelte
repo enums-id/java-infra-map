@@ -11,7 +11,8 @@
   import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
   import M from "@lucide/svelte/icons/map";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-
+  import * as Drawer from "$lib/components/ui/drawer/index.js";
+  import Sparkles from "@lucide/svelte/icons/sparkles";
   import {
     appState,
     populateData,
@@ -26,6 +27,7 @@
   import FeatureClicked from "./components/FeatureClicked.svelte";
   import Tools from "./components/Tools.svelte";
   import { Button } from "$lib/components/ui/button";
+  import News from "./components/News.svelte";
 
   onMount(() => {
     populateData()
@@ -91,6 +93,31 @@
               <Sidebar.Menu>
                 <div class="m-2">
                   <Tree items={appState.tree} />
+                  <Drawer.Root direction="left" bind:open={appState.drawerOpen}>
+                    <Drawer.Content class="overflow-auto">
+                      <Drawer.Header>
+                        <Drawer.Title
+                          class="top-0 sticky bg-background p-2 text-center"
+                          >Latest News <Sparkles
+                            class="inline text-center mx-1"
+                            size="1.2em"
+                          />
+                        </Drawer.Title>
+                        <Drawer.Description class="">
+                          {#if appState.activeNews}
+                            {@const liveNews =
+                              appState.news[appState.activeNews]}
+                            {#each liveNews as aNews}
+                              <div class="mb-1">
+                                <News {...aNews} />
+                              </div>
+                            {/each}
+                          {/if}
+                        </Drawer.Description>
+                      </Drawer.Header>
+                      <Drawer.Footer></Drawer.Footer>
+                    </Drawer.Content>
+                  </Drawer.Root>
                 </div>
               </Sidebar.Menu>
             </Sidebar.GroupContent>

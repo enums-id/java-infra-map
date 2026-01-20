@@ -73,6 +73,7 @@ function bootStrapCheckboxAndTree() {
       const element = {
         displayName,
         layerTarget,
+        source: name,
         checked: localStorage.getItem(`checkbox-industry`) !== "false",
       };
 
@@ -240,7 +241,9 @@ function registerData(map: mapboxgl.Map) {
     fetch(`/news/${key.replace(".geojson", ".json")}`).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          appState.news[key] = data;
+          appState.news[key] = (data as any[]).sort(
+            (a, b) => Number(b.datePublished) - Number(a.datePublished)
+          );
         });
       } else {
         appState.news[key] = [];
