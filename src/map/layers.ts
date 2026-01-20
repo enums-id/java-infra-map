@@ -328,38 +328,107 @@ export const layers: AnyLayer[] = [
     "Pelabuhan Pengumpan (p)",
     "Pelabuhan Pengumpan Regional",
     "Pelabuhan Utama",
-  ].map((f) => {
-    const layer2: AnyLayer = {
-      id: f,
-      type: "symbol",
-      source: "pelabuhan",
-      "source-layer": "pelabuhan",
-      filter: ["all", ["==", ["get", "hirarki_p"], f.replace(" (p)", "")]],
+  ]
+    .map((f) => {
+      const base1: AnyLayer = {
+        id: f + "-0",
+        type: "symbol",
+        source: "pelabuhan",
+        "source-layer": "pelabuhan",
+        filter: ["all", ["==", ["get", "hirarki_p"], f.replace(" (p)", "")]],
+        paint: {
+          "icon-color": "white",
+        },
 
-      layout: {
-        "icon-image": "cube",
+        layout: {
+          "icon-image": "sq",
 
-        // Map circle-radius → icon-size
-        "icon-size": [
-          "match",
-          ["get", "hirarki_p"],
+          // Map circle-radius → icon-size
+          "icon-size": [
+            "match",
+            ["get", "hirarki_p"],
 
-          "Pelabuhan Utama",
-          1,
-          "Pelabuhan Pengumpan Regional",
-          0.65,
-          "Pelabuhan Pengumpan",
-          0.45,
+            "Pelabuhan Utama",
+            1.2,
+            "Pelabuhan Pengumpan Regional",
+            0.85,
+            "Pelabuhan Pengumpan",
+            0.65,
 
-          /* fallback */
-          0.45,
-        ],
+            /* fallback */
+            0.45,
+          ],
 
-        "icon-allow-overlap": true,
-        "icon-anchor": "center",
-      },
-    };
+          "icon-allow-overlap": true,
+          "icon-anchor": "center",
+        },
+      };
 
-    return layer2;
-  }), // Pelabuhan
+      const base2: AnyLayer = {
+        id: f + "-1",
+        type: "symbol",
+        source: "pelabuhan",
+        "source-layer": "pelabuhan",
+        filter: ["all", ["==", ["get", "hirarki_p"], f.replace(" (p)", "")]],
+        paint: {
+          "icon-color": "#5b73cd",
+        },
+        layout: {
+          "icon-image": "sq",
+
+          // Map circle-radius → icon-size
+          "icon-size": [
+            "match",
+            ["get", "hirarki_p"],
+
+            "Pelabuhan Utama",
+            1,
+            "Pelabuhan Pengumpan Regional",
+            0.65,
+            "Pelabuhan Pengumpan",
+            0.45,
+
+            /* fallback */
+            0.45,
+          ],
+
+          "icon-allow-overlap": true,
+          "icon-anchor": "center",
+        },
+      };
+
+      const layer2: AnyLayer = {
+        id: f,
+        type: "symbol",
+        source: "pelabuhan",
+        "source-layer": "pelabuhan",
+        filter: ["all", ["==", ["get", "hirarki_p"], f.replace(" (p)", "")]],
+        paint: { "icon-color": "white" },
+        layout: {
+          "icon-image": "ferry-2",
+
+          // Map circle-radius → icon-size
+          "icon-size": [
+            "match",
+            ["get", "hirarki_p"],
+
+            "Pelabuhan Utama",
+            0.5,
+            "Pelabuhan Pengumpan Regional",
+            0.35,
+            "Pelabuhan Pengumpan",
+            0.25,
+
+            /* fallback */
+            0.45,
+          ],
+
+          "icon-allow-overlap": true,
+          "icon-anchor": "center",
+        },
+      };
+
+      return [base1, base2, layer2];
+    })
+    .flat(), // Pelabuhan
 ];

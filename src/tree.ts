@@ -67,7 +67,9 @@ export const treeInit: treeType[] = [
     [
       { displayName: "Port (Shipping)", checked: true },
       ...layers
-        .filter((f) => f.id.toLowerCase().includes("pelabuhan"))
+        .filter(
+          (f) => f.id.toLowerCase().includes("pelabuhan") && !/-\d+$/.test(f.id)
+        )
         .map((f) => {
           return {
             displayName: f.id,

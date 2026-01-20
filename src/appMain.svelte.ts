@@ -98,6 +98,8 @@ function bootStrapCheckboxAndTree() {
       const isObject =
         typeof elem === "object" && elem !== null && !Array.isArray(elem);
       const isArray = Array.isArray(elem);
+      const map = appState.map;
+      if (!map) return;
 
       if (isArray) {
         loadLayer(elem);
@@ -109,11 +111,17 @@ function bootStrapCheckboxAndTree() {
           localStorage.getItem(`checkbox-${displayName}`) !== "false";
         if (Array.isArray(layerTarget) && layerTarget.length > 0) {
           for (const layer of layerTarget) {
-            appState.map.setLayoutProperty(
-              layer,
-              "visibility",
-              display ? "visible" : "none"
-            );
+            const layersIn = layers
+              .map((f) => f.id)
+              .filter((f) => f.includes(layer));
+
+            layersIn.forEach((q) => {
+              map.setLayoutProperty(
+                q,
+                "visibility",
+                display ? "visible" : "none"
+              );
+            });
           }
         }
       }
