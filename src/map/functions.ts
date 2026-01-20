@@ -15,6 +15,7 @@ export function mapActionsInvoke(map: mapboxgl.Map) {
 
 export function loadFunction(map: mapboxgl.Map) {
   return () => {
+    map.getCanvas().style.cursor = "default";
     appState.ready.mapLoad = true;
     const onMove = () => {
       const [z, x, y] = [
@@ -45,10 +46,12 @@ const mapActions: {
 
     if (!feature) {
       appState.featureHighlight = null;
+      map.getCanvas().style.cursor = "default";
       return;
     }
 
     appState.featureHighlight = feature;
+    map.getCanvas().style.cursor = "pointer";
   },
   load: (e) => {},
   move: (e) => {
@@ -86,5 +89,13 @@ const mapActions: {
     }
 
     appState.featureClicked = feature;
+  },
+  mousedown: (e) => {
+    if (!appState.map) return;
+    appState.map.getCanvas().style.cursor = "grabbing";
+  },
+  mouseup: (e) => {
+    if (!appState.map) return;
+    appState.map.getCanvas().style.cursor = "default";
   },
 };
