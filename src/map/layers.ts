@@ -33,11 +33,11 @@ export const layers: AnyLayer[] = [
           "match",
           ["get", "class"],
           "motorway",
-          "#1f3c88", // deep blue
+          "#9aa5b6", // deep blue
           "trunk",
-          "#3a6ea5", // medium blue
+          "#9aa5b6", // medium blue
           "primary",
-          "#9bb7d4", // light blue-grey
+          "#9aa5b6", // light blue-grey
           "#cccccc",
         ],
 
