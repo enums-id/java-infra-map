@@ -102,9 +102,7 @@ export const treeInit: treeType[] = [
     [
       { displayName: "Airport" },
       ...layers
-        .filter(
-          (f) => f.id.toLowerCase().includes("airports") && !/-\d+$/.test(f.id)
-        )
+        .filter((f) => f.id.includes("Airport") && !/-\d+$/.test(f.id))
         .map((f) => {
           return {
             displayName: f.id,
@@ -119,14 +117,14 @@ export const treeInit: treeType[] = [
       {
         displayName: "Railway",
         layerTarget: [`rails`],
-        checked: true,
+        checked: localStorage.getItem(`checkbox-Railway`) !== "false",
         checkbox: null,
         category: "Train",
       },
       {
         displayName: "Stations",
         layerTarget: [`stations`],
-        checked: true,
+        checked: localStorage.getItem(`checkbox-Stations`) !== "false",
         checkbox: null,
         category: "Train",
       },

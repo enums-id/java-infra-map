@@ -289,12 +289,16 @@ export function switchLayers(
       if (isArray) {
         traverse(elem, category);
       }
+      if (!elem.category) continue;
+      console.log("CHECKINg", category, elem.category);
       if (
         isObject &&
         elem.category == category &&
         elem.layerTarget &&
         elem.layerTarget.length > 0
       ) {
+        console.log(elem.layerTarget);
+        console.log(elem);
         elem.checked = options ? options.visible : false;
         console.log("EXECUTING", $state.snapshot(elem));
         checkChange(elem, { visible: options ? options.visible : false })();

@@ -350,7 +350,7 @@ export const layers: AnyLayer[] = [
   // airports
 
   {
-    id: "airports-0",
+    id: "Airport-0",
     type: "symbol",
     source: "airport", // change if airports use a different source
     "source-layer": "airport",
@@ -374,7 +374,7 @@ export const layers: AnyLayer[] = [
     },
   },
   {
-    id: "airports-1",
+    id: "Airport-1",
     type: "symbol",
     source: "airport", // change if airports use a different source
     "source-layer": "airport",
@@ -398,7 +398,7 @@ export const layers: AnyLayer[] = [
     },
   },
   {
-    id: "airports",
+    id: "Airport",
     type: "symbol",
     source: "airport", // change if airports use a different source
     "source-layer": "airport",

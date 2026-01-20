@@ -28,7 +28,7 @@
       <DropdownMenu.Content class="w-56" align="start" side="right">
         <DropdownMenu.Label>Switch Layers Off</DropdownMenu.Label>
         <DropdownMenu.Group>
-          {#each ["Power", "Land Use", "Port", "Road", "Airports", "Train"] as elem}
+          {#each ["Power", "Land Use", "Port", "Road", "Airport", "Train"] as elem}
             <DropdownMenu.Item
               onSelect={() => {
                 const e = elem as
@@ -65,7 +65,7 @@
       <DropdownMenu.Content class="w-56" align="start" side="right">
         <DropdownMenu.Label>Switch Layers On</DropdownMenu.Label>
         <DropdownMenu.Group>
-          {#each ["Power", "Land Use", "Port", "Road", "Airports", "Train"] as elem}
+          {#each ["Power", "Land Use", "Port", "Road", "Airport", "Train"] as elem}
             <DropdownMenu.Item
               onSelect={() => {
                 const e = elem as
