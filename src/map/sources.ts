@@ -31,6 +31,14 @@ export const sources: Record<string, mapboxgl.SourceSpecification> = {
       }/xyz/rails_xyz/{z}/{x}/{y}.pbf`,
     ],
   },
+  stations: {
+    type: "vector",
+    tiles: [
+      `${import.meta.env.VITE_PROTOCOL}://${
+        import.meta.env.VITE_HOST
+      }/xyz/stations_xyz/{z}/{x}/{y}.pbf`,
+    ],
+  },
   airport: {
     type: "vector",
     tiles: [

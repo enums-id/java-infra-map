@@ -105,5 +105,10 @@ export const treeInit: treeType[] = [
           };
         }),
     ],
+    [
+      { displayName: "Train" },
+      { displayName: "Railway", layerTarget: [`rails`], checked: true },
+      { displayName: "Stations", layerTarget: [`stations`], checked: true },
+    ],
   ],
 ];

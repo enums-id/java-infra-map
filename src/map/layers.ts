@@ -128,6 +128,10 @@ export const layers: AnyLayer[] = [
     type: "line",
     source: "rails",
     "source-layer": "rails",
+    paint: {
+      "line-color": "#999999",
+      "line-width": 0.45,
+    },
   },
 
   // substation
@@ -240,57 +244,108 @@ export const layers: AnyLayer[] = [
   // })
 
   // Generator
+  ...([
+    {
+      id: "generator-0",
+      type: "symbol",
+      source: "generator",
+      "source-layer": "generator",
+      paint: {
+        "icon-color": "#ffffff",
+      },
 
-  {
-    id: "generator-0",
-    type: "symbol",
-    source: "generator",
-    "source-layer": "generator",
-    paint: {
-      "icon-color": "#ffffff",
+      layout: {
+        "icon-image": "sq", // name used in map.addImage()
+        "icon-size": 0.75, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
     },
+    {
+      id: "generator-1",
+      type: "symbol",
+      source: "generator",
+      "source-layer": "generator",
+      paint: {
+        "icon-color": "#bd5709",
+      },
 
-    layout: {
-      "icon-image": "sq", // name used in map.addImage()
-      "icon-size": 0.75, // scale factor (adjust as needed)
-      "icon-allow-overlap": true, // prevent hiding when close
-      "icon-ignore-placement": true,
+      layout: {
+        "icon-image": "sq", // name used in map.addImage()
+        "icon-size": 0.65, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
     },
-  },
+    {
+      id: "generator",
+      type: "symbol",
+      source: "generator",
+      "source-layer": "generator",
+      paint: {
+        "icon-color": "#ffffff",
+      },
 
-  {
-    id: "generator-1",
-    type: "symbol",
-    source: "generator",
-    "source-layer": "generator",
-    paint: {
-      "icon-color": "#bd5709",
+      layout: {
+        "icon-image": "bolt", // name used in map.addImage()
+        "icon-size": 0.45, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
     },
+  ] as AnyLayer[]),
 
-    layout: {
-      "icon-image": "sq", // name used in map.addImage()
-      "icon-size": 0.65, // scale factor (adjust as needed)
-      "icon-allow-overlap": true, // prevent hiding when close
-      "icon-ignore-placement": true,
-    },
-  },
+  // stations
+  ...([
+    {
+      id: "stations-0",
+      type: "symbol",
+      source: "stations",
+      "source-layer": "stations",
+      paint: {
+        "icon-color": "#ffffff",
+      },
 
-  {
-    id: "generator",
-    type: "symbol",
-    source: "generator",
-    "source-layer": "generator",
-    paint: {
-      "icon-color": "#ffffff",
+      layout: {
+        "icon-image": "sq", // name used in map.addImage()
+        "icon-size": 0.85, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
     },
+    {
+      id: "stations-1",
+      type: "symbol",
+      source: "stations",
+      "source-layer": "stations",
+      paint: {
+        "icon-color": "#5b73cd",
+      },
 
-    layout: {
-      "icon-image": "bolt", // name used in map.addImage()
-      "icon-size": 0.45, // scale factor (adjust as needed)
-      "icon-allow-overlap": true, // prevent hiding when close
-      "icon-ignore-placement": true,
+      layout: {
+        "icon-image": "sq", // name used in map.addImage()
+        "icon-size": 0.75, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
     },
-  },
+    {
+      id: "stations",
+      type: "symbol",
+      source: "stations",
+      "source-layer": "stations",
+      paint: {
+        "icon-color": "#ffffff",
+      },
+
+      layout: {
+        "icon-image": "stations-2", // name used in map.addImage()
+        "icon-size": 0.45, // scale factor (adjust as needed)
+        "icon-allow-overlap": true, // prevent hiding when close
+        "icon-ignore-placement": true,
+      },
+    },
+  ] as AnyLayer[]),
 
   // airports
 
