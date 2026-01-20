@@ -10,10 +10,18 @@ export const svgElements: Record<string, string>[] = [
   },
   {
     name: "paper-plane",
-    element: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-  <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+    element: `<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" id="airport" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <path id="path7712-0" d="M15,6.8182L15,8.5l-6.5-1&#xA;&#x9;l-0.3182,4.7727L11,14v1l-3.5-0.6818L4,15v-1l2.8182-1.7273L6.5,7.5L0,8.5V6.8182L6.5,4.5v-3c0,0,0-1.5,1-1.5s1,1.5,1,1.5v2.8182&#xA;&#x9;L15,6.8182z"/>
 </svg>
 `,
+  },
+  {
+    name: "sq",
+    element: `
+<svg version="1.1" id="airport" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <path d="M12 13H3C2.4477 13 2 12.5523 2 12V3C2 2.4477 2.4477 2 3 2H12C12.5523 2 13 2.4477 13 3V12C13 12.5523 12.5523 13 12 13Z"/>
+</svg>`,
   },
   {
     name: "cube",

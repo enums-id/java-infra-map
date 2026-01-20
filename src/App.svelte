@@ -75,25 +75,27 @@
           </Sidebar.Group>
         </Collapsible.Root>
 
-        <Collapsible.Root open class="group/collapsible">
-          <Sidebar.Group>
-            <Sidebar.GroupLabel>
-              {#snippet child({ props })}
-                <Collapsible.Trigger {...props}>
-                  Selected Feature
-                  <ChevronDown
-                    class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
-                  />
-                </Collapsible.Trigger>
-              {/snippet}
-            </Sidebar.GroupLabel>
-            <Collapsible.Content>
-              <Sidebar.GroupContent class="px-10 overflow-auto max-h-[300px]">
-                <FeatureClicked />
-              </Sidebar.GroupContent>
-            </Collapsible.Content>
-          </Sidebar.Group>
-        </Collapsible.Root>
+        {#if appState.featureClicked && appState.featureClicked.properties}
+          <Collapsible.Root open class="group/collapsible">
+            <Sidebar.Group>
+              <Sidebar.GroupLabel>
+                {#snippet child({ props })}
+                  <Collapsible.Trigger {...props}>
+                    Selected Feature
+                    <ChevronDown
+                      class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
+                    />
+                  </Collapsible.Trigger>
+                {/snippet}
+              </Sidebar.GroupLabel>
+              <Collapsible.Content>
+                <Sidebar.GroupContent class="px-10 overflow-auto max-h-[300px]">
+                  <FeatureClicked />
+                </Sidebar.GroupContent>
+              </Collapsible.Content>
+            </Sidebar.Group>
+          </Collapsible.Root>
+        {/if}
       </Sidebar.Content>
       <Sidebar.Footer />
     </Sidebar.Root>

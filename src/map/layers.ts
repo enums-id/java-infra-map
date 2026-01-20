@@ -249,6 +249,55 @@ export const layers: AnyLayer[] = [
   },
 
   // airports
+
+  {
+    id: "airports-0",
+    type: "symbol",
+    source: "airport", // change if airports use a different source
+    "source-layer": "airport",
+    filter: [
+      "in",
+      ["get", "class"],
+      ["literal", ["airport", "regional_airport", "international_airport"]],
+    ],
+    paint: {
+      "icon-color": "blue",
+    },
+    layout: {
+      "icon-image": "sq",
+      "icon-size": 0.8,
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+
+      // optional: rotate plane by bearing if available
+      // "icon-rotate": ["get", "bearing"],
+      // "icon-rotation-alignment": "map"
+    },
+  },
+  {
+    id: "airports-1",
+    type: "symbol",
+    source: "airport", // change if airports use a different source
+    "source-layer": "airport",
+    filter: [
+      "in",
+      ["get", "class"],
+      ["literal", ["airport", "regional_airport", "international_airport"]],
+    ],
+    paint: {
+      "icon-color": "black",
+    },
+    layout: {
+      "icon-image": "sq",
+      "icon-size": 0.8,
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+
+      // optional: rotate plane by bearing if available
+      // "icon-rotate": ["get", "bearing"],
+      // "icon-rotation-alignment": "map"
+    },
+  },
   {
     id: "airports",
     type: "symbol",
