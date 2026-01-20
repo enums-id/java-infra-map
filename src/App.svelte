@@ -23,6 +23,7 @@
   import FeatureHighlight from "./components/FeatureHighlight.svelte";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import FeatureClicked from "./components/FeatureClicked.svelte";
+  import Tools from "./components/Tools.svelte";
 
   console.log(import.meta.env.VITE_API_KEY);
 
@@ -122,7 +123,7 @@
       <Sidebar.Footer />
     </Sidebar.Root>
     <!-- <FileExplorer {name} /> -->
-    <Sidebar.Trigger />
+    <Tools />
     <div class="flex flex-col grow relative" bind:clientWidth={mapWidth}>
       <Map />
       <!-- <div class="z-10 absolute top-0 left-0 m-4 w-1/4">
