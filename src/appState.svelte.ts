@@ -5,6 +5,8 @@ import type { treeType } from "./components/types";
 import { layers } from "./map/layers";
 
 export const appState: {
+  checkboxes: Record<string, HTMLElement | null>;
+  displayCheckbox: boolean;
   geojsonList: gDataRecord[];
   geojsonData: Record<string, FeatureCollection>;
   mapdiv: HTMLDivElement;
@@ -41,6 +43,8 @@ export const appState: {
   layerState: {},
   categories: [],
   tree: [],
+  displayCheckbox: false,
+  checkboxes: {},
 });
 
 export async function populateData() {

@@ -16,16 +16,13 @@
   }: {
     items: treeType;
   } = $props();
-
-  function setBasedOnLocalStorage(displayName: string) {
-    const val = localStorage.getItem(`checkbox-${displayName}`);
-    return;
-  }
 </script>
 
-{#each items as item, index (index)}
-  {@render Tree({ item })}
-{/each}
+{#if appState.displayCheckbox}
+  {#each items as item, index (index)}
+    {@render Tree({ item })}
+  {/each}
+{/if}
 
 {#snippet Tree({ item }: { item: treeType })}
   {@const [oName, ...items] = Array.isArray(item) ? item : [item]}
@@ -39,34 +36,40 @@
         <div class="flex items-center justify-between w-full">
           {#if oName.layerTarget}
             <div class="mr-2">
-              <Checkbox
-                bind:checked={oName.checked}
-                bind:this={oName.checkbox}
-                onCheckedChange={() => {
-                  const visibility = oName.checked ? "visible" : "none";
-                  const map = appState.map;
-                  if (!map) return;
+              {#if appState.displayCheckbox && appState.checkboxes[oName] === null}
+                <Checkbox
+                  bind:checked={oName.checked}
+                  bind:ref={appState.checkboxes[oName]}
+                  onCheckedChange={() => {
+                    const visibility = oName.checked ? "visible" : "none";
+                    const map = appState.map;
+                    console.log($state.snapshot(appState.checkboxes));
+                    if (!map) return;
 
-                  oName.layerTarget.forEach((layerName: string) => {
-                    const layersIn = layers
-                      .map((f) => f.id)
-                      .filter((f) => f.includes(layerName));
-                    layersIn.forEach((layerName) => {
-                      map.setLayoutProperty(
-                        layerName,
-                        "visibility",
+                    oName.layerTarget.forEach((layerName: string) => {
+                      const layersIn = layers
+                        .map((f) => f.id)
+                        .filter((f) => f.includes(layerName));
+                      layersIn.forEach((layerName) => {
+                        map.setLayoutProperty(
+                          layerName,
+                          "visibility",
+                          visibility
+                        );
+                      });
+                      localStorage.setItem(
+                        `visibility-${layerName}`,
                         visibility
                       );
                     });
-                    localStorage.setItem(`visibility-${layerName}`, visibility);
-                  });
 
-                  localStorage.setItem(
-                    `checkbox-${oName.displayName}`,
-                    oName.checked
-                  );
-                }}
-              />
+                    localStorage.setItem(
+                      `checkbox-${oName.displayName}`,
+                      oName.checked
+                    );
+                  }}
+                />
+              {/if}
             </div>
           {/if}
           <button

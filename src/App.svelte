@@ -10,6 +10,7 @@
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
   import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
   import M from "@lucide/svelte/icons/map";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
   import {
     appState,
@@ -24,6 +25,7 @@
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import FeatureClicked from "./components/FeatureClicked.svelte";
   import Tools from "./components/Tools.svelte";
+  import { Button } from "$lib/components/ui/button";
 
   console.log(import.meta.env.VITE_API_KEY);
 

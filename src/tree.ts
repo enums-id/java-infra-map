@@ -1,3 +1,4 @@
+import { appState } from "./appState.svelte";
 import type { treeType } from "./components/types";
 import { layers } from "./map/layers";
 
@@ -111,4 +112,32 @@ export const treeInit: treeType[] = [
       { displayName: "Stations", layerTarget: [`stations`], checked: true },
     ],
   ],
-];
+].map((f) => {
+  return populateWithCheckbox(f);
+});
+console.log("TREE TREE", treeInit);
+
+function populateWithCheckbox(tree: treeType) {
+  let treturn: treeType[] = [];
+  for (const elem of tree) {
+    const holder: treeType[] = [];
+
+    const isObject =
+      typeof elem === "object" && elem !== null && !Array.isArray(elem);
+
+    if (Array.isArray(elem)) {
+      const t = populateWithCheckbox(elem);
+      holder.push(t);
+    }
+    if (isObject) {
+      const retval = { ...elem, checkbox: null };
+      holder.push(retval);
+
+      appState.checkboxes[elem.displayName] = null;
+    }
+
+    treturn = [...treturn, ...holder];
+  }
+  console.log("TRETURNNNNNN", treturn);
+  return treturn;
+}

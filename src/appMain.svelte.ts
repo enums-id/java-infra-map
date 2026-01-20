@@ -6,6 +6,8 @@ import { mapActionsInvoke } from "./map/functions";
 import { svgElements, svgUrls } from "./map/images";
 import type { treeType } from "./components/types";
 import { treeInit } from "./tree";
+import type { Component } from "svelte";
+import type { Checkbox } from "$lib/components/ui/checkbox";
 
 export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad)
@@ -91,6 +93,8 @@ function bootStrapCheckboxAndTree() {
   appState.tree.push([fName, ...elems.filter((f) => f.length > 1)]);
 
   loadLayer(appState.tree);
+
+  appState.displayCheckbox = true;
 
   function loadLayer(tree: treeType) {
     if (!appState.map) return;
@@ -216,6 +220,7 @@ async function loadImages(map: mapboxgl.Map) {
     try {
       await addSvgElement(svgElement.name, svgElement.element);
     } catch (error) {
+      console.log(svgElement.name);
       console.error(error);
     }
   }
@@ -262,4 +267,40 @@ function registerLayer(map: mapboxgl.Map) {
   }
 
   appState.ready.layersRegistered = true;
+}
+
+export function switchLayers(
+  category: "Power" | "Land Use" | "Port" | "Road" | "Airports" | "Train"
+) {
+  switch (category) {
+    case "Power":
+      traverse(appState.tree);
+    case "Land Use":
+    case "Port":
+    case "Road":
+    case "Airports":
+    case "Train":
+  }
+
+  function traverse(tree: treeType) {
+    if (!appState.map) return;
+    for (const elem of tree) {
+      const isObject =
+        typeof elem === "object" && elem !== null && !Array.isArray(elem);
+      const isArray = Array.isArray(elem);
+      const map = appState.map;
+      if (!map) return;
+
+      if (isArray) {
+        traverse(elem);
+      }
+      if (isObject) {
+        const { checkbox } = elem;
+
+        const element = checkbox as HTMLElement;
+
+        element.click();
+      }
+    }
+  }
 }
