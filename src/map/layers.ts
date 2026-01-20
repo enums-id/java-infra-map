@@ -261,11 +261,11 @@ export const layers: AnyLayer[] = [
       ["literal", ["airport", "regional_airport", "international_airport"]],
     ],
     paint: {
-      "icon-color": "blue",
+      "icon-color": "white",
     },
     layout: {
       "icon-image": "sq",
-      "icon-size": 0.8,
+      "icon-size": 1,
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
 
@@ -285,7 +285,7 @@ export const layers: AnyLayer[] = [
       ["literal", ["airport", "regional_airport", "international_airport"]],
     ],
     paint: {
-      "icon-color": "black",
+      "icon-color": "#5b73cd",
     },
     layout: {
       "icon-image": "sq",
@@ -309,11 +309,11 @@ export const layers: AnyLayer[] = [
       ["literal", ["airport", "regional_airport", "international_airport"]],
     ],
     paint: {
-      "icon-color": "blue",
+      "icon-color": "white",
     },
     layout: {
       "icon-image": "paper-plane",
-      "icon-size": 0.8,
+      "icon-size": 0.4,
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
 
