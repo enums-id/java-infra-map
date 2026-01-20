@@ -27,13 +27,10 @@
   import Tools from "./components/Tools.svelte";
   import { Button } from "$lib/components/ui/button";
 
-  console.log(import.meta.env.VITE_API_KEY);
-
   onMount(() => {
     populateData()
       .then((f) => populateGeojsonData())
       .then((f) => {
-        console.log("data loaded");
         appState.ready.data = true;
         if (appState.map) bootStrap(appState.map);
       });
