@@ -4,6 +4,8 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import M from "@lucide/svelte/icons/map";
+  import Eye from "@lucide/svelte/icons/eye";
+  import EyesClosed from "@lucide/svelte/icons/eye-closed";
   import { switchLayers } from "../appMain.svelte";
 </script>
 
@@ -19,7 +21,7 @@
             class="h-[2rem] w-[2rem]"
             {...props}
           >
-            <M />
+            <EyesClosed />
           </Button>
         {/snippet}
       </DropdownMenu.Trigger>
@@ -56,7 +58,7 @@
             class="h-[2rem] w-[2rem]"
             {...props}
           >
-            <M />
+            <Eye />
           </Button>
         {/snippet}
       </DropdownMenu.Trigger>

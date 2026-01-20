@@ -8,6 +8,13 @@
       {
         "type": "line",
         "paint": {
+          "line-color": "#ffffff",
+          "line-width": 2
+        }
+      },
+      {
+        "type": "line",
+        "paint": {
           "line-color": "#75211b",
           "line-opacity": 0.75
         }

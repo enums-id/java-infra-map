@@ -1,14 +1,22 @@
 [
   {
-    "name": "pelabuhan_pt_new.geojson",
-    "displayName": "",
+    "name": "kcic.geojson",
+    "displayName": "High Speed Rail Jakarta-Bandung",
     "description": "",
+    "category": "Rail",
     "layers": [
       {
-        "type": "circle",
+        "type": "line",
         "paint": {
-          "circle-color": "#75211b",
-          "circle-opacity": 0.75
+          "line-color": "#ffffff",
+          "line-width": 2
+        }
+      },
+      {
+        "type": "line",
+        "paint": {
+          "line-color": "#75211b",
+          "line-opacity": 0.75
         }
       }
     ]
