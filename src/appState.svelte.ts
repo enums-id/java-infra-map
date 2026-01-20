@@ -1,4 +1,4 @@
-import type { FeatureCollection } from "geojson";
+import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import mapboxgl from "mapbox-gl";
 import type { AnyLayer } from "./map/types";
 import type { treeType } from "./components/types";
@@ -105,4 +105,5 @@ export type gDataRecord = {
   category: string;
   displayName: string;
   description: string;
+  data?: FeatureCollection<Geometry, GeoJsonProperties>;
 };

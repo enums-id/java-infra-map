@@ -248,6 +248,8 @@ function registerLayer(map: mapboxgl.Map) {
     for (const layer of gRecord.layers) {
       gRecord.layers[i].id = `${gRecord.displayName}-${i}`;
       gRecord.layers[i].source = gRecord.name;
+      gRecord.data = appState.geojsonData[gRecord.name];
+
       appState.map.addLayer(gRecord.layers[i]);
       i++;
     }
