@@ -219,7 +219,6 @@ async function loadImages(map: mapboxgl.Map) {
     try {
       await addSvgElement(svgElement.name, svgElement.element);
     } catch (error) {
-      console.log(svgElement.name);
       console.error(error);
     }
   }
@@ -237,12 +236,8 @@ function registerBaseMap(map: mapboxgl.Map) {
 }
 
 function registerData(map: mapboxgl.Map) {
-  console.log("register data invoked");
-  if (!appState.map) return;
-
   for (const [key, data] of Object.entries(appState.geojsonData)) {
-    console.log("registering data:", key);
-    appState.map.addSource(key, {
+    map.addSource(key, {
       type: "geojson",
       data,
     });
