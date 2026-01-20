@@ -105,5 +105,6 @@ export type gDataRecord = {
   category: string;
   displayName: string;
   description: string;
+  prompt: string[];
   data?: FeatureCollection<Geometry, GeoJsonProperties>;
 };

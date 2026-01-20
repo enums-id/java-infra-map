@@ -4,6 +4,7 @@
     "displayName": "High Speed Rail Jakarta-Bandung",
     "description": "",
     "category": "Rail",
+    "prompt": [],
     "layers": [
       {
         "type": "line",
