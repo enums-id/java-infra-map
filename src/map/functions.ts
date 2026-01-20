@@ -40,8 +40,15 @@ const mapActions: {
     const map = appState.map;
     if (!map) return;
 
+    const ids = appState.geojsonList
+      .map((g) => {
+        const ids = g.layers.map((f) => f.id);
+        return ids;
+      })
+      .flat();
+
     const [feature] = map.queryRenderedFeatures(e.point, {
-      layers: layers.map((d) => d.id),
+      layers: [...layers.map((d) => d.id), ...ids],
     });
 
     if (!feature) {
@@ -79,8 +86,15 @@ const mapActions: {
     const map = appState.map;
     if (!map) return;
 
+    const ids = appState.geojsonList
+      .map((g) => {
+        const ids = g.layers.map((f) => f.id);
+        return ids;
+      })
+      .flat();
+
     const [feature] = map.queryRenderedFeatures(e.point, {
-      layers: layers.map((d) => d.id),
+      layers: [...layers.map((d) => d.id), ...ids],
     });
 
     if (!feature) {

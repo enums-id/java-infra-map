@@ -3,7 +3,9 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "Trase"
+      },
       "geometry": {
         "coordinates": [
           [107.71505673053974, -6.963758500121685],
