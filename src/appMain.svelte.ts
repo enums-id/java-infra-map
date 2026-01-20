@@ -309,17 +309,21 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
     if (option) {
       if (option.visible) visibility = "visible";
       if (!option.visible) visibility = "none";
+
+      oName.checked = option.visible;
     }
 
     const map = appState.map;
-    console.log($state.snapshot(oName.layerTarget));
     if (!map) return;
 
     oName.layerTarget.forEach((layerName: string) => {
       const layersIn = layers
         .map((f) => f.id)
         .filter((f) => f.includes(layerName));
-      layersIn.forEach((layerName) => {
+      [
+        ...layersIn,
+        ...appState.geojsonList.map((f) => f.layers.map((d) => d.id)).flat(),
+      ].forEach((layerName) => {
         map.setLayoutProperty(layerName, "visibility", visibility);
       });
       localStorage.setItem(`visibility-${layerName}`, visibility);
