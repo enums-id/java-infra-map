@@ -289,9 +289,42 @@ export function switchLayers(
       if (isArray) {
         traverse(elem, category);
       }
-      if (isObject) {
-        appState.checkboxes[elem.displayName]?.click();
+      if (
+        isObject &&
+        elem.category == category &&
+        elem.layerTarget &&
+        elem.layerTarget.length > 0
+      ) {
+        elem.checked = false;
+        console.log("EXECUTING", $state.snapshot(elem));
+        checkChange(elem, { visible: false })();
       }
     }
   }
+}
+
+export function checkChange(oName: any, option?: { visible: boolean }) {
+  return () => {
+    let visibility: "visible" | "none" = oName.checked ? "visible" : "none";
+    if (option) {
+      if (option.visible) visibility = "visible";
+      if (!option.visible) visibility = "none";
+    }
+
+    const map = appState.map;
+    console.log($state.snapshot(appState.checkboxes));
+    if (!map) return;
+
+    oName.layerTarget.forEach((layerName: string) => {
+      const layersIn = layers
+        .map((f) => f.id)
+        .filter((f) => f.includes(layerName));
+      layersIn.forEach((layerName) => {
+        map.setLayoutProperty(layerName, "visibility", visibility);
+      });
+      localStorage.setItem(`visibility-${layerName}`, visibility);
+    });
+
+    localStorage.setItem(`checkbox-${oName.displayName}`, oName.checked);
+  };
 }

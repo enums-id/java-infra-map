@@ -10,6 +10,7 @@
   import type { treeType } from "./types";
   import { appState } from "../appState.svelte";
   import { layers } from "../map/layers";
+  import { checkChange } from "../appMain.svelte";
 
   const {
     items,
@@ -38,31 +39,8 @@
             <div class="mr-2">
               <Checkbox
                 bind:checked={oName.checked}
-                onCheckedChange={() => {
-                  const visibility = oName.checked ? "visible" : "none";
-                  const map = appState.map;
-                  console.log($state.snapshot(appState.checkboxes));
-                  if (!map) return;
-
-                  oName.layerTarget.forEach((layerName: string) => {
-                    const layersIn = layers
-                      .map((f) => f.id)
-                      .filter((f) => f.includes(layerName));
-                    layersIn.forEach((layerName) => {
-                      map.setLayoutProperty(
-                        layerName,
-                        "visibility",
-                        visibility
-                      );
-                    });
-                    localStorage.setItem(`visibility-${layerName}`, visibility);
-                  });
-
-                  localStorage.setItem(
-                    `checkbox-${oName.displayName}`,
-                    oName.checked
-                  );
-                }}
+                ref={oName.checkbox}
+                onCheckedChange={checkChange(oName)}
               />
             </div>
           {/if}

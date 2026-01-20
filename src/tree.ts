@@ -92,6 +92,7 @@ export const treeInit: treeType[] = [
           displayName: d,
           layerTarget: [`roads-${d}`],
           checked: true,
+          checkbox: null,
           category: "Road",
         };
 
@@ -119,12 +120,14 @@ export const treeInit: treeType[] = [
         displayName: "Railway",
         layerTarget: [`rails`],
         checked: true,
+        checkbox: null,
         category: "Train",
       },
       {
         displayName: "Stations",
         layerTarget: [`stations`],
         checked: true,
+        checkbox: null,
         category: "Train",
       },
     ],
