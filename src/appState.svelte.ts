@@ -63,14 +63,11 @@ export async function populateGeojsonData() {
   const totalI = appState.geojsonList.length;
   for (const gData of appState.geojsonList) {
     i++;
-    console.log(`loading ${gData.name}... (${i}/${totalI})`);
     const response = await fetch(`/data/${gData.name}`);
     const jsonData = await response.json();
     appState.geojsonData[gData.name] = jsonData;
     appState.mapLayers = [...appState.mapLayers, ...gData.layers];
   }
-
-  console.log("populateGeojsonData", appState.categories, appState.geojsonList);
 
   const projectFolder: treeType = [
     {
@@ -91,8 +88,6 @@ export async function populateGeojsonData() {
       baseList.push({ displayName: catalog.displayName, checked: true });
     }
 
-    console.log(`base list for ${category}`, baseList);
-
     if (baseList.length == 1) {
       continue;
     }
@@ -102,7 +97,6 @@ export async function populateGeojsonData() {
     }
   }
   (appState.tree as any[]).push(projectFolder);
-  console.log($state.snapshot(appState.tree));
 }
 
 export type gDataRecord = {
