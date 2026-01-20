@@ -270,7 +270,10 @@ function registerLayer(map: mapboxgl.Map) {
 }
 
 export function switchLayers(
-  category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train"
+  category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train",
+  options?: {
+    visible: boolean;
+  }
 ) {
   traverse(appState.tree, category);
 
@@ -295,9 +298,9 @@ export function switchLayers(
         elem.layerTarget &&
         elem.layerTarget.length > 0
       ) {
-        elem.checked = false;
+        elem.checked = options ? options.visible : false;
         console.log("EXECUTING", $state.snapshot(elem));
-        checkChange(elem, { visible: false })();
+        checkChange(elem, { visible: options ? options.visible : false })();
       }
     }
   }

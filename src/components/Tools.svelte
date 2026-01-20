@@ -24,7 +24,7 @@
         {/snippet}
       </DropdownMenu.Trigger>
       <DropdownMenu.Content class="w-56" align="start" side="right">
-        <DropdownMenu.Label>Switch Layers</DropdownMenu.Label>
+        <DropdownMenu.Label>Switch Layers Off</DropdownMenu.Label>
         <DropdownMenu.Group>
           {#each ["Power", "Land Use", "Port", "Road", "Airports", "Train"] as elem}
             <DropdownMenu.Item
@@ -37,6 +37,43 @@
                   | "Airport"
                   | "Train";
                 switchLayers(e);
+              }}
+            >
+              {elem}</DropdownMenu.Item
+            >
+          {/each}
+        </DropdownMenu.Group>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  </div>
+  <div>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        {#snippet child({ props })}
+          <Button
+            variant="outline"
+            size="icon"
+            class="h-[2rem] w-[2rem]"
+            {...props}
+          >
+            <M />
+          </Button>
+        {/snippet}
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content class="w-56" align="start" side="right">
+        <DropdownMenu.Label>Switch Layers On</DropdownMenu.Label>
+        <DropdownMenu.Group>
+          {#each ["Power", "Land Use", "Port", "Road", "Airports", "Train"] as elem}
+            <DropdownMenu.Item
+              onSelect={() => {
+                const e = elem as
+                  | "Power"
+                  | "Land Use"
+                  | "Port"
+                  | "Road"
+                  | "Airport"
+                  | "Train";
+                switchLayers(e, { visible: true });
               }}
             >
               {elem}</DropdownMenu.Item
