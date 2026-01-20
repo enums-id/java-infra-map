@@ -46,7 +46,7 @@
           {/if}
           <button
             class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer w-full grow"
-            onclick={() => console.log($state.snapshot(oName.layerTarget))}
+            onclick={() => {}}
           >
             <!-- <FileIcon class="w-4 h-4 mr-1 shrink-0" /> -->
             <div>
