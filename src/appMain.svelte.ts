@@ -379,17 +379,19 @@ export function layerButtonClick(oName: any) {
   return () => {
     if (oName.source && appState.news[oName.source as string]) {
       appState.activeClick = oName;
-      const news = appState.news[oName.source as string];
       appState.activeNews = oName.source;
       appState.activeClick = oName;
-      console.log($state.snapshot(oName));
       appState.drawerOpen = true;
       const data = appState.geojsonData[oName.source];
       if (!data) return;
       const bbox = turf.bbox(data);
       appState.bboxLive = bbox;
-
-      console.log($state.snapshot(appState.geojsonList));
+      if (bbox) {
+        const map = appState.map;
+        if (!map) return;
+        const [a, b, c, d] = bbox;
+        map.fitBounds([a, b, c, d], { padding: 4 });
+      }
     }
   };
 }
