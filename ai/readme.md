@@ -7,4 +7,6 @@ python -m venv .venv
 . ./.venv/bin/activate
 pip install -r requirements.txt
 python main.py
+# OR name of the file /public/data/*.geojson
+python main.py mrt.geojson
 ```
