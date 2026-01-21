@@ -11,7 +11,7 @@
 
 <div class="p-2">
   <Sidebar.Trigger />
-  <div>
+  <div class="my-2">
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         {#snippet child({ props })}
@@ -48,7 +48,7 @@
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   </div>
-  <div>
+  <div class="my-2">
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         {#snippet child({ props })}

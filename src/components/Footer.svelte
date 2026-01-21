@@ -9,11 +9,11 @@
   <div class="px-4">
     <span
       >{appState.mapzoom[0].toFixed(2)}, {appState.mapzoom[0].toFixed(8)}, {appState.mapzoom[0].toFixed(
-        8
+        8,
       )}</span
     >
   </div>
-  <div class="flex gap-1 items-center">
+  <div class="flex gap-1 items-center mx-2">
     <div class="mx-2 border rounded p-2 border-accent">
       <Label for="highlight">
         <Checkbox id="highlight" bind:checked={appState.highlightFeature} />
