@@ -298,6 +298,7 @@ export const layers: AnyLayer[] = [
   ...([
     {
       id: "stations-0",
+      minzoom: 9.25,
       type: "symbol",
       source: "stations",
       "source-layer": "stations",
@@ -314,6 +315,7 @@ export const layers: AnyLayer[] = [
     },
     {
       id: "stations-1",
+      minzoom: 9.25,
       type: "symbol",
       source: "stations",
       "source-layer": "stations",
@@ -330,6 +332,7 @@ export const layers: AnyLayer[] = [
     },
     {
       id: "stations",
+      minzoom: 9.25,
       type: "symbol",
       source: "stations",
       "source-layer": "stations",
