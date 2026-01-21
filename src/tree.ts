@@ -4,7 +4,7 @@ import { layers } from "./map/layers";
 
 export const treeInit: treeType[] = [
   [
-    { displayName: "Infrastructure" },
+    { displayName: "Base Infrastructure" },
     [
       { displayName: "Power", checked: true },
       [
@@ -73,7 +73,8 @@ export const treeInit: treeType[] = [
       { displayName: "Port", checked: true },
       ...layers
         .filter(
-          (f) => f.id.toLowerCase().includes("pelabuhan") && !/-\d+$/.test(f.id)
+          (f) =>
+            f.id.toLowerCase().includes("pelabuhan") && !/-\d+$/.test(f.id),
         )
         .map((f) => {
           return {

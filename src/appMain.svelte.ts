@@ -57,7 +57,9 @@ function bootStrapCheckboxAndTree() {
     "Airport",
   ];
 
-  const toAppend: treeType = [{ displayName: "Projects" }];
+  const toAppend: treeType = [
+    { displayName: "Featured Infrastructure Projects" },
+  ];
 
   for (const folderName of baseProjects) {
     const subFolder: treeType = [{ displayName: folderName }];
@@ -133,6 +135,8 @@ function bootStrapCheckboxAndTree() {
       }
     }
   }
+
+  console.log("Tree", $state.snapshot(appState.tree));
 }
 
 async function loadImages(map: mapboxgl.Map) {

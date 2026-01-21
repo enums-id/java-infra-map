@@ -72,7 +72,7 @@
           {#snippet child({ props })}
             <Sidebar.MenuButton {...props} class="text-xs">
               <ChevronRightIcon className="transition-transform" />
-              <FolderIcon />
+              <!-- <FolderIcon /> -->
               {oName.displayName}
             </Sidebar.MenuButton>
           {/snippet}
