@@ -186,5 +186,61 @@
         }
       }
     ]
+  },
+  {
+    "name": "mrt.geojson",
+    "displayName": "MRT Jakarta",
+    "description": "MRT Jakarta is Indonesia's first modern metro system, developed to provide a fast, reliable, and high-capacity public transport solution for the capital city. Officially inaugurated in 2019, the system marks a major milestone in Jakarta's efforts to reduce traffic congestion and improve urban mobility.",
+    "category": "Rail",
+    "prompt": ["MRT Jakarta"],
+    "layers": [
+      {
+        "type": "line",
+        "filter": [
+          "in",
+          ["geometry-type"],
+          ["literal", ["LineString", "MultiLineString"]]
+        ],
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": "#d32f2f",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10,
+            3,
+            14,
+            6,
+            18,
+            10
+          ]
+        }
+      },
+      {
+        "type": "circle",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "minzoom": 10,
+        "paint": {
+          "circle-radius": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10,
+            4,
+            14,
+            7,
+            18,
+            11
+          ],
+          "circle-color": "#ffffff",
+          "circle-stroke-color": "#d32f2f",
+          "circle-stroke-width": 2
+        }
+      }
+    ]
   }
 ]
