@@ -1,6 +1,25 @@
 from openai import OpenAI
+import argparse
+
 import json
 def main():
+    parser = argparse.ArgumentParser(description="Process an optional GeoJSON file")
+    parser.add_argument(
+        "file",
+        nargs="?",          # makes it optional
+        default=None,       # value if not provided
+        help="Path to the GeoJSON file"
+    )
+
+    args = parser.parse_args()
+
+    if args.file:
+        print("Parsed file:", args.file)
+    else:
+        print("No file provided")
+
+
+
     client = OpenAI()
 
     with open("../public/catalog.json", "r") as f:
@@ -8,6 +27,8 @@ def main():
 
     promptResult = {}
     for record in catalog:
+        if (args.file) and (record["name"] != args.file):
+            continue
         if len(record["prompt"]) == 0:
             continue
         project_names = ",".join(record["prompt"])
