@@ -2,7 +2,7 @@
   {
     "name": "kcic.geojson",
     "displayName": "High Speed Rail Jakarta-Bandung",
-    "description": "",
+    "description": "KCIC (Kereta Cepat Indonesia China) is the company responsible for developing and operating Indonesia's first high-speed railway, connecting Jakarta and Bandung. Established as a joint venture between Indonesian and Chinese state-owned enterprises, KCIC represents a major milestone in Indonesia's modern transportation infrastructure.",
     "category": "Rail",
     "prompt": ["whoosh", "kcic", "kereta cepat indonesia china"],
     "layers": [
@@ -26,7 +26,7 @@
   {
     "name": "bijb_kertajati.geojson",
     "displayName": "Kertajati International Airport",
-    "description": "",
+    "description": "BIJB Kertajati International Airport is a major international airport located in Majalengka, West Java, developed to support aviation demand in the Greater Bandung and Cirebon regions. Officially opened in 2018, the airport was designed as a future aviation hub to complement and eventually relieve congestion at airports in the western part of Java.",
     "category": "Airport",
     "prompt": ["Airport", "BIJB", "Kertajati", "Airport"],
     "layers": [
@@ -61,7 +61,7 @@
   {
     "name": "bandung_lrt.geojson",
     "displayName": "Bandung LRT System",
-    "description": "",
+    "description": "Bandung LRT (Light Rail Transit) is a planned urban rail transportation system intended to improve mobility in Bandung, West Java, one of Indonesia's most densely populated and traffic-congested cities. The project is part of a broader effort to modernize public transport and reduce reliance on private vehicles.",
     "category": "Rail",
     "prompt": ["Bandung LRT", "LRT Bandung Raya"],
     "layers": [

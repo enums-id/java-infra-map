@@ -102,27 +102,15 @@
                     <Drawer.Content class="overflow-auto">
                       <Drawer.Header>
                         <Drawer.Title
-                          class="top-0 sticky bg-background p-4 text-center"
-                          >Latest News <Sparkles
-                            class="inline text-center mx-1"
-                            size="1.2em"
-                          />
+                          class="top-0 sticky bg-background p-4 text-center text-xl"
+                        >
+                          {appState.activeClick.displayName}
                         </Drawer.Title>
 
                         <Drawer.Description class="">
-                          {#if appState.activeClick}
-                            <div class="text-center my-1">
-                              <h2 class="text-center text-lg text-foreground">
-                                {appState.activeClick.displayName}
-                              </h2>
-                            </div>
-                            <div class="text-center my-2 text-sm">
-                              <p class="text-start">
-                                {appState.activeClick.description}
-                              </p>
-                            </div>
-                          {/if}
-                          <div class="my-1 flex justify-center gap-2 w-full">
+                          <div
+                            class="my-1 flex justify-center gap-2 w-full mb-2 border-b p-2"
+                          >
                             <Button
                               class="mx-1"
                               variant="outline"
@@ -172,6 +160,24 @@
                               <EyeClosed />
                             </Button>
                           </div>
+                          {#if appState.activeClick}
+                            <div class="text-center my-2 text-sm border-b p-2">
+                              <p class="text-start">
+                                {appState.activeClick.description}
+                              </p>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-center p-4 text-lg text-foreground"
+                              >
+                                Latest News <Sparkles
+                                  class="inline text-center mx-1"
+                                  size="1.2em"
+                                />
+                              </h3>
+                            </div>
+                          {/if}
+
                           {#if appState.activeNews}
                             {@const liveNews =
                               appState.news[appState.activeNews]}
