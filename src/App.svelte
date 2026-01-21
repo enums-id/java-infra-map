@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import "mapbox-gl/dist/mapbox-gl.css";
+  import mapboxgl from "mapbox-gl";
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
   import Map from "./components/Map.svelte";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import { resetMode, setMode } from "mode-watcher";
+  import Search from "@lucide/svelte/icons/scan-search";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
   import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
@@ -103,7 +105,29 @@
                             size="1.2em"
                           />
                         </Drawer.Title>
+
                         <Drawer.Description class="">
+                          <div class="my-1 flex justify-center gap-2 w-full">
+                            <Button
+                              variant="outline"
+                              onclick={() => {
+                                if (!appState.map || !appState.bboxLive) return;
+                                const [a, b, c, d] = appState.bboxLive;
+                                const bbox = new mapboxgl.LngLatBounds([
+                                  a,
+                                  b,
+                                  c,
+                                  d,
+                                ]);
+
+                                appState.map.fitBounds(bbox, {
+                                  padding: 10,
+                                });
+                              }}
+                            >
+                              <Search />
+                            </Button>
+                          </div>
                           {#if appState.activeNews}
                             {@const liveNews =
                               appState.news[appState.activeNews]}

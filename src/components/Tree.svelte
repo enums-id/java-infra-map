@@ -2,6 +2,7 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+  import * as turf from "@turf/turf";
 
   import FileIcon from "@lucide/svelte/icons/file";
   import FolderIcon from "@lucide/svelte/icons/folder";
@@ -52,6 +53,10 @@
                 console.log("The news:", $state.snapshot(news));
                 appState.activeNews = oName.source;
                 appState.drawerOpen = true;
+                const data = appState.geojsonData[oName.source];
+                if (!data) return;
+                const bbox = turf.bbox(data);
+                appState.bboxLive = bbox;
               }
             }}
           >

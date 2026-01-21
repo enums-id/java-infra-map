@@ -1,4 +1,9 @@
-import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
+import type {
+  BBox,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+} from "geojson";
 import mapboxgl from "mapbox-gl";
 import type { AnyLayer } from "./map/types";
 import type { treeType } from "./components/types";
@@ -36,7 +41,9 @@ export const appState: {
     }[]
   >;
   drawerOpen: boolean;
+  bboxLive: null | BBox;
 } = $state({
+  bboxLive: null,
   drawerOpen: false,
   activeNews: "",
   news: {},
