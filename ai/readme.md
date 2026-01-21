@@ -1,4 +1,4 @@
-Prompting the AI to generate the news. Generates `../public/news/*.json`
+Prompting the AI to generate the news. Generates `../public/news/*.json`. must be executed in here.
 
 ```bash
 export OPENAI_API_KEY="sk-p...."
