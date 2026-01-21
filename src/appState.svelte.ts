@@ -126,6 +126,7 @@ export type gDataRecord = {
   name: string;
   layers: AnyLayer[];
   category: string;
+  source?: string;
   displayName: string;
   description: string;
   prompt: string[];

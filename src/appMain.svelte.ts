@@ -2,7 +2,7 @@ import { appState } from "./appState.svelte";
 import mapboxgl from "mapbox-gl";
 import { sources } from "./map/sources";
 import { layers } from "./map/layers";
-import { mapActionsInvoke } from "./map/functions";
+import { mapActionsInvoke } from "./map/functions.svelte";
 import { svgElements, svgUrls } from "./map/images";
 import type { treeType } from "./components/types";
 import { treeInit } from "./tree";
@@ -16,9 +16,9 @@ export async function bootStrap(map: mapboxgl.Map) {
   registerData(map);
   await loadImages(map);
   registerLayer(map);
-  mapActionsInvoke(map)();
 
   bootStrapCheckboxAndTree();
+  mapActionsInvoke(map)();
   initPosition(map);
 }
 
@@ -261,22 +261,32 @@ function registerData(map: mapboxgl.Map) {
 
 function registerLayer(map: mapboxgl.Map) {
   if (!appState.map) return;
+  let j = 0;
   for (const gRecord of appState.geojsonList) {
     const visible =
       localStorage.getItem(`checkbox-${gRecord.displayName}`) !== "false";
     let i = 0;
-    for (const layer of gRecord.layers) {
-      gRecord.layers[i].id = `${gRecord.displayName}-${i}`;
-      gRecord.layers[i].source = gRecord.name;
-      gRecord.data = appState.geojsonData[gRecord.name];
 
-      if (gRecord.layers[i]["layout"]) {
-        (gRecord.layers[i]["layout"] as Record<string, string>)["visibility"] =
-          visible ? "visible" : "none";
+    appState.geojsonList[j]["source"] = appState.geojsonList[j]["name"];
+    for (const layer of gRecord.layers) {
+      appState.geojsonList[j].layers[i].id =
+        `${appState.geojsonList[j].displayName}-${i}`;
+      appState.geojsonList[j].layers[i].source = appState.geojsonList[j].name;
+      appState.geojsonList[j].data =
+        appState.geojsonData[appState.geojsonList[j].name];
+
+      if (appState.geojsonList[j].layers[i]["layout"]) {
+        (appState.geojsonList[j].layers[i]["layout"] as Record<string, string>)[
+          "visibility"
+        ] = visible ? "visible" : "none";
       } else {
-        gRecord.layers[i]["layout"] = {} as Record<string, string>;
-        (gRecord.layers[i]["layout"] as Record<string, string>)["visibility"] =
-          visible ? "visible" : "none";
+        appState.geojsonList[j].layers[i]["layout"] = {} as Record<
+          string,
+          string
+        >;
+        (appState.geojsonList[j].layers[i]["layout"] as Record<string, string>)[
+          "visibility"
+        ] = visible ? "visible" : "none";
       }
 
       appState.map.addLayer(gRecord.layers[i]);
@@ -284,6 +294,7 @@ function registerLayer(map: mapboxgl.Map) {
       console.log("Adding gRecord Layer", $state.snapshot(gRecord.layers[i]));
       i++;
     }
+    j++;
   }
 
   appState.ready.layersRegistered = true;
@@ -373,6 +384,8 @@ export function layerButtonClick(oName: any) {
       if (!data) return;
       const bbox = turf.bbox(data);
       appState.bboxLive = bbox;
+
+      console.log($state.snapshot(appState.geojsonList));
     }
   };
 }

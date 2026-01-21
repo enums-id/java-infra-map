@@ -2,7 +2,7 @@ import mapboxgl, { type MapEventOf, type MapEventType } from "mapbox-gl";
 import type { Listener$1 } from "./types";
 import { toast } from "svelte-sonner";
 import { appState } from "../appState.svelte";
-import { bootStrap } from "../appMain.svelte";
+import { bootStrap, layerButtonClick } from "../appMain.svelte";
 import { layers } from "./layers";
 
 export function mapActionsInvoke(map: mapboxgl.Map) {
@@ -103,6 +103,15 @@ const mapActions: {
     }
 
     appState.featureClicked = feature;
+
+    if (feature.layer && ids.includes(feature.layer.id)) {
+      const [oName] = appState.geojsonList.filter((p) => {
+        const idInLayer = p.layers.map((p) => p.id);
+        return feature.layer && idInLayer.includes(feature.layer.id);
+      });
+      console.log("oName", $state.snapshot(oName));
+      if (oName) layerButtonClick(oName)();
+    }
   },
   mousedown: (e) => {
     if (!appState.map) return;
