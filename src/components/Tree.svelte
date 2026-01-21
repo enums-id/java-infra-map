@@ -47,7 +47,12 @@
           {/if}
           <button
             class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer w-full grow"
-            onclick={layerButtonClick(oName)}
+            onclick={() => {
+              const [gRecord] = appState.geojsonList.filter((p) => {
+                return oName.source == p.name;
+              });
+              if (gRecord) layerButtonClick(gRecord)();
+            }}
           >
             <!-- <FileIcon class="w-4 h-4 mr-1 shrink-0" /> -->
             <div>

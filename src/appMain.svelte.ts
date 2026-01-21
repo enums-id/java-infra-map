@@ -374,6 +374,7 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
 export function layerButtonClick(oName: any) {
   return () => {
     if (oName.source && appState.news[oName.source as string]) {
+      appState.activeClick = oName;
       const news = appState.news[oName.source as string];
       appState.activeNews = oName.source;
       appState.activeClick = oName;
