@@ -4,6 +4,8 @@
   import mapboxgl from "mapbox-gl";
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
+  import Eye from "@lucide/svelte/icons/eye";
+  import EyesClosed from "@lucide/svelte/icons/eye-closed";
   import Map from "./components/Map.svelte";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import { resetMode, setMode } from "mode-watcher";
@@ -20,7 +22,7 @@
     populateData,
     populateGeojsonData,
   } from "./appState.svelte";
-  import { bootStrap } from "./appMain.svelte";
+  import { bootStrap, traverseProject } from "./appMain.svelte";
   import Panel from "./components/Panel.svelte";
   import Tree from "./components/Tree.svelte";
   import FileExplorer from "./components/FileExplorer.svelte";
@@ -30,6 +32,7 @@
   import Tools from "./components/Tools.svelte";
   import { Button } from "$lib/components/ui/button";
   import News from "./components/News.svelte";
+  import EyeClosed from "@lucide/svelte/icons/eye-closed";
 
   onMount(() => {
     populateData()
@@ -116,6 +119,7 @@
                           {/if}
                           <div class="my-1 flex justify-center gap-2 w-full">
                             <Button
+                              class="mx-1"
                               variant="outline"
                               onclick={() => {
                                 if (!appState.map || !appState.bboxLive) return;
@@ -133,6 +137,34 @@
                               }}
                             >
                               <Search />
+                            </Button>
+
+                            <Button
+                              class="mx-1"
+                              variant="outline"
+                              onclick={() => {
+                                traverseProject(
+                                  appState.tree,
+                                  appState.activeClick.source,
+                                  { visible: true },
+                                );
+                              }}
+                            >
+                              <Eye />
+                            </Button>
+
+                            <Button
+                              class="mx-1"
+                              variant="outline"
+                              onclick={() => {
+                                traverseProject(
+                                  appState.tree,
+                                  appState.activeClick.source,
+                                  { visible: false },
+                                );
+                              }}
+                            >
+                              <EyeClosed />
                             </Button>
                           </div>
                           {#if appState.activeNews}

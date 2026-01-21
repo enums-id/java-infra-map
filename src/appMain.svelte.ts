@@ -389,3 +389,34 @@ export function layerButtonClick(oName: any) {
     }
   };
 }
+
+export function traverseProject(
+  tree: treeType,
+  source: string,
+  options?: {
+    visible: boolean;
+  },
+) {
+  for (const elem of tree) {
+    const isObject =
+      typeof elem === "object" && elem !== null && !Array.isArray(elem);
+    const isArray = Array.isArray(elem);
+    const map = appState.map;
+    if (!map) return;
+
+    if (isArray) {
+      traverseProject(elem, source, options);
+    }
+    if (!elem.source) continue;
+    if (
+      isObject &&
+      elem.source == source &&
+      elem.layerTarget &&
+      elem.layerTarget.length > 0
+    ) {
+      elem.checked = options ? options.visible : false;
+      console.log("setting", source, options);
+      checkChange(elem, { visible: options ? options.visible : false })();
+    }
+  }
+}
