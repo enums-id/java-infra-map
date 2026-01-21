@@ -136,7 +136,7 @@
     "displayName": "Transjakarta",
     "description": "",
     "category": "Transport",
-    "prompt": ["Transjarta"],
+    "prompt": ["Transjarta", "Busway Jakarta", "BRT Jakarta"],
     "layers": [
       {
         "type": "line",
