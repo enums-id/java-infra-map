@@ -102,7 +102,7 @@
                     <Drawer.Content class="overflow-auto">
                       <Drawer.Header>
                         <Drawer.Title
-                          class="top-0 sticky bg-background p-2 text-center"
+                          class="top-0 sticky bg-background p-4 text-center"
                           >Latest News <Sparkles
                             class="inline text-center mx-1"
                             size="1.2em"
@@ -112,9 +112,14 @@
                         <Drawer.Description class="">
                           {#if appState.activeClick}
                             <div class="text-center my-1">
-                              <h2 class="text-center">
+                              <h2 class="text-center text-lg text-foreground">
                                 {appState.activeClick.displayName}
                               </h2>
+                            </div>
+                            <div class="text-center my-2 text-sm">
+                              <p class="text-start">
+                                {appState.activeClick.description}
+                              </p>
                             </div>
                           {/if}
                           <div class="my-1 flex justify-center gap-2 w-full">

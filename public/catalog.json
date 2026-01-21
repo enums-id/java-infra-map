@@ -134,7 +134,7 @@
   {
     "name": "tj.geojson",
     "displayName": "Transjakarta",
-    "description": "",
+    "description": "TransJakarta Bus Rapid Transit (BRT) is Indonesia's first and largest bus rapid transit system, serving the Greater Jakarta metropolitan area. Launched in 2004, TransJakarta was designed to tackle Jakarta's chronic traffic congestion by providing a fast, affordable, and reliable mass transportation option.",
     "category": "Transport",
     "prompt": ["Transjarta", "Busway Jakarta", "BRT Jakarta"],
     "layers": [
