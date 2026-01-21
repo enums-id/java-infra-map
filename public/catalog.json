@@ -21,5 +21,41 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "bijb_kertajati.geojson",
+    "displayName": "Kertajati International Airport",
+    "description": "",
+    "category": "Airport",
+    "prompt": ["Airport", "BIJB", "Kertajati", "Airport"],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": [
+            "case",
+
+            ["==", ["get", "tema"], "Area Terbuka"],
+            "#C8E6C9",
+
+            ["==", ["get", "tema"], "Pertanian dan Peternakan"],
+            "#81C784",
+
+            ["==", ["get", "tema"], "Bangunan Fasum"],
+            "#E57373",
+
+            ["==", ["get", "tema"], "Transportasi"],
+            "#64B5F6",
+
+            ["==", ["get", "tema"], "Perairan"],
+            "#4FC3F7",
+
+            "#000000"
+          ],
+          "fill-opacity": 0.65
+        }
+      }
+    ]
   }
 ]

@@ -52,6 +52,7 @@ function bootStrapCheckboxAndTree() {
     "Port",
     "Energy",
     "Telecommunication",
+    "Airport",
   ];
 
   const toAppend: treeType = [{ displayName: "Projects" }];
@@ -61,21 +62,24 @@ function bootStrapCheckboxAndTree() {
     for (const gRecord of appState.geojsonList) {
       const { name, displayName, description, category, layers } = gRecord;
       if (category !== folderName) continue;
-      let layerTarget = [];
-      for (const gRecord of appState.geojsonList) {
-        let i = 0;
-        for (const layer of gRecord.layers) {
-          layerTarget.push(layer.id);
-          i++;
-        }
-      }
 
+      const visible =
+        localStorage.getItem(`checkbox-${displayName}`) !== "false";
+      let layerTarget = [];
+      let i = 0;
+      for (const layer of layers) {
+        layerTarget.push(layer.id);
+        i++;
+      }
       const element = {
         displayName,
         layerTarget,
         source: name,
-        checked: localStorage.getItem(`checkbox-industry`) !== "false",
+        checked: visible,
       };
+
+      console.log("Check Change", $state.snapshot(element), visible);
+      checkChange(element, { visible });
 
       subFolder.push(element);
     }
@@ -118,7 +122,7 @@ function bootStrapCheckboxAndTree() {
               map.setLayoutProperty(
                 q,
                 "visibility",
-                display ? "visible" : "none"
+                display ? "visible" : "none",
               );
             });
           }
@@ -165,7 +169,7 @@ async function loadImages(map: mapboxgl.Map) {
   async function addSvgElement(
     name: string,
     svgContent: string, // <-- raw <svg>...</svg>
-    size = 24
+    size = 24,
   ) {
     // Create SVG blob directly from string
     const svgBlob = new Blob([svgContent], { type: "image/svg+xml" });
@@ -242,7 +246,7 @@ function registerData(map: mapboxgl.Map) {
       if (res.ok) {
         res.json().then((data) => {
           appState.news[key] = (data as any[]).sort(
-            (a, b) => Number(b.datePublished) - Number(a.datePublished)
+            (a, b) => Number(b.datePublished) - Number(a.datePublished),
           );
         });
       } else {
@@ -257,11 +261,22 @@ function registerData(map: mapboxgl.Map) {
 function registerLayer(map: mapboxgl.Map) {
   if (!appState.map) return;
   for (const gRecord of appState.geojsonList) {
+    const visible =
+      localStorage.getItem(`checkbox-${gRecord.displayName}`) !== "false";
     let i = 0;
     for (const layer of gRecord.layers) {
       gRecord.layers[i].id = `${gRecord.displayName}-${i}`;
       gRecord.layers[i].source = gRecord.name;
       gRecord.data = appState.geojsonData[gRecord.name];
+
+      if (gRecord.layers[i]["layout"]) {
+        (gRecord.layers[i]["layout"] as Record<string, string>)["visibility"] =
+          visible ? "visible" : "none";
+      } else {
+        gRecord.layers[i]["layout"] = {} as Record<string, string>;
+        (gRecord.layers[i]["layout"] as Record<string, string>)["visibility"] =
+          visible ? "visible" : "none";
+      }
 
       appState.map.addLayer(gRecord.layers[i]);
       i++;
@@ -275,13 +290,13 @@ export function switchLayers(
   category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train",
   options?: {
     visible: boolean;
-  }
+  },
 ) {
   traverse(appState.tree, category);
 
   function traverse(
     tree: treeType,
-    category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train"
+    category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train",
   ) {
     if (!appState.map) return;
     for (const elem of tree) {
