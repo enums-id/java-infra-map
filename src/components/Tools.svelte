@@ -81,6 +81,15 @@
               {elem}</DropdownMenu.Item
             >
           {/each}
+
+          <DropdownMenu.Item
+            onSelect={() => {
+              const e = "Project";
+              switchLayers(e, { visible: true });
+            }}
+          >
+            Projects</DropdownMenu.Item
+          >
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu.Root>

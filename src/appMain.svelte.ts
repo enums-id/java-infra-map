@@ -9,6 +9,7 @@ import { treeInit } from "./tree";
 import type { Component } from "svelte";
 import type { Checkbox } from "$lib/components/ui/checkbox";
 import * as turf from "@turf/turf";
+import type { CategoryFeature } from "./types";
 
 export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad) return;
@@ -301,17 +302,14 @@ function registerLayer(map: mapboxgl.Map) {
 }
 
 export function switchLayers(
-  category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train",
+  category: CategoryFeature,
   options?: {
     visible: boolean;
   },
 ) {
   traverse(appState.tree, category);
 
-  function traverse(
-    tree: treeType,
-    category: "Power" | "Land Use" | "Port" | "Road" | "Airport" | "Train",
-  ) {
+  function traverse(tree: treeType, category: CategoryFeature) {
     if (!appState.map) return;
     for (const elem of tree) {
       const isObject =
