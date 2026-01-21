@@ -76,6 +76,7 @@ function bootStrapCheckboxAndTree() {
       const element = {
         displayName,
         layerTarget,
+        category: "Project",
         source: name,
         checked: visible,
       };
