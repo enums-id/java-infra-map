@@ -167,6 +167,7 @@
       {
         "type": "circle",
         "filter": ["==", ["geometry-type"], "Point"],
+        "minzoom": 10,
         "paint": {
           "circle-radius": [
             "interpolate",
