@@ -279,6 +279,8 @@ function registerLayer(map: mapboxgl.Map) {
       }
 
       appState.map.addLayer(gRecord.layers[i]);
+
+      console.log("Adding gRecord Layer", $state.snapshot(gRecord.layers[i]));
       i++;
     }
   }
@@ -336,13 +338,18 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
     const map = appState.map;
     if (!map) return;
 
+    console.log("switching checkChange", $state.snapshot(oName.layerTarget));
+
     oName.layerTarget.forEach((layerName: string) => {
       const layersIn = layers
         .map((f) => f.id)
         .filter((f) => f.includes(layerName));
       [
         ...layersIn,
-        ...appState.geojsonList.map((f) => f.layers.map((d) => d.id)).flat(),
+        ...appState.geojsonList
+          .map((f) => f.layers.map((d) => d.id))
+          .flat()
+          .filter((k) => k.includes(layerName)),
       ].forEach((layerName) => {
         map.setLayoutProperty(layerName, "visibility", visibility);
       });
