@@ -8,6 +8,7 @@ import type { treeType } from "./components/types";
 import { treeInit } from "./tree";
 import type { Component } from "svelte";
 import type { Checkbox } from "$lib/components/ui/checkbox";
+import * as turf from "@turf/turf";
 
 export async function bootStrap(map: mapboxgl.Map) {
   if (!appState.ready.data || !appState.ready.mapLoad) return;
@@ -357,5 +358,21 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
     });
 
     localStorage.setItem(`checkbox-${oName.displayName}`, oName.checked);
+  };
+}
+
+export function layerButtonClick(oName: any) {
+  return () => {
+    if (oName.source && appState.news[oName.source as string]) {
+      const news = appState.news[oName.source as string];
+      appState.activeNews = oName.source;
+      appState.activeClick = oName;
+      console.log($state.snapshot(oName));
+      appState.drawerOpen = true;
+      const data = appState.geojsonData[oName.source];
+      if (!data) return;
+      const bbox = turf.bbox(data);
+      appState.bboxLive = bbox;
+    }
   };
 }

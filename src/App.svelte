@@ -107,6 +107,13 @@
                         </Drawer.Title>
 
                         <Drawer.Description class="">
+                          {#if appState.activeClick}
+                            <div class="text-center my-1">
+                              <h2 class="text-center">
+                                {appState.activeClick.displayName}
+                              </h2>
+                            </div>
+                          {/if}
                           <div class="my-1 flex justify-center gap-2 w-full">
                             <Button
                               variant="outline"

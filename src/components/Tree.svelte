@@ -11,7 +11,7 @@
   import type { treeType } from "./types";
   import { appState } from "../appState.svelte";
   import { layers } from "../map/layers";
-  import { checkChange } from "../appMain.svelte";
+  import { checkChange, layerButtonClick } from "../appMain.svelte";
 
   const {
     items,
@@ -47,18 +47,7 @@
           {/if}
           <button
             class="w-full text-start text-sm p-1 my-1 flex items-center justify-start text-xs rounded hover:bg-background/80 hover:cursor-pointer w-full grow"
-            onclick={() => {
-              if (oName.source && appState.news[oName.source as string]) {
-                const news = appState.news[oName.source as string];
-                console.log("The news:", $state.snapshot(news));
-                appState.activeNews = oName.source;
-                appState.drawerOpen = true;
-                const data = appState.geojsonData[oName.source];
-                if (!data) return;
-                const bbox = turf.bbox(data);
-                appState.bboxLive = bbox;
-              }
-            }}
+            onclick={layerButtonClick(oName)}
           >
             <!-- <FileIcon class="w-4 h-4 mr-1 shrink-0" /> -->
             <div>

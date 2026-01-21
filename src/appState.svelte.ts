@@ -42,7 +42,9 @@ export const appState: {
   >;
   drawerOpen: boolean;
   bboxLive: null | BBox;
+  activeClick: any | null;
 } = $state({
+  activeClick: null,
   bboxLive: null,
   drawerOpen: false,
   activeNews: "",
