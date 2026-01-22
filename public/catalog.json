@@ -378,5 +378,23 @@
         }
       }
     ]
+  },
+  {
+    "name": "cisumdawu.geojson",
+    "url": "https://en.wikipedia.org/wiki/Cileunyi%E2%80%93Sumedang%E2%80%93Dawuan_Toll_Road",
+    "displayName": "Cisumdawu Toll Road",
+    "description": "The Cileunyi-Sumedang-Dawuan (Cisumdawu) Toll Road is a ~60 km expressway linking Bandung directly to Dawuan/Kertajati, integrating with the Cipali Toll Road and significantly cutting travel times across West Java. It is a critical access corridor supporting Kertajati International Airport, logistics, and regional economic growth by improving passenger and freight connectivity.",
+    "category": "Transport",
+    "prompt": ["Cisumdawu Toll Road", "Tol Cisumdawu"],
+    "layers": [
+      {
+        "type": "line",
+        "paint": {
+          "line-color": "#001463",
+          "line-width": 1.4,
+          "line-opacity": 0.85
+        }
+      }
+    ]
   }
 ]
