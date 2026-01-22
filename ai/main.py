@@ -64,14 +64,15 @@ def projectName(name: str, projectNames: str,client: OpenAI):
                 "content": (
                     f"Find, from the internet, the LATEST relevant 5 news articles in the year of 2025 and 2026 about this project: ({projectNames}) with published date of the articles.\n\n"
                     f"Prioritise the news about infrastructure development related to {projectNames}."
-                    "Prioritise English news. If the news is indonesian, translate the summary into English."
+                    "Prioritise English news. If the news is indonesian, translate the summary AND title into English."
                     "Return ONLY valid raw JSON, not markdown, in this schema:\n"
                     "[\n"
                     "  {\"newsTitle\": string, \"datePublished\": string \"summary\": string, \"link\": string}\n"
                     "]"
-                    "summary is the summary of the article in one sentence"
+                    "newsTitle is the news title. Translate the title into English."
+                    "summary is the summary of the article in one sentence in English"
                     "The link must be the URL to the corresponding news which starts with https://"
-                    "datePublished is the article's published date, must be unix timestamp. Read the news article, determine the published date, obtain the published date from the news article."
+                    "datePublished is the article's published date, must be unix timestamp. Read the news article, determine the published date, obtain the published date from the news article. IT MUST BE IN 2025 OR 2026."
                     "remember, the result must be in JSON as it will be saved as a json file."
                     "Do not add notes or anything, just return the JSON value! I cannot accept output other than the specified JSON schema"
                 )
