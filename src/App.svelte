@@ -3,7 +3,7 @@
   import "mapbox-gl/dist/mapbox-gl.css";
   import mapboxgl from "mapbox-gl";
   import { Toaster } from "$lib/components/ui/sonner/index.js";
-  import { ModeWatcher } from "mode-watcher";
+  import { ModeWatcher, mode } from "mode-watcher";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import ExternalLink from "@lucide/svelte/icons/external-link";
 
@@ -123,15 +123,22 @@
                       class="text-sm leading-relaxed text-muted-foreground"
                     >
                       <p>
-                        Java Infra Map is an open-source web map that visualizes
+                        Java Infra Map is an open-source web map that visualises
                         key infrastructure across Java Island, Indonesia. It
                         provides investors, researchers, and planners with a
                         clear spatial overview of transportation, energy,
                         industrial, and strategic development projects.
                         <br /><br />
-                        The platform is community-driven—contributors can enrich
+                        The platform is community-driven. Contributors can enrich
                         the map by adding verified infrastructure projects through
-                        our GitHub repository.
+                        our
+                        <a
+                          href="https://github.com/enums-id/java-infra-map"
+                          class="inline underline"
+                          target="_blank"
+                        >
+                          GitHub repository</a
+                        >.
                       </p>
                       <div class="my-2">
                         <h2 class="font-semibold text-lg my-2 text-foreground">
@@ -140,14 +147,16 @@
                         <div class="flex gap-1 items-center">
                           <a href="https://svelte.dev" target="_blank">
                             <img
-                              src="/svelte-logo-square.svg"
+                              src="/logos/svelte-logo-square.svg"
                               width="35rem"
                               alt=""
                             />
                           </a>
                           <a href="https://www.mapbox.com/" target="_blank">
                             <img
-                              src="/mapbox-logo-white.svg"
+                              src={mode.current == "dark"
+                                ? "/logos/mapbox-logo-white.svg"
+                                : "/logos/mapbox-logo-black.svg"}
                               width="100rem"
                               alt=""
                             />
