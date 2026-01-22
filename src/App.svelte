@@ -115,7 +115,7 @@
                 </HoverCard.Trigger>
                 <HoverCard.Content class="w-80" side="right">
                   <div class="flex justify-between space-x-4">
-                    <p class="text-sm">Add featured projects to the map</p>
+                    <p class="text-sm">Adds featured projects to the map</p>
                   </div>
                 </HoverCard.Content>
               </HoverCard.Root>
