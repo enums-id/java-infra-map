@@ -42,6 +42,7 @@
   import { Button } from "$lib/components/ui/button";
   import News from "./components/News.svelte";
   import EyeClosed from "@lucide/svelte/icons/eye-closed";
+  import { toast } from "svelte-sonner";
 
   onMount(() => {
     populateData()
@@ -214,6 +215,9 @@
                     <Button
                       onclick={() => {
                         switchLayers("Project", { visible: true });
+                        toast("Featured Projects:", {
+                          description: "Added layers to the map",
+                        });
                       }}
                       variant="outline"
                       class="m-1"
@@ -237,6 +241,9 @@
                     <Button
                       onclick={() => {
                         switchLayers("Project", { visible: false });
+                        toast("Featured Projects:", {
+                          description: "Removed layers from the map",
+                        });
                       }}
                       variant="outline"
                       class="m-1"
