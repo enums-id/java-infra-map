@@ -76,7 +76,6 @@ async function bootStrapCheckboxAndTree() {
         checked: visible,
       };
 
-      console.log("Check Change", $state.snapshot(element), visible);
       checkChange(element, { visible });
 
       subFolder.push(element);
@@ -128,8 +127,6 @@ async function bootStrapCheckboxAndTree() {
       }
     }
   }
-
-  console.log("Tree", $state.snapshot(appState.tree));
 }
 
 async function loadImages(map: mapboxgl.Map) {
@@ -290,7 +287,6 @@ function registerLayer(map: mapboxgl.Map) {
 
       appState.map.addLayer(gRecord.layers[i]);
 
-      console.log("Adding gRecord Layer", $state.snapshot(gRecord.layers[i]));
       i++;
     }
     j++;
@@ -345,8 +341,6 @@ export function checkChange(oName: any, option?: { visible: boolean }) {
 
     const map = appState.map;
     if (!map) return;
-
-    console.log("switching checkChange", $state.snapshot(oName.layerTarget));
 
     oName.layerTarget.forEach((layerName: string) => {
       const layersIn = layers
@@ -415,7 +409,6 @@ export function traverseProject(
       elem.layerTarget.length > 0
     ) {
       elem.checked = options ? options.visible : false;
-      console.log("setting", source, options);
       checkChange(elem, { visible: options ? options.visible : false })();
     }
   }
