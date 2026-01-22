@@ -5,15 +5,20 @@
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
   import Eye from "@lucide/svelte/icons/eye";
+  import * as HoverCard from "$lib/components/ui/hover-card/index.js";
+
   import SquareArrowOutUpRight from "@lucide/svelte/icons/square-arrow-out-up-right";
   import Map from "./components/Map.svelte";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import { resetMode, setMode } from "mode-watcher";
+  import LayerPlus from "@lucide/svelte/icons/layers-plus";
   import Search from "@lucide/svelte/icons/scan-search";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   // import AppSidebar from "$lib/components/app-sidebar.svelte";
   import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
   import M from "@lucide/svelte/icons/map";
+  import MapMinus from "@lucide/svelte/icons/map-minus";
+  import MapPlus from "@lucide/svelte/icons/map-plus";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import Sparkles from "@lucide/svelte/icons/sparkles";
@@ -22,7 +27,7 @@
     populateData,
     populateGeojsonData,
   } from "./appState.svelte";
-  import { bootStrap, traverseProject } from "./appMain.svelte";
+  import { bootStrap, switchLayers, traverseProject } from "./appMain.svelte";
   import Panel from "./components/Panel.svelte";
   import Tree from "./components/Tree.svelte";
   import FileExplorer from "./components/FileExplorer.svelte";
@@ -87,6 +92,59 @@
         </Sidebar.Menu>
       </Sidebar.Header>
       <Sidebar.Content>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Quick Actions</Sidebar.GroupLabel>
+          <Sidebar.GroupContent>
+            <div class="flex items-center justify-center">
+              <HoverCard.Root>
+                <HoverCard.Trigger
+                  class="rounded-sm m-1 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+                >
+                  {#snippet child({ props })}
+                    <Button
+                      onclick={() => {
+                        switchLayers("Project", { visible: true });
+                      }}
+                      variant="outline"
+                      class="m-1"
+                      size="icon-sm"
+                      {...props}><MapPlus /></Button
+                    >
+                  {/snippet}
+                </HoverCard.Trigger>
+                <HoverCard.Content class="w-80" side="right">
+                  <div class="flex justify-between space-x-4">
+                    <p class="text-sm">Add featured projects to the map</p>
+                  </div>
+                </HoverCard.Content>
+              </HoverCard.Root>
+
+              <HoverCard.Root>
+                <HoverCard.Trigger
+                  class="rounded-sm m-1 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+                >
+                  {#snippet child({ props })}
+                    <Button
+                      onclick={() => {
+                        switchLayers("Project", { visible: false });
+                      }}
+                      variant="outline"
+                      class="m-1"
+                      size="icon-sm"
+                      {...props}><MapMinus /></Button
+                    >
+                  {/snippet}
+                </HoverCard.Trigger>
+                <HoverCard.Content class="w-80" side="right">
+                  <div class="flex justify-between space-x-4">
+                    <p class="text-sm">Remove featured projects from the map</p>
+                  </div>
+                </HoverCard.Content>
+              </HoverCard.Root>
+            </div>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
+        <Sidebar.Separator />
         <Collapsible.Root open class="group/collapsible" disabled>
           <Sidebar.Group>
             <Sidebar.GroupLabel>
@@ -208,6 +266,8 @@
             </Sidebar.GroupContent>
           </Sidebar.Group>
         </Collapsible.Root>
+
+        <Sidebar.Separator />
 
         {#if appState.featureClicked && appState.featureClicked.properties}
           <Collapsible.Root open class="group/collapsible">
