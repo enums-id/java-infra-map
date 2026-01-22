@@ -2,7 +2,7 @@
 
 1. Paste in the `.geojson` file in `./data` folder. Must be `FeatureCollection<Geometry>`.
 2. edit `catalog.json`. This is to register the `.geojson` data that is just pasted.
-3. Add in the `.geojson` by appending a record to the `catalog.json` array.
+3. Add in the `.geojson` by appending a record to the `catalog.json` array. Match the `"name"` with the `.geojson`'s name
 
 The format of the `catalog` is like the following:
 
@@ -23,7 +23,7 @@ type catalog = {
 };
 ```
 
-An example is like the following:
+An example is like the following, for `./data/kcic.geojson`:
 
 ```json
 [
