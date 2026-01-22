@@ -5,6 +5,7 @@
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
   import Eye from "@lucide/svelte/icons/eye";
+  import EyeScan from "@lucide/svelte/icons/scan-eye";
   import * as HoverCard from "$lib/components/ui/hover-card/index.js";
 
   import SquareArrowOutUpRight from "@lucide/svelte/icons/square-arrow-out-up-right";
@@ -138,6 +139,35 @@
                 <HoverCard.Content class="w-80" side="right">
                   <div class="flex justify-between space-x-4">
                     <p class="text-sm">Remove featured projects from the map</p>
+                  </div>
+                </HoverCard.Content>
+              </HoverCard.Root>
+
+              <HoverCard.Root>
+                <HoverCard.Trigger
+                  class="rounded-sm m-1 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+                >
+                  {#snippet child({ props })}
+                    <Button
+                      onclick={() => {
+                        const map = appState.map;
+                        if (!map) return;
+                        map.flyTo({
+                          bearing: 0,
+                          pitch: 0,
+                          zoom: 7.5,
+                        });
+                      }}
+                      variant="outline"
+                      class="m-1"
+                      size="icon-sm"
+                      {...props}><EyeScan /></Button
+                    >
+                  {/snippet}
+                </HoverCard.Trigger>
+                <HoverCard.Content class="p-2 w-fit" side="right">
+                  <div class="flex justify-between">
+                    <p class="text-sm">Reset Zoom</p>
                   </div>
                 </HoverCard.Content>
               </HoverCard.Root>
