@@ -46,16 +46,10 @@ function initPosition(map: mapboxgl.Map): [number, number, number] {
   return [0, 0, 0];
 }
 
-function bootStrapCheckboxAndTree() {
+async function bootStrapCheckboxAndTree() {
   appState.tree = treeInit;
-  const baseProjects = [
-    "Transport",
-    "Rail",
-    "Port",
-    "Energy",
-    "Telecommunication",
-    "Airport",
-  ];
+  const resp = await fetch("/catalog_projects.json");
+  const baseProjects = await resp.json();
 
   const toAppend: treeType = [
     { displayName: "Featured Infrastructure Projects" },
