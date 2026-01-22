@@ -391,7 +391,7 @@
         "type": "line",
         "paint": {
           "line-color": "#001463",
-          "line-width": 1.4,
+          "line-width": 4,
           "line-opacity": 0.85
         }
       }
