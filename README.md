@@ -12,6 +12,10 @@ As an open-source initiative, Java Infra Map welcomes community contributions. C
 
 https://JavaInfraMap.enums.id
 
+## Gallery
+
+![](demo.png)
+
 # How to Contribute
 
 You can contribute by adding more "Featured Infrastructure Projects" geojson files in `./public/data` and register the geojson in `./public/categories.json`. Furthermore, please read the [instruction](./public/Readme.md).
