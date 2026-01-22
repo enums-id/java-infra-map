@@ -341,6 +341,7 @@ export function switchLayers(
 export function checkChange(oName: any, option?: { visible: boolean }) {
   return () => {
     let visibility: "visible" | "none" = oName.checked ? "visible" : "none";
+    oName.checked = visibility == "visible" || visibility == undefined;
     if (option) {
       if (option.visible) visibility = "visible";
       if (!option.visible) visibility = "none";

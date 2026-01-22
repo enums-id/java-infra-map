@@ -6,7 +6,7 @@ export const treeInit: treeType[] = [
   [
     { displayName: "Base Infrastructure" },
     [
-      { displayName: "Power", checked: true },
+      { displayName: "Power" },
       [
         {
           displayName: "Powerline",
@@ -24,7 +24,7 @@ export const treeInit: treeType[] = [
               displayName,
               layerTarget: [f.id],
               checked:
-                localStorage.getItem(`checkbox-${displayName}`) !== "false",
+                localStorage.getItem(`checkbox-${displayName}`) == "true",
               category: "Power",
             };
           }),
@@ -45,7 +45,7 @@ export const treeInit: treeType[] = [
               displayName: displayName,
               layerTarget: [f.id],
               checked:
-                localStorage.getItem(`checkbox-${displayName}`) !== "false",
+                localStorage.getItem(`checkbox-${displayName}`) == "true",
               category: "Power",
             };
           }),
@@ -55,7 +55,7 @@ export const treeInit: treeType[] = [
         {
           displayName: "generator",
           layerTarget: ["generator"],
-          checked: localStorage.getItem(`checkbox-generator`) !== "false",
+          checked: localStorage.getItem(`checkbox-generator`) == "true",
           category: "Power",
         },
       ],
@@ -65,7 +65,7 @@ export const treeInit: treeType[] = [
       {
         displayName: "industry",
         layerTarget: ["industry"],
-        checked: localStorage.getItem(`checkbox-industry`) !== "false",
+        checked: localStorage.getItem(`checkbox-industry`) == "true",
         category: "Land Use",
       },
     ],
@@ -80,7 +80,7 @@ export const treeInit: treeType[] = [
           return {
             displayName: f.id,
             layerTarget: [f.id],
-            checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+            checked: localStorage.getItem(`checkbox-${f.id}`) == "true",
             category: "Port",
           };
         }),
@@ -108,7 +108,7 @@ export const treeInit: treeType[] = [
           return {
             displayName: f.id,
             layerTarget: [f.id],
-            checked: localStorage.getItem(`checkbox-${f.id}`) !== "false",
+            checked: localStorage.getItem(`checkbox-${f.id}`) == "true",
             category: "Airport",
           };
         }),
@@ -118,14 +118,14 @@ export const treeInit: treeType[] = [
       {
         displayName: "Railway",
         layerTarget: [`rails`],
-        checked: localStorage.getItem(`checkbox-Railway`) !== "false",
+        checked: localStorage.getItem(`checkbox-Railway`) == "true",
         checkbox: null,
         category: "Train",
       },
       {
         displayName: "Stations",
         layerTarget: [`stations`],
-        checked: localStorage.getItem(`checkbox-Stations`) !== "false",
+        checked: localStorage.getItem(`checkbox-Stations`) == "true",
         checkbox: null,
         category: "Train",
       },
