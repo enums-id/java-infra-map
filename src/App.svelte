@@ -165,6 +165,7 @@
                                 class="mx-1"
                                 variant="outline"
                                 href={appState.activeUrl}
+                                target="_blank"
                               >
                                 <SquareArrowOutUpRight />
                               </Button>
