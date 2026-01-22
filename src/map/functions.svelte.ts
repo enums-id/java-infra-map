@@ -109,7 +109,6 @@ const mapActions: {
         const idInLayer = p.layers.map((p) => p.id);
         return feature.layer && idInLayer.includes(feature.layer.id);
       });
-      console.log("oName", $state.snapshot(oName));
       if (oName) layerButtonClick(oName)();
     }
   },
