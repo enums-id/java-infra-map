@@ -67,6 +67,7 @@
     <Sidebar.MenuItem>
       <Collapsible.Root
         class="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+        open={oName.displayName == "Featured Infrastructure Projects"}
       >
         <Collapsible.Trigger>
           {#snippet child({ props })}
