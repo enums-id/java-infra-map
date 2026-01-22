@@ -310,7 +310,7 @@
     "url": "https://id.wikipedia.org/wiki/Commuter_Line_Yogyakarta",
     "displayName": "KRL Jogja-Solo",
     "description": "KRL Commuter Line Yogyakarta-Solo is an electric commuter rail service connecting Yogyakarta and Surakarta (Solo), providing a fast, affordable, and reliable mode of transportation between the two cities. Officially launched in 2021, the service replaced the former diesel rail operations along the corridor.",
-    "category": "Transport",
+    "category": "Rail",
     "prompt": ["Commuterline Yogyakarta", "Jogja KRL"],
     "layers": [
       {
@@ -358,6 +358,23 @@
           "circle-color": "#ffffff",
           "circle-stroke-color": "#d32f2f",
           "circle-stroke-width": 2
+        }
+      }
+    ]
+  },
+  {
+    "name": "patimban.geojson",
+    "url": "https://interport.co.id/ports/patimban/",
+    "displayName": "Patimban Port",
+    "description": "Patimban Port is a strategic international seaport located in Subang Regency, West Java, developed to strengthen Indonesia’s maritime logistics and reduce congestion at ports in the Greater Jakarta area. Officially inaugurated in 2020, the port is a key component of Indonesia's national infrastructure and maritime connectivity strategy.",
+    "category": "Port",
+    "prompt": ["Patimban Port", "Pelabuhan Patimban"],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": "#8c00ab",
+          "fill-opacity": 0.65
         }
       }
     ]
