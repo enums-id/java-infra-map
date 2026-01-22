@@ -94,8 +94,21 @@
       </Sidebar.Header>
       <Sidebar.Content>
         <Sidebar.Group>
+          <Sidebar.GroupLabel>About</Sidebar.GroupLabel>
+          <Sidebar.GroupContent>
+            <p class="text-xs text-muted-foreground px-2">
+              Java Infra Map is an open-source webmap of Java Island's
+              infrastructure.
+            </p>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
+        <Sidebar.Separator />
+        <Sidebar.Group>
           <Sidebar.GroupLabel>Quick Actions</Sidebar.GroupLabel>
           <Sidebar.GroupContent>
+            <p class="text-xs text-muted-foreground px-2">
+              Click the buttons below to do some actions on the map.
+            </p>
             <div class="flex items-center justify-center">
               <HoverCard.Root>
                 <HoverCard.Trigger
