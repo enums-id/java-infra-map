@@ -376,6 +376,43 @@
           "fill-color": "#8c00ab",
           "fill-opacity": 0.65
         }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#5b73cd"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "ferry-2",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
       }
     ]
   },
