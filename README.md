@@ -15,3 +15,9 @@ https://JavaInfraMap.enums.id
 # How to Contribute
 
 You can contribute by adding more "Featured Infrastructure Projects" geojson files in `./public/data` and register the geojson in `./public/categories.json`. Furthermore, please read the [instruction](./public/Readme.md).
+
+## Example of Contributing
+
+1. Prepare the `.geojson` file e.g. `file.geojson`.
+2. Copy the geojson file. `cp path_to_geojson/file.geojson ./public/data/`. `file.geojson` is now available.
+3. Register the `file.geojson` by editing `./public/catalog.json`; add a record there per example.
