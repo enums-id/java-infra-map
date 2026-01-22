@@ -35,7 +35,7 @@ function initPosition(map: mapboxgl.Map): [number, number, number] {
 
   const all = [x, y, zoom].every((f) => Number.isFinite(f));
 
-  if (all) {
+  if (all && x > 0 && y > 0 && zoom > 5) {
     map.flyTo({
       center: [x, y],
       zoom,
@@ -67,8 +67,7 @@ function bootStrapCheckboxAndTree() {
       const { name, displayName, description, category, layers } = gRecord;
       if (category !== folderName) continue;
 
-      const visible =
-        localStorage.getItem(`checkbox-${displayName}`) !== "false";
+      const visible = localStorage.getItem(`checkbox-${displayName}`) == "true";
       let layerTarget = [];
       let i = 0;
       for (const layer of layers) {
@@ -116,7 +115,7 @@ function bootStrapCheckboxAndTree() {
         const { displayName, layerTarget, checked } = elem;
 
         const display =
-          localStorage.getItem(`checkbox-${displayName}`) !== "false";
+          localStorage.getItem(`checkbox-${displayName}`) == "true";
         if (Array.isArray(layerTarget) && layerTarget.length > 0) {
           for (const layer of layerTarget) {
             const layersIn = layers
@@ -270,7 +269,7 @@ function registerLayer(map: mapboxgl.Map) {
   let j = 0;
   for (const gRecord of appState.geojsonList) {
     const visible =
-      localStorage.getItem(`checkbox-${gRecord.displayName}`) !== "false";
+      localStorage.getItem(`checkbox-${gRecord.displayName}`) == "true";
     let i = 0;
 
     appState.geojsonList[j]["source"] = appState.geojsonList[j]["name"];
