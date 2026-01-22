@@ -44,14 +44,14 @@
               {elem}</DropdownMenu.Item
             >
           {/each}
-
+          <DropdownMenu.Separator />
           <DropdownMenu.Item
             onSelect={() => {
               const e = "Project";
               switchLayers(e, { visible: false });
             }}
           >
-            Projects</DropdownMenu.Item
+            Featured Infrastructure Projects</DropdownMenu.Item
           >
         </DropdownMenu.Group>
       </DropdownMenu.Content>
@@ -91,13 +91,15 @@
             >
           {/each}
 
+          <DropdownMenu.Separator />
+
           <DropdownMenu.Item
             onSelect={() => {
               const e = "Project";
               switchLayers(e, { visible: true });
             }}
           >
-            Projects</DropdownMenu.Item
+            Featured Infrastructure Projects</DropdownMenu.Item
           >
         </DropdownMenu.Group>
       </DropdownMenu.Content>
