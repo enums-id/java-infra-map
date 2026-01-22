@@ -242,5 +242,61 @@
         }
       }
     ]
+  },
+  {
+    "name": "transjogja.geojson",
+    "displayName": "Transjogja",
+    "description": "TransJogja is a bus rapid transit-style public transportation system serving Yogyakarta City and its surrounding areas. Launched in 2008, TransJogja was introduced to provide an affordable, organized, and safer alternative to private vehicles, while supporting Yogyakarta's role as a major education and tourism hub.",
+    "category": "Transport",
+    "prompt": ["Transjogja", "Jogja BRT"],
+    "layers": [
+      {
+        "type": "line",
+        "filter": [
+          "in",
+          ["geometry-type"],
+          ["literal", ["LineString", "MultiLineString"]]
+        ],
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": "#d32f2f",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10,
+            3,
+            14,
+            6,
+            18,
+            10
+          ]
+        }
+      },
+      {
+        "type": "circle",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "minzoom": 10,
+        "paint": {
+          "circle-radius": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10,
+            4,
+            14,
+            7,
+            18,
+            11
+          ],
+          "circle-color": "#ffffff",
+          "circle-stroke-color": "#d32f2f",
+          "circle-stroke-width": 2
+        }
+      }
+    ]
   }
 ]
