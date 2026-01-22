@@ -12,6 +12,7 @@ import { layers } from "./map/layers";
 export const appState: {
   checkboxes: Record<string, HTMLElement | null>;
   displayCheckbox: boolean;
+  activeUrl: string | null;
   geojsonList: gDataRecord[];
   geojsonData: Record<string, FeatureCollection>;
   mapdiv: HTMLDivElement;
@@ -44,6 +45,7 @@ export const appState: {
   bboxLive: null | BBox;
   activeClick: any | null;
 } = $state({
+  activeUrl: null,
   activeClick: null,
   bboxLive: null,
   drawerOpen: false,
@@ -127,6 +129,7 @@ export type gDataRecord = {
   layers: AnyLayer[];
   category: string;
   source?: string;
+  url?: string;
   displayName: string;
   description: string;
   prompt: string[];

@@ -381,6 +381,7 @@ export function layerButtonClick(oName: any) {
       appState.activeNews = oName.source;
       appState.activeClick = oName;
       appState.drawerOpen = true;
+      appState.activeUrl = oName.url;
       const data = appState.geojsonData[oName.source];
       if (!data) return;
       const bbox = turf.bbox(data);

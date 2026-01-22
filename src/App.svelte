@@ -5,7 +5,7 @@
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   import { ModeWatcher } from "mode-watcher";
   import Eye from "@lucide/svelte/icons/eye";
-  import EyesClosed from "@lucide/svelte/icons/eye-closed";
+  import SquareArrowOutUpRight from "@lucide/svelte/icons/square-arrow-out-up-right";
   import Map from "./components/Map.svelte";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
   import { resetMode, setMode } from "mode-watcher";
@@ -159,6 +159,16 @@
                             >
                               <EyeClosed />
                             </Button>
+
+                            {#if appState.activeUrl}
+                              <Button
+                                class="mx-1"
+                                variant="outline"
+                                href={appState.activeUrl}
+                              >
+                                <SquareArrowOutUpRight />
+                              </Button>
+                            {/if}
                           </div>
                           {#if appState.activeClick}
                             <div class="text-center my-2 text-sm border-b p-2">

@@ -1,6 +1,7 @@
 [
   {
     "name": "kcic.geojson",
+    "url": "",
     "displayName": "High Speed Rail Jakarta-Bandung",
     "description": "KCIC (Kereta Cepat Indonesia China) is the company responsible for developing and operating Indonesia's first high-speed railway, connecting Jakarta and Bandung. Established as a joint venture between Indonesian and Chinese state-owned enterprises, KCIC represents a major milestone in Indonesia's modern transportation infrastructure.",
     "category": "Rail",
@@ -25,6 +26,7 @@
 
   {
     "name": "bijb_kertajati.geojson",
+    "url": "",
     "displayName": "Kertajati International Airport",
     "description": "BIJB Kertajati International Airport is a major international airport located in Majalengka, West Java, developed to support aviation demand in the Greater Bandung and Cirebon regions. Officially opened in 2018, the airport was designed as a future aviation hub to complement and eventually relieve congestion at airports in the western part of Java.",
     "category": "Airport",
@@ -60,6 +62,7 @@
   },
   {
     "name": "bandung_lrt.geojson",
+    "url": "",
     "displayName": "Bandung LRT System",
     "description": "Bandung LRT (Light Rail Transit) is a planned urban rail transportation system intended to improve mobility in Bandung, West Java, one of Indonesia's most densely populated and traffic-congested cities. The project is part of a broader effort to modernize public transport and reduce reliance on private vehicles.",
     "category": "Rail",
@@ -133,6 +136,7 @@
   },
   {
     "name": "tj.geojson",
+    "url": "",
     "displayName": "Transjakarta",
     "description": "TransJakarta Bus Rapid Transit (BRT) is Indonesia's first and largest bus rapid transit system, serving the Greater Jakarta metropolitan area. Launched in 2004, TransJakarta was designed to tackle Jakarta's chronic traffic congestion by providing a fast, affordable, and reliable mass transportation option.",
     "category": "Transport",
@@ -189,6 +193,7 @@
   },
   {
     "name": "mrt.geojson",
+    "url": "",
     "displayName": "MRT Jakarta",
     "description": "MRT Jakarta is Indonesia's first modern metro system, developed to provide a fast, reliable, and high-capacity public transport solution for the capital city. Officially inaugurated in 2019, the system marks a major milestone in Jakarta's efforts to reduce traffic congestion and improve urban mobility.",
     "category": "Rail",
@@ -245,6 +250,7 @@
   },
   {
     "name": "transjogja.geojson",
+    "url": "",
     "displayName": "Transjogja",
     "description": "TransJogja is a bus rapid transit-style public transportation system serving Yogyakarta City and its surrounding areas. Launched in 2008, TransJogja was introduced to provide an affordable, organized, and safer alternative to private vehicles, while supporting Yogyakarta's role as a major education and tourism hub.",
     "category": "Transport",
