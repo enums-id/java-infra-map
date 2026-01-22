@@ -226,7 +226,9 @@ function registerBaseMap(map: mapboxgl.Map) {
     map.addSource(key, value);
   }
 
-  for (const layer of layers) {
+  for (const layer of layers.filter(
+    (f) => !["symbol", "circle"].includes(f.type),
+  )) {
     map.addLayer(layer);
     appState.mapLayers.push(layer);
   }
@@ -290,6 +292,13 @@ function registerLayer(map: mapboxgl.Map) {
       i++;
     }
     j++;
+  }
+
+  for (const layer of layers.filter((f) =>
+    ["symbol", "circle"].includes(f.type),
+  )) {
+    map.addLayer(layer);
+    appState.mapLayers.push(layer);
   }
 
   appState.ready.layersRegistered = true;
