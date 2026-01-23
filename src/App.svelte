@@ -350,13 +350,16 @@
 <Toaster />
 <Drawer.Root direction="left" bind:open={appState.drawerOpen}>
   <Drawer.Content class="overflow-auto">
-    <Drawer.Header>
+    <Drawer.Header data-vaul-no-drag>
       <Drawer.Title class="top-0 sticky bg-background p-4 text-center text-xl">
         {appState.activeClick.displayName}
       </Drawer.Title>
 
-      <Drawer.Description class="">
-        <div class="my-1 flex justify-center gap-2 w-full mb-2 border-b p-2">
+      <Drawer.Description class="" data-vaul-no-drag>
+        <div
+          class="my-1 flex justify-center gap-2 w-full mb-2 border-b p-2"
+          data-vaul-no-drag
+        >
           <Button
             class="mx-1"
             variant="outline"
@@ -409,12 +412,12 @@
           {/if}
         </div>
         {#if appState.activeClick}
-          <div class="text-center my-2 text-sm border-b p-2">
+          <div class="text-center my-2 text-sm border-b p-2" data-vaul-no-drag>
             <p class="text-start">
               {appState.activeClick.description}
             </p>
           </div>
-          <div>
+          <div data-vaul-no-drag>
             <h3 class="text-center p-4 text-lg text-foreground">
               Latest News <Sparkles
                 class="inline text-center mx-1"
@@ -427,7 +430,7 @@
         {#if appState.activeNews}
           {@const liveNews = appState.news[appState.activeNews]}
           {#each liveNews as aNews}
-            <div class="mb-1">
+            <div class="mb-1" data-vaul-no-drag>
               <News {...aNews} />
             </div>
           {/each}
