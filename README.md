@@ -1,8 +1,11 @@
 # Jabar Inframap
 
-[![Run checks](https://github.com/enums-id/java-infra-map/actions/workflows/check.yaml/badge.svg)](https://github.com/enums-id/java-infra-map/actions/workflows/check.yaml)
+[![Checks](https://img.shields.io/github/actions/workflow/status/enums-id/java-infra-map/check.yaml?label=checks)](https://github.com/enums-id/java-infra-map/actions/workflows/check.yaml)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/enums-id/java-infra-map/deploy.yaml?label=deploy)](https://github.com/enums-id/java-infra-map/actions/workflows/deploy.yaml)
+[![License](https://img.shields.io/github/license/enums-id/java-infra-map)](LICENSE)
 
-[![Deploy static site to GCS](https://github.com/enums-id/java-infra-map/actions/workflows/deploy.yaml/badge.svg)](https://github.com/enums-id/java-infra-map/actions/workflows/deploy.yaml)
+[![Powered by Mapbox](https://img.shields.io/badge/Powered%20by-Mapbox-black?logo=mapbox)](https://www.mapbox.com)
+[![Powered by Svelte](https://img.shields.io/badge/Powered%20by-Svelte-orange?logo=svelte)](https://svelte.dev)
 
 ---
 
@@ -12,7 +15,7 @@ Each featured project is enriched with the latest five relevant news updates, au
 
 As an open-source initiative, Java Infra Map welcomes community contributions. Contributors can help expand the map by adding new featured infrastructure projects and improving existing data.
 
-https://JavaInfraMap.enums.id
+**Project website:** https://javainframap.enums.id
 
 ## Gallery
 
