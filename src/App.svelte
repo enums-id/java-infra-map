@@ -351,7 +351,10 @@
 <Drawer.Root direction="left" bind:open={appState.drawerOpen}>
   <Drawer.Content class="overflow-auto">
     <Drawer.Header data-vaul-no-drag>
-      <Drawer.Title class="top-0 sticky bg-background p-4 text-center text-xl">
+      <Drawer.Title
+        class="top-0 sticky bg-background p-4 text-center text-xl"
+        data-vaul-no-drag
+      >
         {appState.activeClick.displayName}
       </Drawer.Title>
 
@@ -413,7 +416,7 @@
         </div>
         {#if appState.activeClick}
           <div class="text-center my-2 text-sm border-b p-2" data-vaul-no-drag>
-            <p class="text-start">
+            <p class="text-start" data-vaul-no-drag>
               {appState.activeClick.description}
             </p>
           </div>
@@ -430,9 +433,7 @@
         {#if appState.activeNews}
           {@const liveNews = appState.news[appState.activeNews]}
           {#each liveNews as aNews}
-            <div class="mb-1" data-vaul-no-drag>
-              <News {...aNews} />
-            </div>
+            <News {...aNews} />
           {/each}
         {/if}
       </Drawer.Description>

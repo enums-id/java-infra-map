@@ -28,11 +28,14 @@
 
 <article
   data-vaul-no-drag
-  class="flex flex-col gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow-sm transition hover:shadow-md"
+  class="flex flex-col gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow-sm transition hover:shadow-md my-2"
 >
   <!-- Header -->
-  <header class="flex flex-col gap-1">
-    <h3 class="line-clamp-2 text-lg font-semibold leading-tight">
+  <header class="flex flex-col gap-1" data-vaul-no-drag>
+    <h3
+      class="line-clamp-2 text-lg font-semibold leading-tight"
+      data-vaul-no-drag
+    >
       {newsTitle}
     </h3>
 
@@ -42,12 +45,12 @@
   </header>
 
   <!-- Summary -->
-  <p class=" text-sm text-muted-foreground overflow-auto">
+  <p class=" text-sm text-muted-foreground overflow-auto" data-vaul-no-drag>
     {summary}
   </p>
 
   <!-- Footer -->
-  <footer class="mt-auto pt-2">
+  <footer class="mt-auto pt-2" data-vaul-no-drag>
     <a
       href={link}
       target="_blank"
