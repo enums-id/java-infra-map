@@ -27,6 +27,7 @@
 </script>
 
 <article
+  data-vaul-no-drag
   class="flex flex-col gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow-sm transition hover:shadow-md"
 >
   <!-- Header -->
