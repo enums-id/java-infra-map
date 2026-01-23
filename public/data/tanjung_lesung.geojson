@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tanjung Lesung Tourism Special Economic Zone"
+      },
+      "geometry": {
+        "coordinates": [105.6567710387726, -6.484353092556972],
+        "type": "Point"
+      }
+    }
+  ]
+}

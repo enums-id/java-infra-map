@@ -519,5 +519,53 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "tanjung_lesung.geojson",
+    "url": "https://www.tanjunglesung.com/en/invest-in-tl-2/",
+    "displayName": "Tanjung Lesung",
+    "description": "Tanjung Lesung Special Economic Zone is a government-designated, tourism-focused investment zone in Pandeglang Regency, Banten Province, offering a compelling opportunity for investors seeking long-term growth in Indonesia’s hospitality and leisure sector. Strategically positioned on the western tip of Java with direct access to beaches, marine attractions and nearby national parks, the SEZ provides fiscal and non-fiscal incentives, streamlined licensing and dedicated infrastructure to support resort, hotel, entertainment and supporting commercial developments.",
+    "category": "Other",
+    "prompt": ["Tanjung Lesung", "Tanjung Lesung SEZ"],
+    "layers": [
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#5b73cd"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "beach-2",
+          "icon-size": 0.75,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]
