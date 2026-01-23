@@ -4,7 +4,41 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>inframap</title>
+    <title>Java Infra Map</title>
+
+    <meta name="title" content="Java Infra Map" />
+    <meta
+      name="description"
+      content="Open-source web map visualising infrastructure development across Java Island, featuring curated projects enriched with AI-summarised news updates."
+    />
+
+    <meta property="og:url" content="https://javainframap.enums.id" />
+    <meta
+      property="og:description"
+      content="Open-source web map visualising infrastructure development across Java Island, featuring curated projects enriched with AI-summarised news updates."
+    />
+
+    <!-- index.html -->
+    <!-- Google Analytics (production only) -->
+    <script type="module">
+      if (import.meta.env.PROD && import.meta.env.VITE_GA_ID) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src =
+          "https://www.googletagmanager.com/gtag/js?id=" +
+          import.meta.env.VITE_GA_ID;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+
+        gtag("js", new Date());
+        gtag("config", import.meta.env.VITE_GA_ID);
+      }
+    </script>
   </head>
   <body class="">
     <div id="app" class=""></div>
