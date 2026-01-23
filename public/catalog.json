@@ -622,5 +622,60 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "subang_smartpolitan.geojson",
+    "url": "https://suryacipta.com/id/subang/",
+    "displayName": "Subang Smartpolitan",
+    "description": "Subang Smartpolitan is a large-scale, integrated industrial and township development in the Rebana region that offers investors a modern base for advanced manufacturing, logistics and technology-driven industries. Strategically located with strong connectivity to Patimban Port, Kertajati International Airport and the Trans-Java toll road network, it enables efficient supply chains and export-oriented operations. The estate is designed around smart and sustainable infrastructure, including digital connectivity and integrated utilities, making it attractive for long-term, ESG-aligned industrial investment.",
+    "category": "Other",
+    "prompt": ["Subang Smartpolitan", "Subang Industrial Estate"],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": "#8c00ab",
+          "fill-opacity": 0.45
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#78003c"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "industry-3",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]
