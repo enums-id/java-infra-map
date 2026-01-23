@@ -2,6 +2,8 @@
 
 [![Run checks](https://github.com/enums-id/java-infra-map/actions/workflows/check.yaml/badge.svg)](https://github.com/enums-id/java-infra-map/actions/workflows/check.yaml)
 
+[![Deploy static site to GCS](https://github.com/enums-id/java-infra-map/actions/workflows/deploy.yaml/badge.svg)](https://github.com/enums-id/java-infra-map/actions/workflows/deploy.yaml)
+
 ---
 
 Java Infra Map is an open-source web map that visualises infrastructure development across Java Island. It provides essential base infrastructure layers alongside curated layers of featured infrastructure projects.
