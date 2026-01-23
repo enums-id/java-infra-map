@@ -567,5 +567,60 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "tanjung_emas.geojson",
+    "url": "https://www.pelindo.co.id/port/pelabuhan-tanjung-emas",
+    "displayName": "Tanjung Emas Port",
+    "description": "Tanjung Emas Port is the principal seaport of Central Java, located in Semarang, and serves as a vital gateway for regional and international trade. Operated by Pelindo, the port handles containerised cargo, bulk goods and general cargo, supporting key industries across Central Java and neighbouring provinces. Ongoing development focuses on capacity expansion, port modernisation and flood mitigation measures to address tidal flooding, improving operational reliability and long-term resilience.",
+    "category": "Port",
+    "prompt": ["Tanjung Emas Port", "Pelabuhan Tanjung Emas"],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": "#8c00ab",
+          "fill-opacity": 0.65
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#5b73cd"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "ferry-2",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]
