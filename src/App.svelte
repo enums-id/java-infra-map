@@ -218,111 +218,6 @@
               <Sidebar.Menu>
                 <div class="m-2">
                   <Tree items={appState.tree} />
-                  <Drawer.Root direction="left" bind:open={appState.drawerOpen}>
-                    <Drawer.Content class="overflow-auto">
-                      <Drawer.Header>
-                        <Drawer.Title
-                          class="top-0 sticky bg-background p-4 text-center text-xl"
-                        >
-                          {appState.activeClick.displayName}
-                        </Drawer.Title>
-
-                        <Drawer.Description class="">
-                          <div
-                            class="my-1 flex justify-center gap-2 w-full mb-2 border-b p-2"
-                          >
-                            <Button
-                              class="mx-1"
-                              variant="outline"
-                              onclick={() => {
-                                if (!appState.map || !appState.bboxLive) return;
-                                const [a, b, c, d] = appState.bboxLive;
-                                const bbox = new mapboxgl.LngLatBounds([
-                                  a,
-                                  b,
-                                  c,
-                                  d,
-                                ]);
-
-                                appState.map.fitBounds(bbox, {
-                                  padding: 10,
-                                });
-                              }}
-                            >
-                              <Search />
-                            </Button>
-
-                            <Button
-                              class="mx-1"
-                              variant="outline"
-                              onclick={() => {
-                                traverseProject(
-                                  appState.tree,
-                                  appState.activeClick.source,
-                                  { visible: true },
-                                );
-                              }}
-                            >
-                              <Eye />
-                            </Button>
-
-                            <Button
-                              class="mx-1"
-                              variant="outline"
-                              onclick={() => {
-                                traverseProject(
-                                  appState.tree,
-                                  appState.activeClick.source,
-                                  { visible: false },
-                                );
-                              }}
-                            >
-                              <EyeClosed />
-                            </Button>
-
-                            {#if appState.activeUrl}
-                              <Button
-                                class="mx-1"
-                                variant="outline"
-                                href={appState.activeUrl}
-                                target="_blank"
-                              >
-                                <SquareArrowOutUpRight />
-                              </Button>
-                            {/if}
-                          </div>
-                          {#if appState.activeClick}
-                            <div class="text-center my-2 text-sm border-b p-2">
-                              <p class="text-start">
-                                {appState.activeClick.description}
-                              </p>
-                            </div>
-                            <div>
-                              <h3
-                                class="text-center p-4 text-lg text-foreground"
-                              >
-                                Latest News <Sparkles
-                                  class="inline text-center mx-1"
-                                  size="1.2em"
-                                />
-                              </h3>
-                            </div>
-                          {/if}
-
-                          {#if appState.activeNews}
-                            {@const liveNews =
-                              appState.news[appState.activeNews]}
-                            {#each liveNews as aNews}
-                              <div class="mb-1">
-                                <News {...aNews} />
-                              </div>
-                            {/each}
-                          {/if}
-                        </Drawer.Description>
-                      </Drawer.Header>
-                      <Drawer.Footer></Drawer.Footer>
-                    </Drawer.Content>
-                  </Drawer.Root>
                 </div>
               </Sidebar.Menu>
             </Sidebar.GroupContent>
@@ -453,3 +348,92 @@
   </Sidebar.Provider>
 </div>
 <Toaster />
+<Drawer.Root direction="left" bind:open={appState.drawerOpen}>
+  <Drawer.Content class="overflow-auto">
+    <Drawer.Header>
+      <Drawer.Title class="top-0 sticky bg-background p-4 text-center text-xl">
+        {appState.activeClick.displayName}
+      </Drawer.Title>
+
+      <Drawer.Description class="">
+        <div class="my-1 flex justify-center gap-2 w-full mb-2 border-b p-2">
+          <Button
+            class="mx-1"
+            variant="outline"
+            onclick={() => {
+              if (!appState.map || !appState.bboxLive) return;
+              const [a, b, c, d] = appState.bboxLive;
+              const bbox = new mapboxgl.LngLatBounds([a, b, c, d]);
+
+              appState.map.fitBounds(bbox, {
+                padding: 10,
+              });
+            }}
+          >
+            <Search />
+          </Button>
+
+          <Button
+            class="mx-1"
+            variant="outline"
+            onclick={() => {
+              traverseProject(appState.tree, appState.activeClick.source, {
+                visible: true,
+              });
+            }}
+          >
+            <Eye />
+          </Button>
+
+          <Button
+            class="mx-1"
+            variant="outline"
+            onclick={() => {
+              traverseProject(appState.tree, appState.activeClick.source, {
+                visible: false,
+              });
+            }}
+          >
+            <EyeClosed />
+          </Button>
+
+          {#if appState.activeUrl}
+            <Button
+              class="mx-1"
+              variant="outline"
+              href={appState.activeUrl}
+              target="_blank"
+            >
+              <SquareArrowOutUpRight />
+            </Button>
+          {/if}
+        </div>
+        {#if appState.activeClick}
+          <div class="text-center my-2 text-sm border-b p-2">
+            <p class="text-start">
+              {appState.activeClick.description}
+            </p>
+          </div>
+          <div>
+            <h3 class="text-center p-4 text-lg text-foreground">
+              Latest News <Sparkles
+                class="inline text-center mx-1"
+                size="1.2em"
+              />
+            </h3>
+          </div>
+        {/if}
+
+        {#if appState.activeNews}
+          {@const liveNews = appState.news[appState.activeNews]}
+          {#each liveNews as aNews}
+            <div class="mb-1">
+              <News {...aNews} />
+            </div>
+          {/each}
+        {/if}
+      </Drawer.Description>
+    </Drawer.Header>
+    <Drawer.Footer></Drawer.Footer>
+  </Drawer.Content>
+</Drawer.Root>
