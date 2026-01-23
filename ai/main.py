@@ -72,7 +72,7 @@ def projectName(name: str, projectNames: str,client: OpenAI):
                     "newsTitle is the news title. Translate the title into English."
                     "summary is the summary of the article in one sentence in English"
                     "The link must be the URL to the corresponding news which starts with https://"
-                    "datePublished is the article's published date, must be unix timestamp. Read the news article, determine the published date, obtain the published date from the news article. IT MUST BE IN 2025 OR 2026."
+                    "datePublished is the article's published date in 2025 or 2026, must be unix timestamp. Read the news article, determine the published date, obtain the published date from the news article. IT MUST BE IN 2025 OR 2026."
                     "remember, the result must be in JSON as it will be saved as a json file."
                     "Do not add notes or anything, just return the JSON value! I cannot accept output other than the specified JSON schema"
                 )
