@@ -471,5 +471,53 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "ciwandan.geojson",
+    "url": "https://www.pelindo.co.id/port/pelabuhan-banten",
+    "displayName": "Ciwandan Port",
+    "description": "Ciwandan Port is a strategic public seaport located in Cilegon, Banten Province, and serves as an important logistics and transportation hub on the Sunda Strait. Operated by Pelindo, the port plays a key role in supporting regional and inter-island trade by handling general cargo, bulk commodities and vehicle crossings, while also helping to ease congestion at the nearby Merak Port, particularly during peak periods. Its proximity to major industrial areas in Banten and West Java, together with direct access to the Jakarta–Merak toll road network, makes Ciwandan Port vital for industrial supply chains, maritime connectivity between Java and Sumatra, and overall economic activity in the western part of Java.",
+    "category": "Port",
+    "prompt": ["Ciwandan Port", "Pelabuhan Ciwandan"],
+    "layers": [
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#5b73cd"
+        },
+        "layout": {
+          "icon-image": "sq",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "ferry-2",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]

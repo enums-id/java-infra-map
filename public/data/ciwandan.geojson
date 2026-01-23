@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ciwandan Port"
+      },
+      "geometry": {
+        "coordinates": [105.93416868484212, -6.029041934142882],
+        "type": "Point"
+      }
+    }
+  ]
+}
