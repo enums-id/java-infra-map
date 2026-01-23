@@ -63,6 +63,7 @@
     if (mapWidth && appState.map) appState.map.resize();
   });
 
+  let dialogOpen = $state(true);
   const name = "name";
 </script>
 
@@ -102,100 +103,12 @@
           <Sidebar.GroupContent>
             <p class="text-xs text-muted-foreground px-2">
               Java Infra Map is an open-source webmap of Java Island's
-              infrastructure.
-              <Dialog.Root open={true}>
-                <Dialog.Trigger>
-                  <span
-                    class="underline underline-offset-4 text-xs text-muted-foreground hover:text-foreground transition cursor-pointer"
-                  >
-                    Furthermore
-                  </span>
-                </Dialog.Trigger>
-
-                <Dialog.Content
-                  class="max-w-lg rounded-2xl bg-background/95 backdrop-blur shadow-xl"
-                >
-                  <Dialog.Header class="space-y-3">
-                    <Dialog.Title class="text-xl font-semibold tracking-tight">
-                      About Java Infra Map
-                    </Dialog.Title>
-
-                    <Dialog.Description
-                      class="text-sm leading-relaxed text-muted-foreground"
-                    >
-                      <p>
-                        Java Infra Map is an open-source web map that visualises
-                        key infrastructure across Java Island, Indonesia. It
-                        provides investors, researchers, and planners with a
-                        clear spatial overview of transportation, energy,
-                        industrial, and strategic development projects.
-                        <br /><br />
-                        The platform is community-driven. Contributors can enrich
-                        the map by adding verified infrastructure projects through
-                        our
-                        <a
-                          href="https://github.com/enums-id/java-infra-map"
-                          class="inline underline"
-                          target="_blank"
-                        >
-                          GitHub repository</a
-                        >.
-                      </p>
-                      <div class="my-2">
-                        <h2 class="font-semibold text-lg my-2 text-foreground">
-                          Powered By
-                        </h2>
-                        <div class="flex gap-1 items-center">
-                          <a href="https://svelte.dev" target="_blank">
-                            <img
-                              src="/logos/svelte-logo-square.svg"
-                              width="35rem"
-                              alt=""
-                            />
-                          </a>
-                          <a href="https://www.mapbox.com/" target="_blank">
-                            <img
-                              src={mode.current == "dark"
-                                ? "/logos/mapbox-logo-white.svg"
-                                : "/logos/mapbox-logo-black.svg"}
-                              width="100rem"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                      </div>
-
-                      <div class="mt-4 flex gap-2">
-                        <!-- GitHub -->
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          href="https://github.com/enums-id/java-infra-map"
-                          target="_blank"
-                          aria-label="GitHub Repository"
-                        >
-                          <img
-                            src="https://cdn.simpleicons.org/github/94a3b8"
-                            alt="GitHub"
-                            class="h-4 w-4"
-                          />
-                        </Button>
-
-                        <!-- Website / LinkedIn -->
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          href="https://enums.id"
-                          target="_blank"
-                          aria-label="Enums.id"
-                        >
-                          <ExternalLink />
-                        </Button>
-                      </div>
-                    </Dialog.Description>
-                  </Dialog.Header>
-                </Dialog.Content>
-              </Dialog.Root>
+              infrastructure. <button
+                class="text-xs underline"
+                onclick={() => {
+                  dialogOpen = true;
+                }}>Furthermore</button
+              >.
             </p>
           </Sidebar.GroupContent>
         </Sidebar.Group>
@@ -451,3 +364,80 @@
   </Sidebar.Provider>
 </div>
 <Toaster />
+
+<Dialog.Root bind:open={dialogOpen}>
+  <Dialog.Content
+    class="max-w-lg rounded-2xl bg-background/95 backdrop-blur shadow-xl"
+  >
+    <Dialog.Header class="space-y-3">
+      <Dialog.Title class="text-xl font-semibold tracking-tight">
+        About Java Infra Map
+      </Dialog.Title>
+
+      <Dialog.Description class="text-sm leading-relaxed text-muted-foreground">
+        <p>
+          Java Infra Map is an open-source web map that visualises key
+          infrastructure across Java Island, Indonesia. It provides investors,
+          researchers, and planners with a clear spatial overview of
+          transportation, energy, industrial, and strategic development
+          projects.
+          <br /><br />
+          The platform is community-driven. Contributors can enrich the map by adding
+          verified infrastructure projects through our
+          <a
+            href="https://github.com/enums-id/java-infra-map"
+            class="inline underline"
+            target="_blank"
+          >
+            GitHub repository</a
+          >.
+        </p>
+        <div class="my-2">
+          <h2 class="font-semibold text-lg my-2 text-foreground">Powered By</h2>
+          <div class="flex gap-1 items-center">
+            <a href="https://svelte.dev" target="_blank">
+              <img src="/logos/svelte-logo-square.svg" width="35rem" alt="" />
+            </a>
+            <a href="https://www.mapbox.com/" target="_blank">
+              <img
+                src={mode.current == "dark"
+                  ? "/logos/mapbox-logo-white.svg"
+                  : "/logos/mapbox-logo-black.svg"}
+                width="100rem"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+          <!-- GitHub -->
+          <Button
+            variant="outline"
+            size="icon"
+            href="https://github.com/enums-id/java-infra-map"
+            target="_blank"
+            aria-label="GitHub Repository"
+          >
+            <img
+              src="https://cdn.simpleicons.org/github/94a3b8"
+              alt="GitHub"
+              class="h-4 w-4"
+            />
+          </Button>
+
+          <!-- Website / LinkedIn -->
+          <Button
+            variant="outline"
+            size="icon"
+            href="https://enums.id"
+            target="_blank"
+            aria-label="Enums.id"
+          >
+            <ExternalLink />
+          </Button>
+        </div>
+      </Dialog.Description>
+    </Dialog.Header>
+  </Dialog.Content>
+</Dialog.Root>
