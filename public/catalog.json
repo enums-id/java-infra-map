@@ -677,5 +677,60 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "kek_kendal.geojson",
+    "url": "https://kek.go.id/id/investment/distribution/kek-kendal",
+    "displayName": "Kendal Special Economic Zone",
+    "description": "KEK Kendal is a strategic industrial Special Economic Zone in Central Java, positioned as a key manufacturing and export hub on Java Island. Developed through a partnership between Indonesian and international industrial estate leaders, the zone is fully supported by the national SEZ framework to attract high-value investment.",
+    "category": "Other",
+    "prompt": ["Kendal Special Economic Zone", "KEK Kendal Jawa Tengah"],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": "#8c00ab",
+          "fill-opacity": 0.45
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#78003c"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "industry-3",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]
