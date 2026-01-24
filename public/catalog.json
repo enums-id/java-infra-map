@@ -472,6 +472,24 @@
       }
     ]
   },
+  {
+    "name": "transjawa.geojson",
+    "url": "https://en.wikipedia.org/wiki/Cileunyi%E2%80%93Sumedang%E2%80%93Dawuan_Toll_Road",
+    "displayName": "Transjawa Highway",
+    "description": "The Trans-Java Toll Road is a continuous, high-capacity expressway network stretching across Java Island, connecting Banten (western Java) to East Java. Fully operational by the early 2020s and continuously upgraded, it has become Indonesia's most important land-based logistics corridor.",
+    "category": "Transport",
+    "prompt": ["Transjawa Toll Road", "Tol Transjawa"],
+    "layers": [
+      {
+        "type": "line",
+        "paint": {
+          "line-color": "#001463",
+          "line-width": 4,
+          "line-opacity": 0.85
+        }
+      }
+    ]
+  },
 
   {
     "name": "ciwandan.geojson",
