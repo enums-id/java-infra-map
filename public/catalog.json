@@ -536,7 +536,7 @@
           "icon-color": "white"
         },
         "layout": {
-          "icon-image": "sq",
+          "icon-image": "circle-2",
           "icon-size": 1,
           "icon-allow-overlap": true,
           "icon-anchor": "center"
@@ -546,10 +546,10 @@
         "type": "symbol",
         "filter": ["==", ["geometry-type"], "Point"],
         "paint": {
-          "icon-color": "#5b73cd"
+          "icon-color": "#78003c"
         },
         "layout": {
-          "icon-image": "sq",
+          "icon-image": "circle-2",
           "icon-size": 1,
           "icon-allow-overlap": true,
           "icon-anchor": "center"
