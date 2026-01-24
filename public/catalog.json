@@ -732,5 +732,64 @@
         }
       }
     ]
+  },
+
+  {
+    "name": "kek_batang.geojson",
+    "url": "https://industropolisbatang.co.id/",
+    "displayName": "Batang Special Economic Zone",
+    "description": "KEK Batang, officially known as Industropolis Batang Special Economic Zone, is one of Indonesia's most ambitious and largest SEZ developments, strategically located in Batang Regency, Central Java. It was formally designated as a KEK by the Government of Indonesia in March 2025 to accelerate industrialisation, attract foreign and domestic capital, and boost export-oriented growth.",
+    "category": "Other",
+    "prompt": [
+      "Batang Special Economic Zone",
+      "KEK Batang Jawa Tengah",
+      "Industropolis Batang Special Economic Zone"
+    ],
+    "layers": [
+      {
+        "type": "fill",
+        "paint": {
+          "fill-color": "#8c00ab",
+          "fill-opacity": 0.45
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "white"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": {
+          "icon-color": "#78003c"
+        },
+        "layout": {
+          "icon-image": "circle-2",
+          "icon-size": 1,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      },
+      {
+        "type": "symbol",
+        "filter": ["==", ["geometry-type"], "Point"],
+        "paint": { "icon-color": "white" },
+        "layout": {
+          "icon-image": "industry-3",
+          "icon-size": 0.5,
+          "icon-allow-overlap": true,
+          "icon-anchor": "center"
+        }
+      }
+    ]
   }
 ]
