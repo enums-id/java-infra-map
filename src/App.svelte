@@ -66,6 +66,8 @@
 
   let dialogOpen = $state(true);
   const name = "name";
+
+  let addButtonClicked = $state(false);
 </script>
 
 <ModeWatcher />
@@ -125,7 +127,7 @@
             <div class="flex items-center justify-center">
               <HoverCard.Root>
                 <HoverCard.Trigger
-                  class="rounded-sm m-1 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+                  class="rounded-sm m-1 relative underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
                 >
                   {#snippet child({ props })}
                     <Button
@@ -134,11 +136,20 @@
                         toast("Featured Projects:", {
                           description: "Added layers to the map",
                         });
+
+                        addButtonClicked = true;
                       }}
                       variant="outline"
-                      class="m-1"
+                      class="m-1 relative"
                       size="icon-sm"
-                      {...props}><MapPlus /></Button
+                      {...props}
+                    >
+                      <span
+                        class="absolute animate-ping rounded-full bg-sky-400 opacity-75 top-0 right-0 w-2 h-2"
+                        class:hidden={addButtonClicked}
+                      ></span>
+
+                      <MapPlus /></Button
                     >
                   {/snippet}
                 </HoverCard.Trigger>
